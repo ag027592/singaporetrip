@@ -153,6 +153,13 @@ ul {
   font-weight: 700;
 }
 
+.day-map-frame {
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;

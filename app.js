@@ -10,6 +10,14 @@ function reservationTag(item) {
   return item && item.needBooking ? "需預約" : "可現場";
 }
 
+function formatMoney(value, currency) {
+  return new Intl.NumberFormat("zh-Hant-TW", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0
+  }).format(value);
+}
+
 function renderList(container, items) {
   container.innerHTML = "";
   const ul = document.createElement("ul");
@@ -80,26 +88,25 @@ function renderTopSection(data) {
     .join("、")}`;
   paymentStrategy.appendChild(paymentSources);
 
+  const selected = data.budget.selectedScenario;
+  const sgdTotal = selected.breakdown.hotel + selected.breakdown.food + selected.breakdown.transport + selected.breakdown.tickets + selected.breakdown.misc;
+  const usdTotal = sgdTotal * data.budget.exchangeRate.usdPerSgd;
+  const twdTotal = sgdTotal * data.budget.exchangeRate.twdPerSgd;
   budgetDashboard.innerHTML = `
     <p>${data.budget.summary}</p>
-    <div class="blocks">
-      ${data.budget.scenarios
-        .map(
-          (scenario) => `
-        <article class="block-card budget-card">
-          <h3>${scenario.name}</h3>
-          <p><strong>住宿：</strong>${scenario.breakdown.hotel}</p>
-          <p><strong>餐飲：</strong>${scenario.breakdown.food}</p>
-          <p><strong>交通：</strong>${scenario.breakdown.transport}</p>
-          <p><strong>門票：</strong>${scenario.breakdown.tickets}</p>
-          <p><strong>購物/雜支：</strong>${scenario.breakdown.misc}</p>
-          <p><strong>雙人總計：</strong><span class="budget-total">${scenario.total}</span></p>
-          <p class="meta">${scenario.note}</p>
-        </article>
-      `
-        )
-        .join("")}
-    </div>
+    <article class="block-card budget-card">
+      <h3>${selected.name}</h3>
+      <p><strong>住宿：</strong>${formatMoney(selected.breakdown.hotel, "SGD")}</p>
+      <p><strong>餐飲：</strong>${formatMoney(selected.breakdown.food, "SGD")}</p>
+      <p><strong>交通：</strong>${formatMoney(selected.breakdown.transport, "SGD")}</p>
+      <p><strong>門票：</strong>${formatMoney(selected.breakdown.tickets, "SGD")}</p>
+      <p><strong>購物/雜支：</strong>${formatMoney(selected.breakdown.misc, "SGD")}</p>
+      <p><strong>雙人總計（SGD）：</strong><span class="budget-total">${formatMoney(sgdTotal, "SGD")}</span></p>
+      <p><strong>雙人總計（TWD）：</strong><span class="budget-total">${formatMoney(twdTotal, "TWD")}</span></p>
+      <p><strong>雙人總計（USD）：</strong><span class="budget-total">${formatMoney(usdTotal, "USD")}</span></p>
+      <p class="meta">${selected.note}</p>
+      <p class="meta">匯率假設：1 SGD ≈ ${data.budget.exchangeRate.twdPerSgd} TWD；1 SGD ≈ ${data.budget.exchangeRate.usdPerSgd} USD（出發前請再用實際匯率更新）。</p>
+    </article>
   `;
 
   reservationPlan.innerHTML = `
@@ -148,11 +155,20 @@ function renderBlocks(day) {
   dayTitle.textContent = `${day.date} (${day.weekday}) 詳細安排`;
   daySummary.textContent = day.summary;
   blocks.innerHTML = "";
+  const seen = new Set();
+  const uniqueBlocks = day.blocks.filter((block) => {
+    const key = `${block.startTime}|${block.endTime}|${block.name}|${block.location}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
   const bookingByName = Object.fromEntries(
     (day.bookingItems || []).map((item) => [item.blockName, item])
   );
 
-  day.blocks.forEach((block) => {
+  uniqueBlocks.forEach((block) => {
     const bookingInfo = bookingByName[block.name];
     const card = document.createElement("article");
     card.className = "block-card";
@@ -195,6 +211,48 @@ function renderMrtVisual(day) {
     .join("");
 }
 
+function getUsefulBlocks(day) {
+  return day.blocks.filter((block) => {
+    const text = `${block.name} ${block.location}`;
+    return !text.includes("住宿");
+  });
+}
+
+function mapQueryFromBlock(block) {
+  const fallback = `${block.location || ""} ${block.address || ""}`.trim();
+  const raw = (block.address && !block.address.includes("依住宿位置")) ? block.address : fallback;
+  return raw || "Singapore";
+}
+
+function renderDayMap(day) {
+  const mapTitle = document.getElementById("day-map-title");
+  const mapSummary = document.getElementById("day-map-summary");
+  const mapAreas = document.getElementById("day-map-areas");
+  const routeLink = document.getElementById("day-map-route-link");
+  const mapFrame = document.getElementById("day-map-frame");
+
+  const usefulBlocks = getUsefulBlocks(day);
+  const focusBlock = usefulBlocks[0] || day.blocks[0];
+  const mapQuery = mapQueryFromBlock(focusBlock);
+  const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+
+  const stops = usefulBlocks.slice(0, 5).map((block) => mapQueryFromBlock(block));
+  const origin = stops[0] || "Citadines Rochor Singapore";
+  const destination = stops[stops.length - 1] || origin;
+  const waypoints = stops.slice(1, -1).join("|");
+  const routeUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=transit${waypoints ? `&waypoints=${encodeURIComponent(waypoints)}` : ""}`;
+
+  const uniqueAreas = Array.from(new Set(usefulBlocks.map((block) => block.location))).slice(0, 6);
+  mapAreas.innerHTML = uniqueAreas
+    .map((area) => `<span class="route-stop">${area}</span>`)
+    .join("");
+
+  mapTitle.textContent = `${day.date} (${day.weekday}) 每日互動地圖`;
+  mapSummary.textContent = `今日主要玩樂區域已圈選如下，地圖預設聚焦第一站，點下方連結可開啟完整 Google Maps 大圖路線。`;
+  routeLink.href = routeUrl;
+  mapFrame.src = embedUrl;
+}
+
 function markActiveButton(index) {
   const buttons = Array.from(document.querySelectorAll(".day-button"));
   buttons.forEach((button) => {
@@ -210,11 +268,13 @@ async function main() {
     renderDayNav(data.days, (index) => {
       renderBlocks(data.days[index]);
       renderMrtVisual(data.days[index]);
+      renderDayMap(data.days[index]);
       markActiveButton(index);
     });
 
     renderBlocks(data.days[0]);
     renderMrtVisual(data.days[0]);
+    renderDayMap(data.days[0]);
     markActiveButton(0);
   } catch (error) {
     document.body.innerHTML = `<main style="padding: 2rem;"><h1>載入失敗</h1><p>${error.message}</p></main>`;
