@@ -210,8 +210,9 @@ function renderAllDaysOverview(days, onSelect) {
     .map((day, index) => {
       const meta = getDayMeta(day.date);
       const firstTwo = dedupeBlocks(day.blocks).slice(0, 2);
+      const searchText = `${day.date} ${day.weekday} ${meta.label} ${firstTwo.map((b) => b.name).join(" ")}`;
       return `
-      <article class="overview-card" data-overview-index="${index}">
+      <article class="overview-card" data-overview-index="${index}" data-search="${escapeHtml(searchText)}">
         <h3>${escapeHtml(day.date)}</h3>
         <p class="meta">${escapeHtml(day.weekday)} · ${escapeHtml(meta.label)}</p>
         <p>${firstTwo.map((b) => `${escapeHtml(b.startTime)} ${escapeHtml(b.name)}`).join(" / ")}</p>
@@ -341,6 +342,23 @@ function renderPrepContent(data) {
   `;
 
   renderList(transportNotes, data.transportNotes || []);
+}
+
+function renderKpis(data) {
+  const kpi = byId("trip-kpis");
+  if (!kpi) {
+    return;
+  }
+  const dayCount = Array.isArray(data.days) ? data.days.length : 0;
+  const confDays = (data.days || []).filter((d) => /ICPR7/i.test(getDayMeta(d.date).label)).length;
+  const hotelName = data.hotel?.name || "Citadines Rochor Singapore";
+  kpi.innerHTML = `
+    <span class="kpi-pill">住宿：<strong>${escapeHtml(hotelName)}</strong></span>
+    <span class="kpi-pill">總天數：<strong>${dayCount}</strong></span>
+    <span class="kpi-pill">會議日：<strong>${confDays}</strong></span>
+    <span class="kpi-pill">離境時限：<strong>07/12 15:00 前抵達機場</strong></span>
+  `;
+  kpi.hidden = false;
 }
 
 function renderPrepOverviewMap(days, options = {}) {
@@ -492,6 +510,8 @@ async function main() {
   const loading = byId("app-loading");
   const errorBox = byId("app-error");
   const viewDaily = byId("view-daily");
+  const appToolbar = byId("app-toolbar");
+  const viewStatus = byId("view-status");
   const showError = (message) => {
     if (errorBox) {
       errorBox.innerHTML = `<h2>載入失敗</h2><p>${escapeHtml(message)}</p><p><a href="#" id="retry-load-link">重新整理</a></p>`;
@@ -525,6 +545,7 @@ async function main() {
       "reservation-plan",
       "transport-notes",
       "all-days-overview",
+      "quick-overview-empty",
       "full-trip-static",
       "main-quick-overview",
       "full-trip-timeline-block",
@@ -536,7 +557,14 @@ async function main() {
       "mrt-visual",
       "day-title",
       "day-summary",
-      "blocks"
+      "blocks",
+      "btn-show-overview",
+      "btn-show-cards",
+      "btn-print",
+      "btn-back-cards",
+      "day-filter-input",
+      "btn-clear-filter",
+      "trip-kpis"
     ];
     const missing = requiredIds.filter((id) => !byId(id));
     if (missing.length) {
@@ -550,16 +578,32 @@ async function main() {
 
     renderOverviewContent(data);
     renderPrepContent(data);
+    renderKpis(data);
     renderPrepOverviewMap(data.days, { loadEmbed: false });
 
     const fullTripStatic = byId("full-trip-static");
     const mainQuickOverview = byId("main-quick-overview");
     const fullTripTimelineBlock = byId("full-trip-timeline-block");
+    const quickOverviewEmpty = byId("quick-overview-empty");
+    const dayFilterInput = byId("day-filter-input");
+    const btnClearFilter = byId("btn-clear-filter");
+    const btnShowOverview = byId("btn-show-overview");
+    const btnShowCards = byId("btn-show-cards");
+    const btnPrint = byId("btn-print");
+    const btnBackCards = byId("btn-back-cards");
     const staticInfoPanels = Array.from(
       document.querySelectorAll("#full-trip-static > .panel:not(.panel-map-overview)")
     );
     let hasLoadedOverviewMap = false;
     let hasRenderedFullTimeline = false;
+    let activeDayIndex = 0;
+
+    const setViewStatus = (text) => {
+      if (viewStatus) {
+        viewStatus.textContent = text;
+        viewStatus.hidden = false;
+      }
+    };
 
     const toggleStaticInfoPanels = (visible) => {
       staticInfoPanels.forEach((panel) => {
@@ -567,7 +611,34 @@ async function main() {
       });
     };
 
+    const showCardsOnly = () => {
+      fullTripStatic.hidden = true;
+      mainQuickOverview.hidden = false;
+      fullTripTimelineBlock.hidden = true;
+      updateNavHighlight(activeDayIndex);
+      setViewStatus("目前顯示快速跳轉卡片。可點「看這一天」進入詳細行程。");
+      scrollMainIntoView();
+    };
+
+    const applyQuickFilter = () => {
+      const query = (dayFilterInput?.value || "").trim().toLowerCase();
+      const cards = Array.from(document.querySelectorAll(".overview-card"));
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const haystack = (card.dataset.search || "").toLowerCase();
+        const match = !query || haystack.includes(query);
+        card.hidden = !match;
+        if (match) {
+          visibleCount += 1;
+        }
+      });
+      if (quickOverviewEmpty) {
+        quickOverviewEmpty.hidden = visibleCount !== 0;
+      }
+    };
+
     const selectDaily = (index) => {
+      activeDayIndex = index === -1 ? 0 : index;
       if (index === -1) {
         fullTripStatic.hidden = false;
         mainQuickOverview.hidden = true;
@@ -594,6 +665,7 @@ async function main() {
           }
           hasRenderedFullTimeline = true;
         }
+        setViewStatus("目前顯示總覽模式：行前資訊、全行程地圖與完整時間軸。");
       } else {
         fullTripStatic.hidden = false;
         mainQuickOverview.hidden = true;
@@ -626,6 +698,7 @@ async function main() {
             }
           }
         }
+        setViewStatus(`目前顯示 ${data.days[index].date} 的詳細行程。`);
       }
       updateNavHighlight(index);
       scrollMainIntoView();
@@ -634,13 +707,29 @@ async function main() {
     renderDayNav(data.days, selectDaily);
     renderAllDaysOverview(data.days, selectDaily);
 
+    btnShowOverview?.addEventListener("click", () => selectDaily(-1));
+    btnShowCards?.addEventListener("click", showCardsOnly);
+    btnBackCards?.addEventListener("click", showCardsOnly);
+    btnPrint?.addEventListener("click", () => window.print());
+    dayFilterInput?.addEventListener("input", applyQuickFilter);
+    btnClearFilter?.addEventListener("click", () => {
+      if (dayFilterInput) {
+        dayFilterInput.value = "";
+      }
+      applyQuickFilter();
+    });
+
     if (viewDaily) {
       viewDaily.hidden = false;
+    }
+    if (appToolbar) {
+      appToolbar.hidden = false;
     }
     if (loading) {
       loading.hidden = true;
     }
-    updateNavHighlight(0);
+    applyQuickFilter();
+    showCardsOnly();
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     showError(message);

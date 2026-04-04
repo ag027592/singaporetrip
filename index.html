@@ -26,6 +26,20 @@
     <section class="content">
       <div id="app-loading" class="panel app-loading" role="status" aria-live="polite">載入中...</div>
       <div id="app-error" class="panel app-error" role="alert" hidden></div>
+      <div id="app-toolbar" class="panel app-toolbar" hidden>
+        <div class="toolbar-left">
+          <button id="btn-show-overview" type="button" class="toolbar-btn">看總覽</button>
+          <button id="btn-show-cards" type="button" class="toolbar-btn">看快速跳轉</button>
+          <button id="btn-print" type="button" class="toolbar-btn">列印</button>
+        </div>
+        <div class="toolbar-right">
+          <label for="day-filter-input" class="toolbar-label">快速篩選</label>
+          <input id="day-filter-input" class="toolbar-input" type="search" placeholder="輸入日期或關鍵字">
+          <button id="btn-clear-filter" type="button" class="toolbar-btn toolbar-btn-subtle">清除</button>
+        </div>
+      </div>
+      <p id="view-status" class="meta view-status" aria-live="polite" hidden></p>
+      <div id="trip-kpis" class="panel trip-kpis" hidden></div>
       <div id="view-daily" class="content-view is-active" hidden>
         <!-- 僅「一次看完」：單一總表 + 全境地圖 -->
         <div id="full-trip-static" class="full-trip-static" hidden>
@@ -85,10 +99,14 @@
         <div id="main-quick-overview" class="panel main-quick-overview">
           <h2>快速跳轉</h2>
           <div id="all-days-overview" class="all-days-overview"></div>
+          <p id="quick-overview-empty" class="meta quick-overview-empty" hidden>找不到符合條件的日期，請調整關鍵字。</p>
         </div>
 
         <!-- 僅「一次看完」：全行程捷運 + 時間軸 -->
         <div id="full-trip-timeline-block" class="full-trip-timeline-block" hidden>
+          <div class="detail-actions">
+            <button id="btn-back-cards" type="button" class="toolbar-btn toolbar-btn-subtle">回快速跳轉</button>
+          </div>
           <article id="panel-daily-mrt" class="panel">
             <h2>全行程捷運動線（去重）</h2>
             <p id="mrt-summary"></p>
