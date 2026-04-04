@@ -144,6 +144,15 @@ ul {
   font-weight: 700;
 }
 
+.budget-card {
+  border-left: 4px solid #7aa6ff;
+}
+
+.budget-total {
+  color: #0f4fcc;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;

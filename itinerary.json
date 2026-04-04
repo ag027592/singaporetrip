@@ -1,5 +1,5 @@
 {
-  "tripOverview": "這份行程先以「景點與每日動線」為主，住宿先暫緩。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；我已把每天拆成可直接執行的時段，先把玩樂與會議節奏定稿。",
+  "tripOverview": "這份行程已納入你們定案住宿 Citadines Rochor，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；每天都拆成可直接執行的情侶旅行版本。",
   "attractionPlan": [
     "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
     "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
@@ -84,6 +84,47 @@
       {
         "name": "BofA Foreign Transaction Fee 參考",
         "url": "https://wise.com/us/blog/bank-of-america-foreign-transaction"
+      }
+    ]
+  },
+  "budget": {
+    "summary": "以下為 8 晚、雙人旅程的估算總預算。已含你目前住宿訂單，餐飲/交通/門票依行程強度分為三個版本。",
+    "scenarios": [
+      {
+        "name": "樂觀省錢版",
+        "breakdown": {
+          "hotel": "S$2,217.55",
+          "food": "S$850",
+          "transport": "S$170",
+          "tickets": "S$260",
+          "misc": "S$120"
+        },
+        "total": "約 S$3,618",
+        "note": "以熟食中心為主、景點挑重點、購物壓低。"
+      },
+      {
+        "name": "中位平衡版（建議）",
+        "breakdown": {
+          "hotel": "S$2,217.55",
+          "food": "S$1,150",
+          "transport": "S$220",
+          "tickets": "S$420",
+          "misc": "S$250"
+        },
+        "total": "約 S$4,258",
+        "note": "兼顧體驗與預算，保留 1-2 次較好晚餐。"
+      },
+      {
+        "name": "寬鬆享受版",
+        "breakdown": {
+          "hotel": "S$2,217.55",
+          "food": "S$1,500",
+          "transport": "S$320",
+          "tickets": "S$620",
+          "misc": "S$450"
+        },
+        "total": "約 S$5,108",
+        "note": "多用 Grab、門票與觀景活動拉滿、購物彈性更高。"
       }
     ]
   },

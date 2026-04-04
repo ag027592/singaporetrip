@@ -28,6 +28,7 @@ function renderTopSection(data) {
   const hotelFixed = document.getElementById("hotel-fixed");
   const priceCheck = document.getElementById("price-check");
   const paymentStrategy = document.getElementById("payment-strategy");
+  const budgetDashboard = document.getElementById("budget-dashboard");
   const reservationPlan = document.getElementById("reservation-plan");
   const transportNotes = document.getElementById("transport-notes");
 
@@ -78,6 +79,28 @@ function renderTopSection(data) {
     .map((source) => `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`)
     .join("、")}`;
   paymentStrategy.appendChild(paymentSources);
+
+  budgetDashboard.innerHTML = `
+    <p>${data.budget.summary}</p>
+    <div class="blocks">
+      ${data.budget.scenarios
+        .map(
+          (scenario) => `
+        <article class="block-card budget-card">
+          <h3>${scenario.name}</h3>
+          <p><strong>住宿：</strong>${scenario.breakdown.hotel}</p>
+          <p><strong>餐飲：</strong>${scenario.breakdown.food}</p>
+          <p><strong>交通：</strong>${scenario.breakdown.transport}</p>
+          <p><strong>門票：</strong>${scenario.breakdown.tickets}</p>
+          <p><strong>購物/雜支：</strong>${scenario.breakdown.misc}</p>
+          <p><strong>雙人總計：</strong><span class="budget-total">${scenario.total}</span></p>
+          <p class="meta">${scenario.note}</p>
+        </article>
+      `
+        )
+        .join("")}
+    </div>
+  `;
 
   reservationPlan.innerHTML = `
     <div class="blocks">
