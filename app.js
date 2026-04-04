@@ -159,6 +159,14 @@ function renderDayNav(days, onSelect) {
   const dayNav = document.getElementById("day-nav");
   dayNav.innerHTML = "";
 
+  const allButton = document.createElement("button");
+  allButton.type = "button";
+  allButton.className = "day-button";
+  allButton.dataset.index = "-1";
+  allButton.textContent = "一次看完";
+  allButton.addEventListener("click", () => onSelect(-1));
+  dayNav.appendChild(allButton);
+
   days.forEach((day, index) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -168,6 +176,26 @@ function renderDayNav(days, onSelect) {
     button.addEventListener("click", () => onSelect(index));
     dayNav.appendChild(button);
   });
+}
+
+function renderBlockCard(block, bookingInfo) {
+  return `
+    <article class="block-card">
+      <div class="block-head">
+        <h3>${block.name}</h3>
+        <strong>${block.startTime} - ${block.endTime}</strong>
+      </div>
+      <p class="meta">${block.location} | ${block.address}</p>
+      <p><strong>預計花費：</strong>${block.cost}</p>
+      <p><strong>交通建議：</strong>${block.transport.route}</p>
+      <p><strong>捷運站：</strong>${block.transport.mrtStations.join("、")}</p>
+      <p><strong>預估捷運/巴士費：</strong>${block.transport.fareEstimate}</p>
+      <p><strong>天氣提醒：</strong>${block.weather}</p>
+      <p><strong>預約：</strong>${bookingInfo ? reservationTag(bookingInfo) : "可現場"}${bookingInfo ? `（${bookingInfo.action}）` : ""}</p>
+      <p><a href="${block.mapUrl}" target="_blank" rel="noopener noreferrer">Google Maps 導航</a></p>
+      <p>${block.notes}</p>
+    </article>
+  `;
 }
 
 function renderBlocks(day) {
@@ -193,24 +221,37 @@ function renderBlocks(day) {
 
   uniqueBlocks.forEach((block) => {
     const bookingInfo = bookingByName[block.name];
-    const card = document.createElement("article");
-    card.className = "block-card";
-    card.innerHTML = `
-      <div class="block-head">
-        <h3>${block.name}</h3>
-        <strong>${block.startTime} - ${block.endTime}</strong>
-      </div>
-      <p class="meta">${block.location} | ${block.address}</p>
-      <p><strong>預計花費：</strong>${block.cost}</p>
-      <p><strong>交通建議：</strong>${block.transport.route}</p>
-      <p><strong>捷運站：</strong>${block.transport.mrtStations.join("、")}</p>
-      <p><strong>預估捷運/巴士費：</strong>${block.transport.fareEstimate}</p>
-      <p><strong>天氣提醒：</strong>${block.weather}</p>
-      <p><strong>預約：</strong>${bookingInfo ? reservationTag(bookingInfo) : "可現場"}${bookingInfo ? `（${bookingInfo.action}）` : ""}</p>
-      <p><a href="${block.mapUrl}" target="_blank" rel="noopener noreferrer">Google Maps 導航</a></p>
-      <p>${block.notes}</p>
+    const card = document.createElement("div");
+    card.innerHTML = renderBlockCard(block, bookingInfo);
+    blocks.appendChild(card.firstElementChild);
+  });
+}
+
+function renderAllBlocks(days) {
+  const dayTitle = document.getElementById("day-title");
+  const daySummary = document.getElementById("day-summary");
+  const blocks = document.getElementById("blocks");
+
+  dayTitle.textContent = "一次看完：全行程每日細項";
+  daySummary.textContent = "以下依日期完整列出每天活動、交通、預算與預約提醒。";
+  blocks.innerHTML = "";
+
+  days.forEach((day) => {
+    const section = document.createElement("section");
+    section.className = "block-card";
+    const bookingByName = Object.fromEntries(
+      (day.bookingItems || []).map((item) => [item.blockName, item])
+    );
+    const eventCards = day.blocks
+      .map((block) => renderBlockCard(block, bookingByName[block.name]))
+      .join("");
+    section.innerHTML = `
+      <h3>${day.date} (${day.weekday})</h3>
+      <p class="meta">${day.summary}</p>
+      <p><strong>當日捷運主軸：</strong>${day.mrtRoute ? day.mrtRoute.label : "依當日安排"}</p>
+      <div class="blocks">${eventCards}</div>
     `;
-    blocks.appendChild(card);
+    blocks.appendChild(section);
   });
 }
 
@@ -276,6 +317,29 @@ function renderDayMap(day) {
   mapFrame.src = embedUrl;
 }
 
+function renderAllDaysMap(days) {
+  const mapTitle = document.getElementById("day-map-title");
+  const mapSummary = document.getElementById("day-map-summary");
+  const mapAreas = document.getElementById("day-map-areas");
+  const routeLink = document.getElementById("day-map-route-link");
+  const mapFrame = document.getElementById("day-map-frame");
+
+  const allBlocks = days.flatMap((day) => getUsefulBlocks(day));
+  const uniqueAreas = Array.from(new Set(allBlocks.map((block) => block.location))).slice(0, 14);
+  mapAreas.innerHTML = uniqueAreas
+    .map((area) => `<span class="route-stop">${area}</span>`)
+    .join("");
+
+  const stops = allBlocks.slice(0, 10).map((block) => mapQueryFromBlock(block));
+  const origin = "Citadines Rochor Singapore";
+  const destination = stops[stops.length - 1] || origin;
+  const waypoints = stops.slice(0, -1).join("|");
+  routeLink.href = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=transit${waypoints ? `&waypoints=${encodeURIComponent(waypoints)}` : ""}`;
+  mapFrame.src = `https://www.google.com/maps?q=${encodeURIComponent("Singapore attractions")}&output=embed`;
+  mapTitle.textContent = "一次看完：全景點互動地圖";
+  mapSummary.textContent = "已標示全行程會去的主要區域；可點下方連結開啟 Google Maps 全路線（含多站點）。";
+}
+
 function markActiveSelection(index) {
   const buttons = Array.from(document.querySelectorAll(".day-button"));
   buttons.forEach((button) => {
@@ -294,9 +358,21 @@ async function main() {
     const data = await loadItinerary();
     renderTopSection(data);
     const selectDay = (index) => {
-      renderBlocks(data.days[index]);
-      renderMrtVisual(data.days[index]);
-      renderDayMap(data.days[index]);
+      if (index === -1) {
+        renderAllBlocks(data.days);
+        document.getElementById("mrt-summary").textContent = "一次看完模式：下方為全行程主要捷運節點。";
+        document.getElementById("mrt-visual").innerHTML = data.days
+          .flatMap((day) => (day.mrtRoute ? day.mrtRoute.stations : []))
+          .filter((station, i, arr) => arr.indexOf(station) === i)
+          .slice(0, 12)
+          .map((station) => `<span class="route-stop">${station}</span>`)
+          .join("");
+        renderAllDaysMap(data.days);
+      } else {
+        renderBlocks(data.days[index]);
+        renderMrtVisual(data.days[index]);
+        renderDayMap(data.days[index]);
+      }
       markActiveSelection(index);
     };
     renderDayNav(data.days, selectDay);
