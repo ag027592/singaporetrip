@@ -61,6 +61,17 @@ function formatMoney(value, currency) {
   }).format(value);
 }
 
+function renderList(container, items) {
+  container.innerHTML = "";
+  const ul = document.createElement("ul");
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    ul.appendChild(li);
+  });
+  container.appendChild(ul);
+}
+
 function dedupeBlocks(blocks) {
   const seen = new Set();
   return blocks.filter((block) => {
@@ -222,133 +233,114 @@ function renderAllDaysOverview(days, onSelect) {
   }
 }
 
-function renderTripInfoForm(data) {
-  const form = byId("trip-info-form");
-  if (!form) {
+function renderOverviewContent(data) {
+  const tripOverview = byId("trip-overview");
+  const attractionPlan = byId("attraction-plan");
+  if (!tripOverview || !attractionPlan) {
+    return;
+  }
+  tripOverview.innerHTML = `<p>${escapeHtml(data.tripOverview || "")}</p>`;
+  renderList(attractionPlan, data.attractionPlan || []);
+}
+
+function renderPrepContent(data) {
+  const weatherSummary = byId("weather-summary");
+  const hotelFixed = byId("hotel-fixed");
+  const priceCheck = byId("price-check");
+  const paymentStrategy = byId("payment-strategy");
+  const budgetDashboard = byId("budget-dashboard");
+  const reservationPlan = byId("reservation-plan");
+  const transportNotes = byId("transport-notes");
+  if (!weatherSummary || !hotelFixed || !priceCheck || !paymentStrategy || !budgetDashboard || !reservationPlan || !transportNotes) {
     return;
   }
 
-  const attractionUl = (data.attractionPlan || []).map((line) => `<li>${escapeHtml(line)}</li>`).join("");
-  const transportUl = (data.transportNotes || []).map((line) => `<li>${escapeHtml(line)}</li>`).join("");
-  const paymentLi = (data.payment?.recommendations || []).map((line) => `<li>${escapeHtml(line)}</li>`).join("");
+  weatherSummary.innerHTML = `
+    <p>${escapeHtml(data.weather?.summary || "")}</p>
+    <div>${(data.weather?.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+    <p>資料來源：${(data.weather?.sources || []).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`).join("、")}</p>
+  `;
+
+  hotelFixed.innerHTML = `
+    <article class="block-card">
+      <h3>${escapeHtml(data.hotel?.name || "")}</h3>
+      <p><strong>地址：</strong>${escapeHtml(data.hotel?.address || "")}</p>
+      <p><strong>最近 MRT：</strong>${escapeHtml(data.hotel?.nearestMrt || "")}</p>
+      <p><strong>電話：</strong>${escapeHtml(data.hotel?.phone || "")}</p>
+      <p><strong>已訂總價：</strong>${escapeHtml(data.hotel?.bookedPriceUsd || "")} / ${escapeHtml(data.hotel?.bookedPriceSgd || "")}</p>
+      <p><strong>每晚均價：</strong>${escapeHtml(data.hotel?.perNightSgd || "")}</p>
+      <p><a href="${escapeHtml(data.hotel?.mapUrl || "#")}" target="_blank" rel="noopener noreferrer">住宿 Google Maps</a></p>
+    </article>
+  `;
+
+  priceCheck.innerHTML = `
+    <p>${escapeHtml(data.priceCheck?.summary || "")}</p>
+    <div class="blocks">
+      ${(data.priceCheck?.references || [])
+        .map(
+          (ref) => `
+        <article class="block-card">
+          <h3>${escapeHtml(ref.source)}</h3>
+          <p>${escapeHtml(ref.note)}</p>
+          <p><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener noreferrer">查看來源</a></p>
+        </article>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+
+  paymentStrategy.innerHTML = `<p>${escapeHtml(data.payment?.summary || "")}</p>`;
+  const paymentList = document.createElement("div");
+  renderList(paymentList, data.payment?.recommendations || []);
+  paymentStrategy.appendChild(paymentList);
+  const paymentSources = document.createElement("p");
+  paymentSources.innerHTML = `來源：${(data.payment?.sources || [])
+    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
+    .join("、")}`;
+  paymentStrategy.appendChild(paymentSources);
 
   const selected = data.budget?.selectedScenario;
   const bd = selected?.breakdown;
-  const xr = data.budget?.exchangeRate;
-  const sgdTotal = bd
-    ? bd.hotel + bd.food + bd.transport + bd.tickets + bd.misc
-    : 0;
-  const usdTotal = xr ? sgdTotal * xr.usdPerSgd : 0;
-  const twdTotal = xr ? sgdTotal * xr.twdPerSgd : 0;
-
-  const priceRefs = (data.priceCheck?.references || [])
-    .map(
-      (ref) => `
-    <article class="block-card">
-      <h4>${escapeHtml(ref.source)}</h4>
-      <p>${escapeHtml(ref.note)}</p>
-      <p><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener noreferrer">查看來源</a></p>
+  const sgdTotal = bd ? bd.hotel + bd.food + bd.transport + bd.tickets + bd.misc : 0;
+  const usdTotal = sgdTotal * (data.budget?.exchangeRate?.usdPerSgd || 0);
+  const twdTotal = sgdTotal * (data.budget?.exchangeRate?.twdPerSgd || 0);
+  budgetDashboard.innerHTML = `
+    <p>${escapeHtml(data.budget?.summary || "")}</p>
+    <article class="block-card budget-card">
+      <h3>${escapeHtml(selected?.name || "—")}</h3>
+      <p><strong>住宿：</strong>${bd ? formatMoney(bd.hotel, "SGD") : "—"}</p>
+      <p><strong>餐飲：</strong>${bd ? formatMoney(bd.food, "SGD") : "—"}</p>
+      <p><strong>交通：</strong>${bd ? formatMoney(bd.transport, "SGD") : "—"}</p>
+      <p><strong>門票：</strong>${bd ? formatMoney(bd.tickets, "SGD") : "—"}</p>
+      <p><strong>購物/雜支：</strong>${bd ? formatMoney(bd.misc, "SGD") : "—"}</p>
+      <p><strong>雙人總計（SGD）：</strong><span class="budget-total">${formatMoney(sgdTotal, "SGD")}</span></p>
+      <p><strong>雙人總計（TWD）：</strong><span class="budget-total">${formatMoney(twdTotal, "TWD")}</span></p>
+      <p><strong>雙人總計（USD）：</strong><span class="budget-total">${formatMoney(usdTotal, "USD")}</span></p>
+      <p class="meta">${escapeHtml(selected?.note || "")}</p>
+      <p class="meta">匯率假設：1 SGD ≈ ${data.budget?.exchangeRate?.twdPerSgd ?? "—"} TWD；1 SGD ≈ ${data.budget?.exchangeRate?.usdPerSgd ?? "—"} USD（出發前請再用實際匯率更新）。</p>
     </article>
-  `
-    )
-    .join("");
-
-  const bookingCards = (data.bookingChecklist || [])
-    .map(
-      (item) => `
-    <article class="block-card">
-      <h4>${escapeHtml(item.name)} <span class="tag">${reservationTag(item)}</span></h4>
-      <p><strong>類型：</strong>${escapeHtml(item.type)}</p>
-      <p><strong>建議：</strong>${escapeHtml(item.action)}</p>
-      <p><strong>時機：</strong>${escapeHtml(item.when)}</p>
-      <p><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">官方或參考頁</a></p>
-    </article>
-  `
-    )
-    .join("");
-
-  const weatherSources = (data.weather?.sources || [])
-    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
-    .join("、");
-
-  const paymentSources = (data.payment?.sources || [])
-    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
-    .join("、");
-
-  form.innerHTML = `
-    <section class="trip-info-section">
-      <h3>行程總覽</h3>
-      <div class="trip-info-body"><p>${escapeHtml(data.tripOverview)}</p></div>
-    </section>
-    <section class="trip-info-section">
-      <h3>景點規劃重點</h3>
-      <div class="trip-info-body"><ul>${attractionUl}</ul></div>
-    </section>
-    <section class="trip-info-section">
-      <h3>天氣與準備建議</h3>
-      <div class="trip-info-body">
-        <p>${escapeHtml(data.weather?.summary || "")}</p>
-        <div>${(data.weather?.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-        <p>資料來源：${weatherSources}</p>
-      </div>
-    </section>
-    <section class="trip-info-section">
-      <h3>住宿定案</h3>
-      <div class="trip-info-body">
-        <article class="block-card">
-          <h4>${escapeHtml(data.hotel?.name || "")}</h4>
-          <p><strong>地址：</strong>${escapeHtml(data.hotel?.address || "")}</p>
-          <p><strong>最近 MRT：</strong>${escapeHtml(data.hotel?.nearestMrt || "")}</p>
-          <p><strong>電話：</strong>${escapeHtml(data.hotel?.phone || "")}</p>
-          <p><strong>已訂總價：</strong>${escapeHtml(data.hotel?.bookedPriceUsd || "")} / ${escapeHtml(data.hotel?.bookedPriceSgd || "")}</p>
-          <p><strong>每晚均價：</strong>${escapeHtml(data.hotel?.perNightSgd || "")}</p>
-          <p><a href="${escapeHtml(data.hotel?.mapUrl || "#")}" target="_blank" rel="noopener noreferrer">住宿 Google Maps</a></p>
-        </article>
-      </div>
-    </section>
-    <section class="trip-info-section">
-      <h3>比價檢查（你目前訂單）</h3>
-      <div class="trip-info-body">
-        <p>${escapeHtml(data.priceCheck?.summary || "")}</p>
-        <div class="blocks">${priceRefs}</div>
-      </div>
-    </section>
-    <section class="trip-info-section">
-      <h3>付款方式最省策略</h3>
-      <div class="trip-info-body">
-        <p>${escapeHtml(data.payment?.summary || "")}</p>
-        <ul>${paymentLi}</ul>
-        <p>來源：${paymentSources}</p>
-      </div>
-    </section>
-    <section class="trip-info-section">
-      <h3>雙人總預算儀表板</h3>
-      <div class="trip-info-body">
-        <p>${escapeHtml(data.budget?.summary || "")}</p>
-        <article class="block-card budget-card">
-          <h4>${escapeHtml(selected?.name || "—")}</h4>
-          <p><strong>住宿：</strong>${bd ? formatMoney(bd.hotel, "SGD") : "—"}</p>
-          <p><strong>餐飲：</strong>${bd ? formatMoney(bd.food, "SGD") : "—"}</p>
-          <p><strong>交通：</strong>${bd ? formatMoney(bd.transport, "SGD") : "—"}</p>
-          <p><strong>門票：</strong>${bd ? formatMoney(bd.tickets, "SGD") : "—"}</p>
-          <p><strong>購物/雜支：</strong>${bd ? formatMoney(bd.misc, "SGD") : "—"}</p>
-          <p><strong>雙人總計（SGD）：</strong><span class="budget-total">${formatMoney(sgdTotal, "SGD")}</span></p>
-          <p><strong>雙人總計（TWD）：</strong><span class="budget-total">${formatMoney(twdTotal, "TWD")}</span></p>
-          <p><strong>雙人總計（USD）：</strong><span class="budget-total">${formatMoney(usdTotal, "USD")}</span></p>
-          <p class="meta">${escapeHtml(selected?.note || "")}</p>
-          <p class="meta">匯率假設：1 SGD ≈ ${xr?.twdPerSgd ?? "—"} TWD；1 SGD ≈ ${xr?.usdPerSgd ?? "—"} USD（出發前請再用實際匯率更新）。</p>
-        </article>
-      </div>
-    </section>
-    <section class="trip-info-section">
-      <h3>景點 / 餐廳預約清單</h3>
-      <div class="trip-info-body"><div class="blocks">${bookingCards}</div></div>
-    </section>
-    <section class="trip-info-section">
-      <h3>交通與票價通則</h3>
-      <div class="trip-info-body"><ul>${transportUl}</ul></div>
-    </section>
   `;
+
+  reservationPlan.innerHTML = `
+    <div class="blocks">
+      ${(data.bookingChecklist || [])
+        .map(
+          (item) => `
+        <article class="block-card">
+          <h3>${escapeHtml(item.name)} <span class="tag">${reservationTag(item)}</span></h3>
+          <p><strong>類型：</strong>${escapeHtml(item.type)}</p>
+          <p><strong>建議：</strong>${escapeHtml(item.action)}</p>
+          <p><strong>時機：</strong>${escapeHtml(item.when)}</p>
+          <p><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">官方或參考頁</a></p>
+        </article>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+
+  renderList(transportNotes, data.transportNotes || []);
 }
 
 function renderPrepOverviewMap(days, options = {}) {
@@ -510,7 +502,15 @@ async function main() {
   try {
     const requiredIds = [
       "day-nav",
-      "trip-info-form",
+      "trip-overview",
+      "attraction-plan",
+      "weather-summary",
+      "hotel-fixed",
+      "price-check",
+      "payment-strategy",
+      "budget-dashboard",
+      "reservation-plan",
+      "transport-notes",
       "all-days-overview",
       "full-trip-static",
       "main-quick-overview",
@@ -535,7 +535,8 @@ async function main() {
       throw new Error("itinerary.json 格式錯誤：缺少 days 陣列。");
     }
 
-    renderTripInfoForm(data);
+    renderOverviewContent(data);
+    renderPrepContent(data);
     renderPrepOverviewMap(data.days, { loadEmbed: false });
 
     const fullTripStatic = byId("full-trip-static");
