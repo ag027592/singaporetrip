@@ -385,7 +385,7 @@ function renderDayNav(days, onSelectDaily) {
   allButton.type = "button";
   allButton.className = "day-button day-pick";
   allButton.dataset.index = "-1";
-  allButton.textContent = "一次看完（總覽、行前準備、全行程時間軸）";
+  allButton.textContent = "總覽";
   allButton.addEventListener("click", () => onSelectDaily(-1));
   dayNav.appendChild(allButton);
 
