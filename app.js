@@ -198,13 +198,6 @@ function renderAllDaysOverview(days, onSelect) {
   });
 }
 
-function showContentView(viewId) {
-  ["view-overview", "view-prep", "view-daily"].forEach((id) => {
-    const el = document.getElementById(id);
-    el.classList.toggle("is-active", id === viewId);
-  });
-}
-
 function renderOverviewContent(data) {
   const tripOverview = document.getElementById("trip-overview");
   const attractionPlan = document.getElementById("attraction-plan");
@@ -341,7 +334,7 @@ function renderDayNav(days, onSelectDaily) {
   allButton.type = "button";
   allButton.className = "day-button day-pick";
   allButton.dataset.index = "-1";
-  allButton.textContent = "一次看完（全行程時間軸）";
+  allButton.textContent = "一次看完（總覽、行前準備、全行程時間軸）";
   allButton.addEventListener("click", () => onSelectDaily(-1));
   dayNav.appendChild(allButton);
 
@@ -469,44 +462,14 @@ function renderDayMap(day) {
   mapFrame.src = embedUrl;
 }
 
-function renderAllDaysMap(days) {
-  const mapTitle = document.getElementById("day-map-title");
-  const mapSummary = document.getElementById("day-map-summary");
-  const mapAreas = document.getElementById("day-map-areas");
-  const routeLink = document.getElementById("day-map-route-link");
-  const mapFrame = document.getElementById("day-map-frame");
-
-  const allStops = collectChronologicalStops(days);
-  const withHotel = ["Citadines Rochor Singapore", ...allStops].filter((q, i, arr) => arr.indexOf(q) === i);
-  const routeStops = withHotel.slice(0, 10);
-  const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit");
-
-  const uniqueAreas = Array.from(
-    new Set(days.flatMap((d) => getUsefulBlocks(d).map((b) => b.location)))
-  ).slice(0, 16);
-  mapAreas.innerHTML = uniqueAreas
-    .map((area) => `<span class="route-stop">${escapeHtml(area)}</span>`)
-    .join("");
-
-  mapTitle.textContent = "一次看完：全行程景點路線";
-  mapSummary.textContent =
-    "下方內嵌地圖以新加坡本島概覽為主；請點連結在 Google Maps 開啟「住宿起算、依行程順序」的多站路線（最多 10 站，避免網址過長）。";
-  routeLink.textContent = "開啟 Google Maps 全行程多站路線";
-  routeLink.href = routeUrl;
-  mapFrame.src = "https://www.google.com/maps?q=Singapore&hl=zh-TW&z=11&output=embed";
-}
-
-function updateNavHighlight(mode, dayIndex) {
-  document.querySelectorAll(".nav-top-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.nav === mode);
-  });
+function updateNavHighlight(dayIndex) {
   document.querySelectorAll(".day-pick").forEach((btn) => {
     const idx = Number(btn.dataset.index);
-    btn.classList.toggle("active", mode === "daily" && idx === dayIndex);
+    btn.classList.toggle("active", idx === dayIndex);
   });
   document.querySelectorAll(".overview-card").forEach((card) => {
     const cardIndex = Number(card.dataset.overviewIndex);
-    card.classList.toggle("active", mode === "daily" && cardIndex === dayIndex);
+    card.classList.toggle("active", cardIndex === dayIndex);
   });
 }
 
@@ -517,19 +480,14 @@ async function main() {
     renderPrepContent(data);
     renderPrepOverviewMap(data.days);
 
-    const goOverview = () => {
-      showContentView("view-overview");
-      updateNavHighlight("overview", null);
-    };
-
-    const goPrep = () => {
-      showContentView("view-prep");
-      updateNavHighlight("prep", null);
-    };
+    const fullTripStatic = document.getElementById("full-trip-static");
+    const panelDailyMap = document.getElementById("panel-daily-map");
 
     const selectDaily = (index) => {
-      showContentView("view-daily");
       if (index === -1) {
+        fullTripStatic.hidden = false;
+        panelDailyMap.hidden = true;
+        renderPrepOverviewMap(data.days);
         renderAllBlocks(data.days);
         document.getElementById("mrt-summary").textContent = "一次看完：全行程主要捷運節點（去重後）";
         document.getElementById("mrt-visual").innerHTML = data.days
@@ -538,29 +496,20 @@ async function main() {
           .slice(0, 16)
           .map((station) => `<span class="route-stop">${escapeHtml(station)}</span>`)
           .join("");
-        renderAllDaysMap(data.days);
       } else {
+        fullTripStatic.hidden = true;
+        panelDailyMap.hidden = false;
         renderBlocks(data.days[index]);
         renderMrtVisual(data.days[index]);
         renderDayMap(data.days[index]);
       }
-      updateNavHighlight("daily", index);
+      updateNavHighlight(index);
     };
-
-    document.querySelectorAll(".nav-top-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (btn.dataset.nav === "overview") {
-          goOverview();
-        } else if (btn.dataset.nav === "prep") {
-          goPrep();
-        }
-      });
-    });
 
     renderDayNav(data.days, selectDaily);
     renderAllDaysOverview(data.days, selectDaily);
 
-    goOverview();
+    selectDaily(0);
   } catch (error) {
     document.body.innerHTML = `<main style="padding: 2rem;"><h1>載入失敗</h1><p>${error.message}</p></main>`;
   }
