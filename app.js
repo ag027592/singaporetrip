@@ -413,6 +413,19 @@ function renderAllBlocks(days) {
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
 }
 
+function renderSingleDayBlocks(day) {
+  const dayTitle = byId("day-title");
+  const daySummary = byId("day-summary");
+  const blocks = byId("blocks");
+  if (!dayTitle || !daySummary || !blocks) {
+    return;
+  }
+
+  dayTitle.textContent = `${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）詳細時間軸`;
+  daySummary.textContent = day.summary || "";
+  blocks.innerHTML = renderDayTimelineCard(day);
+}
+
 function getUsefulBlocks(day) {
   return dedupeBlocks(day.blocks).filter((block) => {
     const text = `${block.name} ${block.location}`;
@@ -574,13 +587,29 @@ async function main() {
       } else {
         fullTripStatic.hidden = true;
         mainQuickOverview.hidden = false;
-        fullTripTimelineBlock.hidden = true;
-        const card = document.querySelector(`.overview-card[data-overview-index="${index}"]`);
-        if (card) {
-          card.scrollIntoView({
-            behavior: prefersReducedMotion() ? "auto" : "smooth",
-            block: "nearest"
-          });
+        fullTripTimelineBlock.hidden = false;
+        const day = data.days[index];
+        if (day) {
+          renderSingleDayBlocks(day);
+          const mrtSummary = byId("mrt-summary");
+          const mrtVisual = byId("mrt-visual");
+          if (mrtSummary) {
+            mrtSummary.textContent = day.mrtRoute
+              ? `${day.mrtRoute.label}（估計交通費：${day.mrtRoute.fare}）`
+              : "今日無捷運重點動線。";
+          }
+          if (mrtVisual) {
+            if (day.mrtRoute && Array.isArray(day.mrtRoute.stations)) {
+              mrtVisual.innerHTML = day.mrtRoute.stations
+                .map((station, stationIndex, arr) => {
+                  const arrow = stationIndex < arr.length - 1 ? `<span class="route-arrow">→</span>` : "";
+                  return `<span class="route-stop">${escapeHtml(station)}</span>${arrow}`;
+                })
+                .join("");
+            } else {
+              mrtVisual.innerHTML = "";
+            }
+          }
         }
       }
       updateNavHighlight(index);
