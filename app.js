@@ -29,17 +29,6 @@ function formatMoney(value, currency) {
   }).format(value);
 }
 
-function renderList(container, items) {
-  container.innerHTML = "";
-  const ul = document.createElement("ul");
-  items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    ul.appendChild(li);
-  });
-  container.appendChild(ul);
-}
-
 function dedupeBlocks(blocks) {
   const seen = new Set();
   return blocks.filter((block) => {
@@ -198,108 +187,129 @@ function renderAllDaysOverview(days, onSelect) {
   });
 }
 
-function renderOverviewContent(data) {
-  const tripOverview = document.getElementById("trip-overview");
-  const attractionPlan = document.getElementById("attraction-plan");
-  tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
-  renderList(attractionPlan, data.attractionPlan);
-}
+function renderTripInfoForm(data) {
+  const form = document.getElementById("trip-info-form");
+  if (!form) {
+    return;
+  }
 
-function renderPrepContent(data) {
-  const weatherSummary = document.getElementById("weather-summary");
-  const hotelFixed = document.getElementById("hotel-fixed");
-  const priceCheck = document.getElementById("price-check");
-  const paymentStrategy = document.getElementById("payment-strategy");
-  const budgetDashboard = document.getElementById("budget-dashboard");
-  const reservationPlan = document.getElementById("reservation-plan");
-  const transportNotes = document.getElementById("transport-notes");
-
-  weatherSummary.innerHTML = `
-    <p>${data.weather.summary}</p>
-    <div>${data.weather.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
-    <p>資料來源：${data.weather.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`).join("、")}</p>
-  `;
-
-  hotelFixed.innerHTML = `
-    <article class="block-card">
-      <h3>${data.hotel.name}</h3>
-      <p><strong>地址：</strong>${data.hotel.address}</p>
-      <p><strong>最近 MRT：</strong>${data.hotel.nearestMrt}</p>
-      <p><strong>電話：</strong>${data.hotel.phone}</p>
-      <p><strong>已訂總價：</strong>${data.hotel.bookedPriceUsd} / ${data.hotel.bookedPriceSgd}</p>
-      <p><strong>每晚均價：</strong>${data.hotel.perNightSgd}</p>
-      <p><a href="${data.hotel.mapUrl}" target="_blank" rel="noopener noreferrer">住宿 Google Maps</a></p>
-    </article>
-  `;
-
-  priceCheck.innerHTML = `
-    <p>${data.priceCheck.summary}</p>
-    <div class="blocks">
-      ${data.priceCheck.references
-        .map(
-          (ref) => `
-        <article class="block-card">
-          <h3>${ref.source}</h3>
-          <p>${ref.note}</p>
-          <p><a href="${ref.url}" target="_blank" rel="noopener noreferrer">查看來源</a></p>
-        </article>
-      `
-        )
-        .join("")}
-    </div>
-  `;
-
-  paymentStrategy.innerHTML = `<p>${data.payment.summary}</p>`;
-  const paymentList = document.createElement("div");
-  renderList(paymentList, data.payment.recommendations);
-  paymentStrategy.appendChild(paymentList);
-  const paymentSources = document.createElement("p");
-  paymentSources.innerHTML = `來源：${data.payment.sources
-    .map((source) => `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`)
-    .join("、")}`;
-  paymentStrategy.appendChild(paymentSources);
+  const attractionUl = data.attractionPlan.map((line) => `<li>${escapeHtml(line)}</li>`).join("");
+  const transportUl = data.transportNotes.map((line) => `<li>${escapeHtml(line)}</li>`).join("");
+  const paymentLi = data.payment.recommendations.map((line) => `<li>${escapeHtml(line)}</li>`).join("");
 
   const selected = data.budget.selectedScenario;
   const sgdTotal = selected.breakdown.hotel + selected.breakdown.food + selected.breakdown.transport + selected.breakdown.tickets + selected.breakdown.misc;
   const usdTotal = sgdTotal * data.budget.exchangeRate.usdPerSgd;
   const twdTotal = sgdTotal * data.budget.exchangeRate.twdPerSgd;
-  budgetDashboard.innerHTML = `
-    <p>${data.budget.summary}</p>
-    <article class="block-card budget-card">
-      <h3>${selected.name}</h3>
-      <p><strong>住宿：</strong>${formatMoney(selected.breakdown.hotel, "SGD")}</p>
-      <p><strong>餐飲：</strong>${formatMoney(selected.breakdown.food, "SGD")}</p>
-      <p><strong>交通：</strong>${formatMoney(selected.breakdown.transport, "SGD")}</p>
-      <p><strong>門票：</strong>${formatMoney(selected.breakdown.tickets, "SGD")}</p>
-      <p><strong>購物/雜支：</strong>${formatMoney(selected.breakdown.misc, "SGD")}</p>
-      <p><strong>雙人總計（SGD）：</strong><span class="budget-total">${formatMoney(sgdTotal, "SGD")}</span></p>
-      <p><strong>雙人總計（TWD）：</strong><span class="budget-total">${formatMoney(twdTotal, "TWD")}</span></p>
-      <p><strong>雙人總計（USD）：</strong><span class="budget-total">${formatMoney(usdTotal, "USD")}</span></p>
-      <p class="meta">${selected.note}</p>
-      <p class="meta">匯率假設：1 SGD ≈ ${data.budget.exchangeRate.twdPerSgd} TWD；1 SGD ≈ ${data.budget.exchangeRate.usdPerSgd} USD（出發前請再用實際匯率更新）。</p>
+
+  const priceRefs = data.priceCheck.references
+    .map(
+      (ref) => `
+    <article class="block-card">
+      <h4>${escapeHtml(ref.source)}</h4>
+      <p>${escapeHtml(ref.note)}</p>
+      <p><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener noreferrer">查看來源</a></p>
     </article>
-  `;
+  `
+    )
+    .join("");
 
-  reservationPlan.innerHTML = `
-    <div class="blocks">
-      ${data.bookingChecklist
-        .map(
-          (item) => `
+  const bookingCards = data.bookingChecklist
+    .map(
+      (item) => `
+    <article class="block-card">
+      <h4>${escapeHtml(item.name)} <span class="tag">${reservationTag(item)}</span></h4>
+      <p><strong>類型：</strong>${escapeHtml(item.type)}</p>
+      <p><strong>建議：</strong>${escapeHtml(item.action)}</p>
+      <p><strong>時機：</strong>${escapeHtml(item.when)}</p>
+      <p><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">官方或參考頁</a></p>
+    </article>
+  `
+    )
+    .join("");
+
+  const weatherSources = data.weather.sources
+    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
+    .join("、");
+
+  const paymentSources = data.payment.sources
+    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
+    .join("、");
+
+  form.innerHTML = `
+    <section class="trip-info-section">
+      <h3>行程總覽</h3>
+      <div class="trip-info-body"><p>${escapeHtml(data.tripOverview)}</p></div>
+    </section>
+    <section class="trip-info-section">
+      <h3>景點規劃重點</h3>
+      <div class="trip-info-body"><ul>${attractionUl}</ul></div>
+    </section>
+    <section class="trip-info-section">
+      <h3>天氣與準備建議</h3>
+      <div class="trip-info-body">
+        <p>${escapeHtml(data.weather.summary)}</p>
+        <div>${data.weather.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+        <p>資料來源：${weatherSources}</p>
+      </div>
+    </section>
+    <section class="trip-info-section">
+      <h3>住宿定案</h3>
+      <div class="trip-info-body">
         <article class="block-card">
-          <h3>${item.name} <span class="tag">${reservationTag(item)}</span></h3>
-          <p><strong>類型：</strong>${item.type}</p>
-          <p><strong>建議：</strong>${item.action}</p>
-          <p><strong>時機：</strong>${item.when}</p>
-          <p><a href="${item.url}" target="_blank" rel="noopener noreferrer">官方或參考頁</a></p>
+          <h4>${escapeHtml(data.hotel.name)}</h4>
+          <p><strong>地址：</strong>${escapeHtml(data.hotel.address)}</p>
+          <p><strong>最近 MRT：</strong>${escapeHtml(data.hotel.nearestMrt)}</p>
+          <p><strong>電話：</strong>${escapeHtml(data.hotel.phone)}</p>
+          <p><strong>已訂總價：</strong>${escapeHtml(data.hotel.bookedPriceUsd)} / ${escapeHtml(data.hotel.bookedPriceSgd)}</p>
+          <p><strong>每晚均價：</strong>${escapeHtml(data.hotel.perNightSgd)}</p>
+          <p><a href="${escapeHtml(data.hotel.mapUrl)}" target="_blank" rel="noopener noreferrer">住宿 Google Maps</a></p>
         </article>
-      `
-        )
-        .join("")}
-    </div>
+      </div>
+    </section>
+    <section class="trip-info-section">
+      <h3>比價檢查（你目前訂單）</h3>
+      <div class="trip-info-body">
+        <p>${escapeHtml(data.priceCheck.summary)}</p>
+        <div class="blocks">${priceRefs}</div>
+      </div>
+    </section>
+    <section class="trip-info-section">
+      <h3>付款方式最省策略</h3>
+      <div class="trip-info-body">
+        <p>${escapeHtml(data.payment.summary)}</p>
+        <ul>${paymentLi}</ul>
+        <p>來源：${paymentSources}</p>
+      </div>
+    </section>
+    <section class="trip-info-section">
+      <h3>雙人總預算儀表板</h3>
+      <div class="trip-info-body">
+        <p>${escapeHtml(data.budget.summary)}</p>
+        <article class="block-card budget-card">
+          <h4>${escapeHtml(selected.name)}</h4>
+          <p><strong>住宿：</strong>${formatMoney(selected.breakdown.hotel, "SGD")}</p>
+          <p><strong>餐飲：</strong>${formatMoney(selected.breakdown.food, "SGD")}</p>
+          <p><strong>交通：</strong>${formatMoney(selected.breakdown.transport, "SGD")}</p>
+          <p><strong>門票：</strong>${formatMoney(selected.breakdown.tickets, "SGD")}</p>
+          <p><strong>購物/雜支：</strong>${formatMoney(selected.breakdown.misc, "SGD")}</p>
+          <p><strong>雙人總計（SGD）：</strong><span class="budget-total">${formatMoney(sgdTotal, "SGD")}</span></p>
+          <p><strong>雙人總計（TWD）：</strong><span class="budget-total">${formatMoney(twdTotal, "TWD")}</span></p>
+          <p><strong>雙人總計（USD）：</strong><span class="budget-total">${formatMoney(usdTotal, "USD")}</span></p>
+          <p class="meta">${escapeHtml(selected.note)}</p>
+          <p class="meta">匯率假設：1 SGD ≈ ${data.budget.exchangeRate.twdPerSgd} TWD；1 SGD ≈ ${data.budget.exchangeRate.usdPerSgd} USD（出發前請再用實際匯率更新）。</p>
+        </article>
+      </div>
+    </section>
+    <section class="trip-info-section">
+      <h3>景點 / 餐廳預約清單</h3>
+      <div class="trip-info-body"><div class="blocks">${bookingCards}</div></div>
+    </section>
+    <section class="trip-info-section">
+      <h3>交通與票價通則</h3>
+      <div class="trip-info-body"><ul>${transportUl}</ul></div>
+    </section>
   `;
-
-  transportNotes.innerHTML = "";
-  renderList(transportNotes, data.transportNotes);
 }
 
 function renderPrepOverviewMap(days) {
@@ -349,16 +359,6 @@ function renderDayNav(days, onSelectDaily) {
   });
 }
 
-function renderBlocks(day) {
-  const dayTitle = document.getElementById("day-title");
-  const daySummary = document.getElementById("day-summary");
-  const blocks = document.getElementById("blocks");
-
-  dayTitle.textContent = `${day.date}（${day.weekday}）每日時間軸`;
-  daySummary.textContent = day.summary;
-  blocks.innerHTML = renderDayTimelineCard(day);
-}
-
 function renderAllBlocks(days) {
   const dayTitle = document.getElementById("day-title");
   const daySummary = document.getElementById("day-summary");
@@ -367,26 +367,6 @@ function renderAllBlocks(days) {
   dayTitle.textContent = "一次看完：全行程時間軸";
   daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、花費、交通、天氣、預約與地圖連結。";
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
-}
-
-function renderMrtVisual(day) {
-  const mrtSummary = document.getElementById("mrt-summary");
-  const mrtVisual = document.getElementById("mrt-visual");
-  const route = day.mrtRoute;
-
-  if (!route) {
-    mrtSummary.textContent = "今日無捷運重點動線。";
-    mrtVisual.innerHTML = "";
-    return;
-  }
-
-  mrtSummary.textContent = `${route.label}（估計交通費：${route.fare}）`;
-  mrtVisual.innerHTML = route.stations
-    .map((station, index) => {
-      const arrow = index < route.stations.length - 1 ? `<span class="route-arrow">→</span>` : "";
-      return `<span class="route-stop">${station}</span>${arrow}`;
-    })
-    .join("");
 }
 
 function getUsefulBlocks(day) {
@@ -435,33 +415,6 @@ function buildGoogleMapsDirUrl(stops, travelMode) {
   return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}${waypoints}&travelmode=${mode}`;
 }
 
-function renderDayMap(day) {
-  const mapTitle = document.getElementById("day-map-title");
-  const mapSummary = document.getElementById("day-map-summary");
-  const mapAreas = document.getElementById("day-map-areas");
-  const routeLink = document.getElementById("day-map-route-link");
-  const mapFrame = document.getElementById("day-map-frame");
-
-  const usefulBlocks = getUsefulBlocks(day);
-  const focusBlock = usefulBlocks[0] || day.blocks[0];
-  const mapQuery = mapQueryFromBlock(focusBlock);
-  const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&hl=zh-TW&z=15&output=embed`;
-
-  const stops = usefulBlocks.slice(0, 6).map((block) => mapQueryFromBlock(block));
-  const routeUrl = buildGoogleMapsDirUrl(stops.length ? stops : [mapQuery], "transit");
-
-  const uniqueAreas = Array.from(new Set(usefulBlocks.map((block) => block.location))).slice(0, 8);
-  mapAreas.innerHTML = uniqueAreas
-    .map((area) => `<span class="route-stop">${escapeHtml(area)}</span>`)
-    .join("");
-
-  mapTitle.textContent = `${day.date}（${day.weekday}）每日互動地圖`;
-  mapSummary.textContent = "內嵌地圖聚焦今日第一站；點下方連結可在 Google Maps 開啟當日多站路線（大螢幕較清楚）。";
-  routeLink.textContent = "開啟 Google Maps 當日多站路線";
-  routeLink.href = routeUrl;
-  mapFrame.src = embedUrl;
-}
-
 function updateNavHighlight(dayIndex) {
   document.querySelectorAll(".day-pick").forEach((btn) => {
     const idx = Number(btn.dataset.index);
@@ -476,17 +429,18 @@ function updateNavHighlight(dayIndex) {
 async function main() {
   try {
     const data = await loadItinerary();
-    renderOverviewContent(data);
-    renderPrepContent(data);
+    renderTripInfoForm(data);
     renderPrepOverviewMap(data.days);
 
     const fullTripStatic = document.getElementById("full-trip-static");
-    const panelDailyMap = document.getElementById("panel-daily-map");
+    const mainQuickOverview = document.getElementById("main-quick-overview");
+    const fullTripTimelineBlock = document.getElementById("full-trip-timeline-block");
 
     const selectDaily = (index) => {
       if (index === -1) {
         fullTripStatic.hidden = false;
-        panelDailyMap.hidden = true;
+        mainQuickOverview.hidden = true;
+        fullTripTimelineBlock.hidden = false;
         renderPrepOverviewMap(data.days);
         renderAllBlocks(data.days);
         document.getElementById("mrt-summary").textContent = "一次看完：全行程主要捷運節點（去重後）";
@@ -498,10 +452,12 @@ async function main() {
           .join("");
       } else {
         fullTripStatic.hidden = true;
-        panelDailyMap.hidden = false;
-        renderBlocks(data.days[index]);
-        renderMrtVisual(data.days[index]);
-        renderDayMap(data.days[index]);
+        mainQuickOverview.hidden = false;
+        fullTripTimelineBlock.hidden = true;
+        const card = document.querySelector(`.overview-card[data-overview-index="${index}"]`);
+        if (card) {
+          card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
       updateNavHighlight(index);
     };

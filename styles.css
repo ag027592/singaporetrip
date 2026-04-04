@@ -127,6 +127,41 @@ body {
   gap: 1rem;
 }
 
+.full-trip-timeline-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-trip-info .trip-info-form {
+  margin-top: 0.5rem;
+}
+
+.trip-info-section {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.trip-info-section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.trip-info-section h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.trip-info-body .block-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+}
+
+.main-quick-overview h2 {
+  margin-top: 0;
+}
+
 .sidebar-hint {
   font-size: 0.78rem;
   color: var(--muted);

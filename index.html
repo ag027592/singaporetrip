@@ -15,52 +15,18 @@
   <main class="layout">
     <aside class="sidebar" aria-label="網站導覽">
       <h2>每日行程</h2>
-      <p class="sidebar-hint">行程說明、天氣、住宿、預算等僅在「一次看完」顯示。</p>
+      <p class="sidebar-hint">單日僅在主畫面顯示「快速跳轉」卡片；行前總表與完整時間軸請按「一次看完」。</p>
       <nav id="day-nav" class="day-nav" aria-label="依日期檢視"></nav>
-      <hr class="sidebar-divider">
-      <h2 class="sidebar-subheading">快速跳轉</h2>
-      <div id="all-days-overview" class="all-days-overview"></div>
     </aside>
 
     <section class="content">
       <div id="view-daily" class="content-view is-active">
-        <!-- 僅在「一次看完」顯示：總覽、景點、天氣、住宿、比價、付款、預算、預約、交通、全境地圖 -->
+        <!-- 僅「一次看完」：單一總表 + 全境地圖 -->
         <div id="full-trip-static" class="full-trip-static" hidden>
-          <article class="panel">
-            <h2>行程總覽</h2>
-            <div id="trip-overview"></div>
-          </article>
-          <article class="panel">
-            <h2>景點規劃重點</h2>
-            <div id="attraction-plan"></div>
-          </article>
-          <article class="panel">
-            <h2>天氣與準備建議</h2>
-            <div id="weather-summary"></div>
-          </article>
-          <article class="panel">
-            <h2>住宿定案</h2>
-            <div id="hotel-fixed"></div>
-          </article>
-          <article class="panel">
-            <h2>比價檢查（你目前訂單）</h2>
-            <div id="price-check"></div>
-          </article>
-          <article class="panel">
-            <h2>付款方式最省策略</h2>
-            <div id="payment-strategy"></div>
-          </article>
-          <article class="panel">
-            <h2>雙人總預算儀表板</h2>
-            <div id="budget-dashboard"></div>
-          </article>
-          <article class="panel">
-            <h2>景點 / 餐廳預約清單</h2>
-            <div id="reservation-plan"></div>
-          </article>
-          <article class="panel">
-            <h2>交通與票價通則</h2>
-            <div id="transport-notes"></div>
+          <article class="panel panel-trip-info">
+            <h2>行前資訊總表</h2>
+            <p class="meta">以下區塊合併為同一表單，僅在此檢視。</p>
+            <div id="trip-info-form" class="trip-info-form"></div>
           </article>
           <article class="panel panel-map-overview">
             <h2>全行程景點地圖</h2>
@@ -78,37 +44,33 @@
           </article>
         </div>
 
-        <article id="panel-daily-mrt" class="panel">
-          <h2>當日捷運動線</h2>
-          <p id="mrt-summary"></p>
-          <div id="mrt-visual" class="mrt-visual"></div>
-        </article>
-        <article id="panel-daily-map" class="panel">
-          <h2 id="day-map-title">當日互動地圖</h2>
-          <p id="day-map-summary"></p>
-          <div id="day-map-areas" class="mrt-visual"></div>
-          <p><a id="day-map-route-link" href="#" target="_blank" rel="noopener noreferrer">開啟 Google Maps 當日多站路線</a></p>
-          <iframe
-            id="day-map-frame"
-            class="day-map-frame"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src=""
-            title="當日景點地圖"
-          ></iframe>
-        </article>
-        <article class="panel panel-daily">
-          <h2 id="day-title">每日時間軸</h2>
-          <p id="day-summary"></p>
-          <div id="blocks" class="blocks"></div>
-          <div class="timeline-legend" id="timeline-legend" aria-hidden="true">
-            <span class="leg-item"><span class="leg-dot dot-main"></span>景點／活動</span>
-            <span class="leg-item"><span class="leg-dot dot-food"></span>餐飲</span>
-            <span class="leg-item"><span class="leg-dot dot-conf"></span>研討會</span>
-            <span class="leg-item"><span class="leg-dot dot-alert"></span>重要／交通</span>
-            <span class="leg-item"><span class="leg-dot dot-gray"></span>其他</span>
-          </div>
-        </article>
+        <!-- 單日：僅快速跳轉卡片 -->
+        <div id="main-quick-overview" class="panel main-quick-overview">
+          <h2>快速跳轉</h2>
+          <p class="meta">選擇側欄日期後，此處會標示當日卡片；細節請用「一次看完」。</p>
+          <div id="all-days-overview" class="all-days-overview"></div>
+        </div>
+
+        <!-- 僅「一次看完」：全行程捷運 + 時間軸 -->
+        <div id="full-trip-timeline-block" class="full-trip-timeline-block" hidden>
+          <article id="panel-daily-mrt" class="panel">
+            <h2>全行程捷運動線（去重）</h2>
+            <p id="mrt-summary"></p>
+            <div id="mrt-visual" class="mrt-visual"></div>
+          </article>
+          <article class="panel panel-daily">
+            <h2 id="day-title">每日時間軸</h2>
+            <p id="day-summary"></p>
+            <div id="blocks" class="blocks"></div>
+            <div class="timeline-legend" id="timeline-legend" aria-hidden="true">
+              <span class="leg-item"><span class="leg-dot dot-main"></span>景點／活動</span>
+              <span class="leg-item"><span class="leg-dot dot-food"></span>餐飲</span>
+              <span class="leg-item"><span class="leg-dot dot-conf"></span>研討會</span>
+              <span class="leg-item"><span class="leg-dot dot-alert"></span>重要／交通</span>
+              <span class="leg-item"><span class="leg-dot dot-gray"></span>其他</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
