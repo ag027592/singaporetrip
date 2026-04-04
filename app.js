@@ -555,14 +555,24 @@ async function main() {
     const fullTripStatic = byId("full-trip-static");
     const mainQuickOverview = byId("main-quick-overview");
     const fullTripTimelineBlock = byId("full-trip-timeline-block");
+    const staticInfoPanels = Array.from(
+      document.querySelectorAll("#full-trip-static > .panel:not(.panel-map-overview)")
+    );
     let hasLoadedOverviewMap = false;
     let hasRenderedFullTimeline = false;
+
+    const toggleStaticInfoPanels = (visible) => {
+      staticInfoPanels.forEach((panel) => {
+        panel.hidden = !visible;
+      });
+    };
 
     const selectDaily = (index) => {
       if (index === -1) {
         fullTripStatic.hidden = false;
         mainQuickOverview.hidden = true;
         fullTripTimelineBlock.hidden = false;
+        toggleStaticInfoPanels(true);
         if (!hasLoadedOverviewMap) {
           renderPrepOverviewMap(data.days, { loadEmbed: true });
           hasLoadedOverviewMap = true;
@@ -585,9 +595,14 @@ async function main() {
           hasRenderedFullTimeline = true;
         }
       } else {
-        fullTripStatic.hidden = true;
-        mainQuickOverview.hidden = false;
+        fullTripStatic.hidden = false;
+        mainQuickOverview.hidden = true;
         fullTripTimelineBlock.hidden = false;
+        toggleStaticInfoPanels(false);
+        if (!hasLoadedOverviewMap) {
+          renderPrepOverviewMap(data.days, { loadEmbed: true });
+          hasLoadedOverviewMap = true;
+        }
         const day = data.days[index];
         if (day) {
           renderSingleDayBlocks(day);
@@ -625,7 +640,7 @@ async function main() {
     if (loading) {
       loading.hidden = true;
     }
-    selectDaily(0);
+    updateNavHighlight(0);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     showError(message);
