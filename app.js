@@ -126,6 +126,73 @@ function getBlockDotClass(block) {
   return "dot-main";
 }
 
+const REVIEW_PRESETS = [
+  {
+    pattern: /Jewel|Changi/i,
+    food: "Shake Shack、星耀美食街與咖啡甜點常被提及。",
+    play: "雨漩渦拍照、森林谷散步，適合低強度行程。",
+    view: "室內瀑布與高層觀景點夜景評價穩定。"
+  },
+  {
+    pattern: /Clarke Quay/i,
+    food: "河岸餐廳以海鮮、肋排、調酒類評價較集中。",
+    play: "夜間河畔散步與搭船體驗討論度高。",
+    view: "夜景燈光反射在河面，拍照效果佳。"
+  },
+  {
+    pattern: /Lau Pa Sat/i,
+    food: "沙嗲街、海南雞飯、炒粿條是常見推薦。",
+    play: "晚間外場沙嗲街氛圍感強，適合情侶用餐。",
+    view: "歷史建築外觀與夜間人潮景象有特色。"
+  },
+  {
+    pattern: /Gardens by the Bay/i,
+    food: "園區內簡餐口碑普通，建議重點放景點體驗。",
+    play: "Cloud Forest、Flower Dome、OCBC Skyway 熱門。",
+    view: "SuperTree Grove 夜間燈光秀是高頻推薦。"
+  },
+  {
+    pattern: /Sentosa|VivoCity/i,
+    food: "VivoCity 餐廳選擇多，日式與新馬料理評價穩定。",
+    play: "海灘、纜車、S.E.A. Aquarium 常被列入半日玩法。",
+    view: "傍晚海灘夕陽與港灣景觀是常見分享重點。"
+  },
+  {
+    pattern: /National Gallery|Bugis|Little India|Tekka/i,
+    food: "Tekka 與 Bugis 一帶小吃（印度煎餅、咖哩）討論度高。",
+    play: "美術館常設展、街區散步與採買較受歡迎。",
+    view: "古典建築與彩色街區是熱門打卡主題。"
+  },
+  {
+    pattern: /SUSS|Clementi|Beauty World|Bukit Timah/i,
+    food: "校園周邊熟食中心平價餐點評價多、性價比高。",
+    play: "會議日多建議短距離移動與早點回住宿休息。",
+    view: "此區以便利性為主，景觀型行程建議晚間回市區安排。"
+  }
+];
+
+function buildReviewSourceLinks(block) {
+  const keyword = encodeURIComponent(`${block.location || ""} ${block.name || ""} Singapore`.trim());
+  const googleUrl = block.mapUrl || `https://www.google.com/maps/search/?api=1&query=${keyword}`;
+  return [
+    { name: "Google 評論", url: googleUrl },
+    { name: "Tripadvisor", url: `https://www.tripadvisor.com/Search?q=${keyword}` },
+    { name: "小紅書", url: `https://www.xiaohongshu.com/search_result?keyword=${keyword}` }
+  ];
+}
+
+function buildReviewHighlight(block) {
+  const text = `${block.name || ""} ${block.location || ""}`;
+  const preset = REVIEW_PRESETS.find((item) => item.pattern.test(text));
+  const links = buildReviewSourceLinks(block)
+    .map((item) => `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.name)}</a>`)
+    .join("・");
+  if (!preset) {
+    return `<div class="review-box"><strong>評論入口</strong><br>可查看旅客對餐點、玩法、景觀與服務的即時回饋。<br>來源：${links}</div>`;
+  }
+  return `<div class="review-box"><strong>評論推薦</strong><br>推薦食物：${escapeHtml(preset.food)}<br>玩得項目：${escapeHtml(preset.play)}<br>看得風景：${escapeHtml(preset.view)}<br>來源：${links}</div>`;
+}
+
 function buildBlockDetailLines(block, bookingInfo) {
   const lines = [];
   lines.push(`${escapeHtml(block.location)}｜${escapeHtml(block.address)}`);
@@ -142,6 +209,10 @@ function buildBlockDetailLines(block, bookingInfo) {
   }
   const mapUrl = escapeHtml(block.mapUrl);
   lines.push(`<a href="${mapUrl}" target="_blank" rel="noopener noreferrer">Google Maps 導航</a>`);
+  const review = buildReviewHighlight(block);
+  if (review) {
+    lines.push(review);
+  }
   return lines.join("<br>");
 }
 

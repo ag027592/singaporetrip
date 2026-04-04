@@ -586,6 +586,19 @@ ul {
   word-break: break-word;
 }
 
+.review-box {
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d6e2f7;
+  background: #f7faff;
+  border-radius: 8px;
+  line-height: 1.55;
+}
+
+.review-box strong {
+  color: #0f4fcc;
+}
+
 .meal-row {
   display: flex;
   gap: 0.45rem;
