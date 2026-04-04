@@ -198,9 +198,21 @@ function renderAllDaysOverview(days, onSelect) {
   });
 }
 
-function renderTopSection(data) {
+function showContentView(viewId) {
+  ["view-overview", "view-prep", "view-daily"].forEach((id) => {
+    const el = document.getElementById(id);
+    el.classList.toggle("is-active", id === viewId);
+  });
+}
+
+function renderOverviewContent(data) {
   const tripOverview = document.getElementById("trip-overview");
   const attractionPlan = document.getElementById("attraction-plan");
+  tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
+  renderList(attractionPlan, data.attractionPlan);
+}
+
+function renderPrepContent(data) {
   const weatherSummary = document.getElementById("weather-summary");
   const hotelFixed = document.getElementById("hotel-fixed");
   const priceCheck = document.getElementById("price-check");
@@ -208,9 +220,6 @@ function renderTopSection(data) {
   const budgetDashboard = document.getElementById("budget-dashboard");
   const reservationPlan = document.getElementById("reservation-plan");
   const transportNotes = document.getElementById("transport-notes");
-
-  tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
-  renderList(attractionPlan, data.attractionPlan);
 
   weatherSummary.innerHTML = `
     <p>${data.weather.summary}</p>
@@ -296,30 +305,53 @@ function renderTopSection(data) {
     </div>
   `;
 
-  const transportList = document.createElement("div");
-  renderList(transportList, data.transportNotes);
-  transportNotes.appendChild(transportList);
+  transportNotes.innerHTML = "";
+  renderList(transportNotes, data.transportNotes);
 }
 
-function renderDayNav(days, onSelect) {
+function renderPrepOverviewMap(days) {
+  const mapSummary = document.getElementById("overview-map-summary");
+  const mapAreas = document.getElementById("overview-map-areas");
+  const routeLink = document.getElementById("overview-map-route-link");
+  const mapFrame = document.getElementById("overview-map-frame");
+
+  const allStops = collectChronologicalStops(days);
+  const withHotel = ["Citadines Rochor Singapore", ...allStops].filter((q, i, arr) => arr.indexOf(q) === i);
+  const routeStops = withHotel.slice(0, 10);
+  const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit");
+
+  const uniqueAreas = Array.from(
+    new Set(days.flatMap((d) => getUsefulBlocks(d).map((b) => b.location)))
+  ).slice(0, 16);
+  mapAreas.innerHTML = uniqueAreas
+    .map((area) => `<span class="route-stop">${escapeHtml(area)}</span>`)
+    .join("");
+
+  mapSummary.textContent =
+    "內嵌地圖為新加坡本島概覽；下方連結可開啟 Google Maps「依行程順序」多站路線（最多 10 站）。點各景點時間軸內連結可單點導航。";
+  routeLink.href = routeUrl;
+  mapFrame.src = "https://www.google.com/maps?q=Singapore&hl=zh-TW&z=11&output=embed";
+}
+
+function renderDayNav(days, onSelectDaily) {
   const dayNav = document.getElementById("day-nav");
   dayNav.innerHTML = "";
 
   const allButton = document.createElement("button");
   allButton.type = "button";
-  allButton.className = "day-button";
+  allButton.className = "day-button day-pick";
   allButton.dataset.index = "-1";
-  allButton.textContent = "一次看完";
-  allButton.addEventListener("click", () => onSelect(-1));
+  allButton.textContent = "一次看完（全行程時間軸）";
+  allButton.addEventListener("click", () => onSelectDaily(-1));
   dayNav.appendChild(allButton);
 
   days.forEach((day, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "day-button";
+    button.className = "day-button day-pick";
     button.dataset.index = String(index);
     button.textContent = `${day.date} (${day.weekday})`;
-    button.addEventListener("click", () => onSelect(index));
+    button.addEventListener("click", () => onSelectDaily(index));
     dayNav.appendChild(button);
   });
 }
@@ -464,24 +496,39 @@ function renderAllDaysMap(days) {
   mapFrame.src = "https://www.google.com/maps?q=Singapore&hl=zh-TW&z=11&output=embed";
 }
 
-function markActiveSelection(index) {
-  const buttons = Array.from(document.querySelectorAll(".day-button"));
-  buttons.forEach((button) => {
-    const buttonIndex = Number(button.dataset.index);
-    button.classList.toggle("active", buttonIndex === index);
+function updateNavHighlight(mode, dayIndex) {
+  document.querySelectorAll(".nav-top-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.nav === mode);
   });
-  const overviewCards = Array.from(document.querySelectorAll(".overview-card"));
-  overviewCards.forEach((card) => {
+  document.querySelectorAll(".day-pick").forEach((btn) => {
+    const idx = Number(btn.dataset.index);
+    btn.classList.toggle("active", mode === "daily" && idx === dayIndex);
+  });
+  document.querySelectorAll(".overview-card").forEach((card) => {
     const cardIndex = Number(card.dataset.overviewIndex);
-    card.classList.toggle("active", cardIndex === index);
+    card.classList.toggle("active", mode === "daily" && cardIndex === dayIndex);
   });
 }
 
 async function main() {
   try {
     const data = await loadItinerary();
-    renderTopSection(data);
-    const selectDay = (index) => {
+    renderOverviewContent(data);
+    renderPrepContent(data);
+    renderPrepOverviewMap(data.days);
+
+    const goOverview = () => {
+      showContentView("view-overview");
+      updateNavHighlight("overview", null);
+    };
+
+    const goPrep = () => {
+      showContentView("view-prep");
+      updateNavHighlight("prep", null);
+    };
+
+    const selectDaily = (index) => {
+      showContentView("view-daily");
       if (index === -1) {
         renderAllBlocks(data.days);
         document.getElementById("mrt-summary").textContent = "一次看完：全行程主要捷運節點（去重後）";
@@ -497,12 +544,23 @@ async function main() {
         renderMrtVisual(data.days[index]);
         renderDayMap(data.days[index]);
       }
-      markActiveSelection(index);
+      updateNavHighlight("daily", index);
     };
-    renderDayNav(data.days, selectDay);
-    renderAllDaysOverview(data.days, selectDay);
 
-    selectDay(0);
+    document.querySelectorAll(".nav-top-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.nav === "overview") {
+          goOverview();
+        } else if (btn.dataset.nav === "prep") {
+          goPrep();
+        }
+      });
+    });
+
+    renderDayNav(data.days, selectDaily);
+    renderAllDaysOverview(data.days, selectDaily);
+
+    goOverview();
   } catch (error) {
     document.body.innerHTML = `<main style="padding: 2rem;"><h1>載入失敗</h1><p>${error.message}</p></main>`;
   }
