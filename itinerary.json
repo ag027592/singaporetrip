@@ -1,0 +1,841 @@
+{
+  "tripOverview": "這份行程以你們 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS），以及 07/12 下午 3 點前抵達樟宜離境為主軸。安排原則是先保留休息、再分區觀光，會議日聚焦穩定通勤與三餐便利，非會議日安排經典景點與夜景。",
+  "weather": {
+    "summary": "新加坡 7 月通常高溫潮濕，白天約 25-32°C，午後雷陣雨機率高。建議輕薄快乾衣物、可折傘、室內冷氣外套與防水鞋。",
+    "tags": [
+      "體感悶熱",
+      "午後雷雨常見",
+      "紫外線偏強",
+      "室內冷氣偏強"
+    ],
+    "sources": [
+      {
+        "name": "Meteorological Service Singapore - Climate of Singapore",
+        "url": "https://www.weather.gov.sg/climate-climate-of-singapore/"
+      },
+      {
+        "name": "NEA Weather",
+        "url": "https://www.nea.gov.sg/weather"
+      }
+    ]
+  },
+  "accommodation": {
+    "summary": "你重視大床、隔音與便宜，這三項通常需要權衡：會議友善選擇可優先看 ICPR 官網提到的 YWCA Fort Canning；若要壓低預算，建議優先挑評價有提到隔音較穩定、且可訂 King/Queen 房型的連鎖商務旅館。",
+    "hotels": [
+      {
+        "name": "YWCA Fort Canning（ICPR 建議）",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=YWCA+Fort+Canning+Singapore",
+        "priceRange": "約 SGD 150-230/晚（季節浮動）",
+        "bed": "部分房型可選大床（以訂房頁為準）",
+        "soundproof": "中等到中上，建議選高樓層且離電梯遠"
+      },
+      {
+        "name": "Hotel Mi Bencoolen（預算型）",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hotel+Mi+Bencoolen+Singapore",
+        "priceRange": "約 SGD 120-210/晚",
+        "bed": "可選雙人床房型",
+        "soundproof": "中等，建議加註安靜房需求"
+      },
+      {
+        "name": "lyf Bugis Singapore（年輕商旅）",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=lyf+Bugis+Singapore",
+        "priceRange": "約 SGD 130-220/晚",
+        "bed": "部分房型有雙人床",
+        "soundproof": "中等，選非走道端房間較佳"
+      }
+    ],
+    "tips": [
+      "訂房時明確要求：1 張大雙人床（King/Queen）、安靜房、離電梯與製冰機遠。",
+      "若重視睡眠品質，優先查看住客近半年評論中的隔音關鍵字。",
+      "平價房型隔音波動較大，可自備耳塞與白噪音 App。",
+      "會議日建議住宿在 Downtown Line 或 East-West Line 轉乘便利區域。"
+    ]
+  },
+  "transportNotes": [
+    "新加坡大眾運輸可直接使用 Visa/Mastercard 感應進出閘門，或使用 EZ-Link。",
+    "MRT / 巴士單程常見約 SGD 0.90-2.30（依里程與轉乘而異）。",
+    "往 SUSS 常見路徑：Clementi (EW23) 或 King Albert Park (DT6) 再轉巴士 74/151/154。",
+    "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。"
+  ],
+  "days": [
+    {
+      "date": "2026-07-04",
+      "weekday": "週六",
+      "summary": "凌晨抵達日，以入境、休息與輕量活動為主，避免過度操勞。",
+      "blocks": [
+        {
+          "startTime": "01:00",
+          "endTime": "03:00",
+          "name": "抵達樟宜機場與入境",
+          "location": "Changi Airport",
+          "address": "Airport Blvd, Singapore",
+          "cost": "SGD 0（不含簽證與行李額外費）",
+          "transport": {
+            "route": "航廈內步行與 Skytrain 轉移，完成入境與提領行李",
+            "mrtStations": [
+              "Changi Airport (CG2)"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內為主，補水與簡單伸展即可。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Singapore",
+          "notes": "若精神狀況普通，先到住宿放行李再安排活動。"
+        },
+        {
+          "startTime": "03:00",
+          "endTime": "04:00",
+          "name": "前往住宿辦理提早寄放",
+          "location": "機場 -> 市區住宿",
+          "address": "依訂房地點而定",
+          "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-40",
+          "transport": {
+            "route": "MRT: CG2 -> Expo (CG1) 轉 EW 線往市區；或凌晨直接 Grab",
+            "mrtStations": [
+              "Changi Airport (CG2)",
+              "Expo (CG1/DT35)",
+              "City Hall (EW13/NS25)"
+            ],
+            "fareEstimate": "MRT 約 SGD 1.50-2.20"
+          },
+          "weather": "凌晨悶熱，冷氣車廂與室外溫差大。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=City+Hall+MRT+Singapore",
+          "notes": "若住宿尚未可入住，先寄放行李並休息。"
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "12:00",
+          "name": "Jewel Changi 輕鬆逛與早午餐",
+          "location": "Jewel Changi Airport",
+          "address": "78 Airport Blvd, Singapore 819666",
+          "cost": "餐費每人 SGD 12-25",
+          "transport": {
+            "route": "市區搭 MRT 返回 CG2，依指標步行至 Jewel",
+            "mrtStations": [
+              "Changi Airport (CG2)"
+            ],
+            "fareEstimate": "單程約 SGD 1.50-2.20"
+          },
+          "weather": "室內為主，舒適。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Jewel+Changi+Airport",
+          "notes": "Jet lag 日以低體力活動為主。"
+        },
+        {
+          "startTime": "15:00",
+          "endTime": "17:00",
+          "name": "濱海灣散步與拍照",
+          "location": "Marina Bay Waterfront",
+          "address": "10 Bayfront Ave, Singapore 018956",
+          "cost": "SGD 0-10（飲料/點心）",
+          "transport": {
+            "route": "MRT 至 Bayfront 站後步行海濱步道",
+            "mrtStations": [
+              "Bayfront (CE1/DT16)",
+              "Marina Bay (NS27/CE2/TE20)"
+            ],
+            "fareEstimate": "單程約 SGD 1.10-2.00"
+          },
+          "weather": "午後可能驟雨，建議攜帶折傘。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Marina+Bay+Waterfront+Singapore",
+          "notes": "若下雨可改室內商場休息。"
+        },
+        {
+          "startTime": "18:30",
+          "endTime": "20:00",
+          "name": "Clarke Quay 晚餐",
+          "location": "Clarke Quay",
+          "address": "3 River Valley Rd, Singapore 179024",
+          "cost": "每人 SGD 18-40",
+          "transport": {
+            "route": "MRT 至 Clarke Quay 站 (NE5) 出站即達",
+            "mrtStations": [
+              "Clarke Quay (NE5)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-1.80"
+          },
+          "weather": "晚間仍悶熱，河邊較通風。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clarke+Quay+Singapore",
+          "notes": "第一天建議 21:00 前回住宿休息。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": "週日",
+      "summary": "歷史街區與濱海花園經典路線，白天文化景點、晚上燈光秀。",
+      "blocks": [
+        {
+          "startTime": "08:30",
+          "endTime": "09:30",
+          "name": "牛車水早餐（熟食中心）",
+          "location": "Chinatown Complex Food Centre",
+          "address": "335 Smith St, Singapore 050335",
+          "cost": "每人 SGD 6-12",
+          "transport": {
+            "route": "MRT 至 Chinatown 站步行 5-8 分鐘",
+            "mrtStations": [
+              "Chinatown (NE4/DT19)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.60"
+          },
+          "weather": "早晨較悶，室內外混合。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Complex+Food+Centre+Singapore",
+          "notes": "建議提早去避開排隊。"
+        },
+        {
+          "startTime": "10:00",
+          "endTime": "12:00",
+          "name": "牛車水文化散策",
+          "location": "Buddha Tooth Relic Temple 一帶",
+          "address": "288 South Bridge Rd, Singapore 058840",
+          "cost": "SGD 0-8（小額捐款或飲品）",
+          "transport": {
+            "route": "在牛車水區步行即可串聯多點",
+            "mrtStations": [
+              "Chinatown (NE4/DT19)",
+              "Maxwell (TE18)"
+            ],
+            "fareEstimate": "步行為主"
+          },
+          "weather": "中午前升溫快，請補水。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Buddha+Tooth+Relic+Temple+Singapore",
+          "notes": "可加入天福宮、Ann Siang Hill。"
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:45",
+          "name": "午餐：老巴剎",
+          "location": "Lau Pa Sat",
+          "address": "18 Raffles Quay, Singapore 048582",
+          "cost": "每人 SGD 10-20",
+          "transport": {
+            "route": "Chinatown -> Downtown/Telok Ayer 後步行",
+            "mrtStations": [
+              "Telok Ayer (DT18)",
+              "Downtown (DT17)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.50"
+          },
+          "weather": "用餐區半開放，注意悶熱。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Lau+Pa+Sat+Singapore",
+          "notes": "沙嗲街通常晚間更熱鬧。"
+        },
+        {
+          "startTime": "15:00",
+          "endTime": "18:00",
+          "name": "Gardens by the Bay 園區",
+          "location": "Gardens by the Bay",
+          "address": "18 Marina Gardens Dr, Singapore 018953",
+          "cost": "戶外免費；冷室票每人約 SGD 20-32",
+          "transport": {
+            "route": "MRT 至 Bayfront (CE1/DT16) 後走連通道",
+            "mrtStations": [
+              "Bayfront (CE1/DT16)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-1.90"
+          },
+          "weather": "午後雷陣雨機率高，可先走冷室。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gardens+by+the+Bay",
+          "notes": "可先預約時段節省排隊。"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "20:30",
+          "name": "Marina Bay Sands 商場晚餐 + 夜景",
+          "location": "The Shoppes at Marina Bay Sands",
+          "address": "2 Bayfront Ave, Singapore 018972",
+          "cost": "每人 SGD 20-45",
+          "transport": {
+            "route": "從 Gardens 步行或 Bayfront 站直達",
+            "mrtStations": [
+              "Bayfront (CE1/DT16)"
+            ],
+            "fareEstimate": "步行為主"
+          },
+          "weather": "晚間外圍步行仍潮濕。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Shoppes+at+Marina+Bay+Sands",
+          "notes": "20:00 左右可看濱海區燈光氛圍。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": "週一",
+      "summary": "上午文青區散步，下午固定線上研討，晚間海邊放鬆。",
+      "blocks": [
+        {
+          "startTime": "08:30",
+          "endTime": "10:00",
+          "name": "甘榜格南早餐與散步",
+          "location": "Haji Lane / Arab Street",
+          "address": "Arab St, Singapore",
+          "cost": "每人 SGD 10-20",
+          "transport": {
+            "route": "MRT 至 Bugis (EW12/DT14) 步行 8-12 分鐘",
+            "mrtStations": [
+              "Bugis (EW12/DT14)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.70"
+          },
+          "weather": "上午偏熱，建議遮陽。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Haji+Lane+Singapore",
+          "notes": "避開午後熱時段，拍照體驗較好。"
+        },
+        {
+          "startTime": "10:15",
+          "endTime": "11:30",
+          "name": "蘇丹回教堂外圍參觀",
+          "location": "Sultan Mosque",
+          "address": "3 Muscat St, Singapore 198833",
+          "cost": "SGD 0-5（捐款）",
+          "transport": {
+            "route": "甘榜格南區域步行",
+            "mrtStations": [
+              "Bugis (EW12/DT14)"
+            ],
+            "fareEstimate": "步行為主"
+          },
+          "weather": "中午前開始悶熱，穿著需端莊並透氣。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sultan+Mosque+Singapore",
+          "notes": "中午前後回住宿準備線上活動。"
+        },
+        {
+          "startTime": "12:00",
+          "endTime": "13:15",
+          "name": "回住宿午餐與網路測試",
+          "location": "住宿附近",
+          "address": "依住宿位置",
+          "cost": "每人 SGD 8-18",
+          "transport": {
+            "route": "MRT 返回住宿站點",
+            "mrtStations": [
+              "住宿最近 MRT 站"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.70"
+          },
+          "weather": "室內準備為主。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "notes": "預留 20 分鐘測試麥克風與鏡頭。"
+        },
+        {
+          "startTime": "14:00",
+          "endTime": "15:30",
+          "name": "線上活動：Service Users and Others Involvement in Practice Research",
+          "location": "住宿房間（安靜且網路穩定）",
+          "address": "依住宿位置",
+          "cost": "SGD 0（已報名為前提）",
+          "transport": {
+            "route": "無需移動",
+            "mrtStations": [
+              "不適用"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內冷氣較強，可準備薄外套。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore",
+          "notes": "講者：Dr Sidsel Therese Natland，時段固定不可衝突。"
+        },
+        {
+          "startTime": "17:30",
+          "endTime": "20:30",
+          "name": "East Coast Park 晚餐與海風散步",
+          "location": "East Coast Lagoon Food Village",
+          "address": "1220 East Coast Pkwy, Singapore 468960",
+          "cost": "每人 SGD 12-25",
+          "transport": {
+            "route": "MRT 至 Bedok (EW5) 轉巴士，或直接 Grab",
+            "mrtStations": [
+              "Bedok (EW5)"
+            ],
+            "fareEstimate": "MRT+巴士約 SGD 1.50-2.30"
+          },
+          "weather": "晚間有海風，但偶有短暫降雨。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=East+Coast+Lagoon+Food+Village",
+          "notes": "線上活動後用海邊行程放鬆。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "weekday": "週二",
+      "summary": "ICPR7 Day 1：固定會議日，三餐皆納入，通勤以 SUSS 為中心。",
+      "blocks": [
+        {
+          "startTime": "07:30",
+          "endTime": "08:15",
+          "name": "早餐：Toast Box Clementi",
+          "location": "The Clementi Mall",
+          "address": "3155 Commonwealth Ave West, Singapore 129588",
+          "cost": "每人 SGD 7-12",
+          "transport": {
+            "route": "先到 Clementi 站附近用餐，再轉巴士到 SUSS",
+            "mrtStations": [
+              "Clementi (EW23)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.80"
+          },
+          "weather": "早晨炎熱感已明顯。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Toast+Box+Clementi+Mall",
+          "notes": "建議 8:15 前結束，保留通勤緩衝。"
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "17:30",
+          "name": "ICPR7 Conference Day 1",
+          "location": "Singapore University of Social Sciences (SUSS)",
+          "address": "463 Clementi Rd, Singapore 599494",
+          "cost": "會議註冊費已付（依報名方案）",
+          "transport": {
+            "route": "Clementi (EW23) 轉巴士 74/151/154 至 SIM Campus 附近",
+            "mrtStations": [
+              "Clementi (EW23)",
+              "King Albert Park (DT6)"
+            ],
+            "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
+          },
+          "weather": "會場室內冷氣偏強，備薄外套。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences+463+Clementi+Road",
+          "notes": "會議細部場次請以主辦單位最終議程為準。"
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:30",
+          "name": "午餐：校內或鄰近餐廳",
+          "location": "SUSS / SIM Campus 餐飲區",
+          "address": "463 Clementi Rd, Singapore 599494",
+          "cost": "每人 SGD 8-15",
+          "transport": {
+            "route": "會場步行可達",
+            "mrtStations": [
+              "不適用"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內為主。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=SIM+Campus+Singapore",
+          "notes": "午餐時段請依大會休息時間調整。"
+        },
+        {
+          "startTime": "18:30",
+          "endTime": "20:00",
+          "name": "晚餐：Clementi 448 Market & Food Centre",
+          "location": "Clementi 448 Food Centre",
+          "address": "448 Clementi Ave 3, Singapore 120448",
+          "cost": "每人 SGD 8-14",
+          "transport": {
+            "route": "SUSS 搭巴士返回 Clementi 後步行",
+            "mrtStations": [
+              "Clementi (EW23)"
+            ],
+            "fareEstimate": "巴士/MRT 約 SGD 1.00-1.80"
+          },
+          "weather": "晚間仍悶，建議補充電解質。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=448+Clementi+Ave+3+Singapore",
+          "notes": "會議首日以近距離用餐減少疲勞。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": "週三",
+      "summary": "ICPR7 Day 2：維持固定節奏，午晚餐選擇可切換至 Beauty World 一帶。",
+      "blocks": [
+        {
+          "startTime": "07:20",
+          "endTime": "08:10",
+          "name": "早餐：Ya Kun Kaya Toast（Clementi）",
+          "location": "The Clementi Mall",
+          "address": "3155 Commonwealth Ave West, Singapore 129588",
+          "cost": "每人 SGD 6-10",
+          "transport": {
+            "route": "MRT 到 Clementi 站後進商場用餐",
+            "mrtStations": [
+              "Clementi (EW23)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.80"
+          },
+          "weather": "早上濕度仍高。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ya+Kun+Clementi+Mall",
+          "notes": "若前一晚晚睡，可改飯店早餐。"
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "17:30",
+          "name": "ICPR7 Conference Day 2",
+          "location": "Singapore University of Social Sciences (SUSS)",
+          "address": "463 Clementi Rd, Singapore 599494",
+          "cost": "會議註冊費已付",
+          "transport": {
+            "route": "Clementi (EW23) 或 King Albert Park (DT6) 轉巴士到校區",
+            "mrtStations": [
+              "Clementi (EW23)",
+              "King Albert Park (DT6)"
+            ],
+            "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.30"
+          },
+          "weather": "午後雷雨常見，校內移動請備傘。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Singapore",
+          "notes": "中午可依會議安排在校內用餐。"
+        },
+        {
+          "startTime": "12:20",
+          "endTime": "13:20",
+          "name": "午餐：Bukit Timah Market & Food Centre",
+          "location": "Bukit Timah Market",
+          "address": "51 Upper Bukit Timah Rd, Singapore 588215",
+          "cost": "每人 SGD 8-15",
+          "transport": {
+            "route": "SUSS 搭巴士往 Beauty World 一帶",
+            "mrtStations": [
+              "Beauty World (DT5)"
+            ],
+            "fareEstimate": "巴士/地鐵約 SGD 1.00-2.00"
+          },
+          "weather": "半開放市場悶熱，建議輕裝。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bukit+Timah+Market+%26+Food+Centre",
+          "notes": "若會議排程緊湊，改校內午餐更穩妥。"
+        },
+        {
+          "startTime": "18:30",
+          "endTime": "20:10",
+          "name": "晚餐：Beauty World Food Centre",
+          "location": "Beauty World Centre",
+          "address": "144 Upper Bukit Timah Rd, Singapore 588177",
+          "cost": "每人 SGD 10-18",
+          "transport": {
+            "route": "SUSS 搭巴士至 Beauty World，晚餐後返住宿",
+            "mrtStations": [
+              "Beauty World (DT5)"
+            ],
+            "fareEstimate": "MRT+巴士約 SGD 1.20-2.20"
+          },
+          "weather": "晚間偶有雷雨，注意回程時間。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Beauty+World+Centre+Singapore",
+          "notes": "可嘗試在地熟食，控制預算。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": "週四",
+      "summary": "ICPR7 Day 3：收尾日，晚餐安排慶祝型餐廳。",
+      "blocks": [
+        {
+          "startTime": "07:30",
+          "endTime": "08:15",
+          "name": "早餐：飯店或附近咖啡館",
+          "location": "住宿周邊",
+          "address": "依住宿位置",
+          "cost": "每人 SGD 7-15",
+          "transport": {
+            "route": "早餐後直接前往 SUSS",
+            "mrtStations": [
+              "住宿最近 MRT 站",
+              "Clementi (EW23)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-2.00"
+          },
+          "weather": "早晨潮濕，建議多補水。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clementi+MRT+Station",
+          "notes": "第三天可優先求穩，避免繞路。"
+        },
+        {
+          "startTime": "09:00",
+          "endTime": "17:30",
+          "name": "ICPR7 Conference Day 3 + Closing",
+          "location": "Singapore University of Social Sciences (SUSS)",
+          "address": "463 Clementi Rd, Singapore 599494",
+          "cost": "會議註冊費已付",
+          "transport": {
+            "route": "Clementi (EW23) 轉巴士入校",
+            "mrtStations": [
+              "Clementi (EW23)",
+              "King Albert Park (DT6)"
+            ],
+            "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
+          },
+          "weather": "室內冷氣環境，外套建議隨身。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences",
+          "notes": "閉幕日常有交流時段，回程抓彈性。"
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "13:30",
+          "name": "午餐：校內簡餐",
+          "location": "SUSS Campus",
+          "address": "463 Clementi Rd, Singapore 599494",
+          "cost": "每人 SGD 8-14",
+          "transport": {
+            "route": "會場內移動",
+            "mrtStations": [
+              "不適用"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內為主。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Campus+Singapore",
+          "notes": "減少外出時間，確保下午準時返場。"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "21:00",
+          "name": "晚餐慶祝：Holland Village",
+          "location": "Holland Village",
+          "address": "Holland Ave, Singapore",
+          "cost": "每人 SGD 20-45",
+          "transport": {
+            "route": "從 Clementi 搭 MRT 到 Buona Vista / Holland Village",
+            "mrtStations": [
+              "Holland Village (CC21)",
+              "Buona Vista (EW21/CC22)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-1.90"
+          },
+          "weather": "晚間有機會陣雨，建議帶傘。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Holland+Village+Singapore",
+          "notes": "會議結束日可安排稍好一點的晚餐。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": "週五",
+      "summary": "會後放鬆日，安排聖淘沙與海邊景點。",
+      "blocks": [
+        {
+          "startTime": "09:00",
+          "endTime": "10:00",
+          "name": "早餐：Tiong Bahru Bakery（市區分店）",
+          "location": "Tiong Bahru Bakery",
+          "address": "56 Eng Hoon St, Singapore 160056",
+          "cost": "每人 SGD 12-22",
+          "transport": {
+            "route": "MRT 至 Tiong Bahru (EW17) 步行",
+            "mrtStations": [
+              "Tiong Bahru (EW17)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.70"
+          },
+          "weather": "早上仍熱，室內冷氣舒服。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tiong+Bahru+Bakery+Eng+Hoon",
+          "notes": "想省錢可改在熟食中心用餐。"
+        },
+        {
+          "startTime": "10:45",
+          "endTime": "16:00",
+          "name": "聖淘沙半日（海灘/景點）",
+          "location": "Sentosa",
+          "address": "Sentosa Island, Singapore",
+          "cost": "交通與設施每人 SGD 10-45（看是否買門票）",
+          "transport": {
+            "route": "MRT 至 HarbourFront (NE1/CC29) 轉 Sentosa Express",
+            "mrtStations": [
+              "HarbourFront (NE1/CC29)",
+              "Imbiah / Beach Station (Sentosa Express)"
+            ],
+            "fareEstimate": "MRT+島內交通約 SGD 2.50-6.00"
+          },
+          "weather": "正午高溫，戶外請防曬與補水。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sentosa+Island+Singapore",
+          "notes": "若下大雨可改 S.E.A. Aquarium 或室內活動。"
+        },
+        {
+          "startTime": "16:30",
+          "endTime": "17:30",
+          "name": "休息與回住宿梳洗",
+          "location": "住宿",
+          "address": "依住宿位置",
+          "cost": "SGD 0",
+          "transport": {
+            "route": "由 HarbourFront 返程至住宿站點",
+            "mrtStations": [
+              "HarbourFront (NE1/CC29)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-1.90"
+          },
+          "weather": "室內休息，補充水分。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "notes": "晚餐前小休有助行程體力。"
+        },
+        {
+          "startTime": "19:00",
+          "endTime": "21:00",
+          "name": "晚餐：VivoCity / HarbourFront 區域",
+          "location": "VivoCity",
+          "address": "1 HarbourFront Walk, Singapore 098585",
+          "cost": "每人 SGD 15-35",
+          "transport": {
+            "route": "MRT 至 HarbourFront 出站即達商場",
+            "mrtStations": [
+              "HarbourFront (NE1/CC29)"
+            ],
+            "fareEstimate": "單程約 SGD 1.00-1.90"
+          },
+          "weather": "室內商場舒適。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=VivoCity+Singapore",
+          "notes": "想看夜景可到頂樓空中花園。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": "週六",
+      "summary": "文化與藝術日：小印度、國家美術館、夜景收尾。",
+      "blocks": [
+        {
+          "startTime": "08:30",
+          "endTime": "10:00",
+          "name": "小印度早餐與街區散步",
+          "location": "Tekka Centre / Little India",
+          "address": "665 Buffalo Rd, Singapore 210665",
+          "cost": "每人 SGD 7-15",
+          "transport": {
+            "route": "MRT 至 Little India 站",
+            "mrtStations": [
+              "Little India (NE7/DT12)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.80"
+          },
+          "weather": "上午已偏熱，建議輕裝。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tekka+Centre+Singapore",
+          "notes": "週末人潮較多，提早到較舒服。"
+        },
+        {
+          "startTime": "10:30",
+          "endTime": "12:00",
+          "name": "哈芝巷補拍或武吉士採買",
+          "location": "Bugis Street",
+          "address": "3 New Bugis St, Singapore 188867",
+          "cost": "每人 SGD 10-40（依購物）",
+          "transport": {
+            "route": "Little India -> Bugis 搭 DT 線 1 站",
+            "mrtStations": [
+              "Little India (NE7/DT12)",
+              "Bugis (EW12/DT14)"
+            ],
+            "fareEstimate": "約 SGD 0.90-1.20"
+          },
+          "weather": "室內外混合，留意午後陣雨。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Street+Singapore",
+          "notes": "可彈性作為購物補貨時段。"
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "15:00",
+          "name": "國家美術館 + 午餐",
+          "location": "National Gallery Singapore",
+          "address": "1 St Andrew's Rd, Singapore 178957",
+          "cost": "門票每人約 SGD 20；午餐每人 SGD 12-25",
+          "transport": {
+            "route": "Bugis -> City Hall 步行至美術館",
+            "mrtStations": [
+              "City Hall (EW13/NS25)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.30"
+          },
+          "weather": "午後多雨機率高，室內美術館很適合。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=National+Gallery+Singapore",
+          "notes": "展區大，建議先看當期重點展。"
+        },
+        {
+          "startTime": "18:30",
+          "endTime": "21:00",
+          "name": "濱海灣空中景觀與晚餐",
+          "location": "Marina Bay Sands SkyPark 一帶",
+          "address": "10 Bayfront Ave, Singapore 018956",
+          "cost": "觀景票每人約 SGD 35-40；晚餐每人 SGD 20-50",
+          "transport": {
+            "route": "City Hall/Promenade -> Bayfront",
+            "mrtStations": [
+              "Bayfront (CE1/DT16)",
+              "Promenade (CC4/DT15)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.60"
+          },
+          "weather": "晚間戶外觀景需注意陣雨與風勢。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Marina+Bay+Sands+SkyPark",
+          "notes": "作為最後完整夜晚的浪漫收尾。"
+        }
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "weekday": "週日",
+      "summary": "離境日：保留充足緩衝，確保 15:00 前抵達樟宜。",
+      "blocks": [
+        {
+          "startTime": "08:00",
+          "endTime": "09:00",
+          "name": "早餐與退房準備",
+          "location": "住宿",
+          "address": "依住宿位置",
+          "cost": "每人 SGD 8-15",
+          "transport": {
+            "route": "住宿內或附近餐廳",
+            "mrtStations": [
+              "住宿最近 MRT 站"
+            ],
+            "fareEstimate": "SGD 0-1.20"
+          },
+          "weather": "上午悶熱，行李打包注意防潮。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "notes": "確認護照、機票、退稅單據。"
+        },
+        {
+          "startTime": "09:30",
+          "endTime": "11:00",
+          "name": "輕量行程：福康寧公園或附近咖啡廳",
+          "location": "Fort Canning Park",
+          "address": "River Valley Rd, Singapore 179037",
+          "cost": "每人 SGD 0-15",
+          "transport": {
+            "route": "MRT 至 Dhoby Ghaut 步行",
+            "mrtStations": [
+              "Dhoby Ghaut (NS24/NE6/CC1)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.60"
+          },
+          "weather": "日照開始變強，戶外停留不宜過久。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fort+Canning+Park",
+          "notes": "離境日前不建議安排遠距離行程。"
+        },
+        {
+          "startTime": "11:15",
+          "endTime": "12:00",
+          "name": "取回行李與前往機場前午餐",
+          "location": "住宿附近",
+          "address": "依住宿位置",
+          "cost": "每人 SGD 10-20",
+          "transport": {
+            "route": "步行為主，確保 12:30 前可出發",
+            "mrtStations": [
+              "住宿最近 MRT 站"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "中午前後體感悶熱。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+city+lunch",
+          "notes": "行李較多時，建議直接叫車去機場。"
+        },
+        {
+          "startTime": "12:30",
+          "endTime": "14:30",
+          "name": "前往樟宜機場與辦理登機",
+          "location": "市區 -> Changi Airport",
+          "address": "Airport Blvd, Singapore",
+          "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-45",
+          "transport": {
+            "route": "MRT: 市區 -> Tanah Merah (EW4) 轉往 CG2；或直接 Grab",
+            "mrtStations": [
+              "Tanah Merah (EW4)",
+              "Changi Airport (CG2)"
+            ],
+            "fareEstimate": "MRT 約 SGD 1.50-2.20"
+          },
+          "weather": "午後常有雷陣雨，提早出發更穩。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Terminal+1",
+          "notes": "你指定 15:00 前抵達機場；若航班較早請再提前 30-60 分鐘出發。"
+        }
+      ]
+    }
+  ]
+}

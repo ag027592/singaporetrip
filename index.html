@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新加坡雙人行程 2026/07/04 - 2026/07/12</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>新加坡雙人行程網站</h1>
+    <p>2026/07/04 抵達樟宜 - 2026/07/12 下午 3 點前抵達樟宜離境</p>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="每日行程導覽">
+      <h2>每日行程</h2>
+      <nav id="day-nav" class="day-nav"></nav>
+    </aside>
+
+    <section class="content">
+      <article class="panel">
+        <h2>行程總覽</h2>
+        <div id="trip-overview"></div>
+      </article>
+
+      <article class="panel">
+        <h2>天氣與準備建議</h2>
+        <div id="weather-summary"></div>
+      </article>
+
+      <article class="panel">
+        <h2>住宿建議（大床 / 重視隔音 / 便宜）</h2>
+        <div id="accommodation"></div>
+      </article>
+
+      <article class="panel">
+        <h2>交通與票價通則</h2>
+        <div id="transport-notes"></div>
+      </article>
+
+      <article class="panel">
+        <h2 id="day-title">每日詳細安排</h2>
+        <p id="day-summary"></p>
+        <div id="blocks" class="blocks"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>註：交通、餐費與門票均為估算值，實際以當日價格與路況為準。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
