@@ -198,6 +198,242 @@ ul {
   border-radius: 10px;
 }
 
+/* 時間軸（參考桌面版行程單風格） */
+.panel-daily .blocks {
+  gap: 1.25rem;
+}
+
+.day-timeline-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.day-timeline-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.day-timeline-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.day-timeline-label {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.day-timeline-tag {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.tag-free {
+  background: #e1f5ee;
+  color: #085041;
+}
+
+.tag-conf {
+  background: #e6f1fb;
+  color: #0c447c;
+}
+
+.tag-online {
+  background: #faeeda;
+  color: #633806;
+}
+
+.tag-travel {
+  background: #f1efe8;
+  color: #444441;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.trow {
+  display: flex;
+  gap: 0;
+  min-height: 3rem;
+}
+
+.trow:last-child .tline {
+  display: none;
+}
+
+.ttime {
+  width: 4.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-top: 0.85rem;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 0.65rem;
+  line-height: 1.35;
+}
+
+.tvisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1.15rem;
+  flex-shrink: 0;
+}
+
+.tdot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 0.95rem;
+  flex-shrink: 0;
+}
+
+.dot-main {
+  background: #185fa5;
+}
+
+.dot-food {
+  background: #1d9e75;
+}
+
+.dot-alert {
+  background: #ba7517;
+}
+
+.dot-conf {
+  background: #7f77dd;
+}
+
+.dot-gray {
+  background: #888780;
+}
+
+.tline {
+  width: 2px;
+  background: var(--line);
+  flex: 1;
+  margin-top: 3px;
+  min-height: 0.5rem;
+}
+
+.tcontent {
+  flex: 1;
+  padding: 0.45rem 0 1rem 0.75rem;
+}
+
+.tblock {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tdesc {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  line-height: 1.55;
+}
+
+.tdesc a {
+  word-break: break-word;
+}
+
+.meal-row {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.meal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #f0f4fa;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.alert-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: #faeeda;
+  border: 1px solid #ef9f27;
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.alert-icon {
+  color: #633806;
+  flex-shrink: 0;
+}
+
+.alert-text {
+  font-size: 0.84rem;
+  color: #633806;
+  line-height: 1.45;
+}
+
+.tip-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: #e1f5ee;
+  border: 1px solid #5dcaa5;
+  border-radius: 8px;
+  padding: 0.45rem 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.tip-text {
+  font-size: 0.8rem;
+  color: #085041;
+  line-height: 1.45;
+}
+
+.timeline-legend {
+  display: flex;
+  gap: 0.85rem 1.1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.timeline-legend .leg-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.leg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
@@ -206,5 +442,10 @@ ul {
   .sidebar {
     position: static;
     max-height: none;
+  }
+
+  .ttime {
+    width: 3.6rem;
+    font-size: 0.72rem;
   }
 }
