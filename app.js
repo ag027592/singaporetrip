@@ -19,11 +19,13 @@ function renderList(container, items) {
 
 function renderTopSection(data) {
   const tripOverview = document.getElementById("trip-overview");
+  const attractionPlan = document.getElementById("attraction-plan");
   const weatherSummary = document.getElementById("weather-summary");
   const accommodation = document.getElementById("accommodation");
   const transportNotes = document.getElementById("transport-notes");
 
   tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
+  renderList(attractionPlan, data.attractionPlan);
 
   weatherSummary.innerHTML = `
     <p>${data.weather.summary}</p>
@@ -31,6 +33,7 @@ function renderTopSection(data) {
     <p>資料來源：${data.weather.sources.map((source) => `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.name}</a>`).join("、")}</p>
   `;
 
+  accommodation.innerHTML = `<p>${data.accommodation.summary}</p>`;
   const hotelCards = data.accommodation.hotels
     .map(
       (hotel) => `
@@ -44,11 +47,9 @@ function renderTopSection(data) {
     `
     )
     .join("");
-
-  accommodation.innerHTML = `
-    <p>${data.accommodation.summary}</p>
-    <div class="blocks">${hotelCards}</div>
-  `;
+  if (hotelCards) {
+    accommodation.innerHTML += `<div class="blocks">${hotelCards}</div>`;
+  }
   const accommodationList = document.createElement("div");
   renderList(accommodationList, data.accommodation.tips);
   accommodation.appendChild(accommodationList);

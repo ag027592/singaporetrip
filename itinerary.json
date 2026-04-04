@@ -1,5 +1,14 @@
 {
-  "tripOverview": "這份行程以你們 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS），以及 07/12 下午 3 點前抵達樟宜離境為主軸。安排原則是先保留休息、再分區觀光，會議日聚焦穩定通勤與三餐便利，非會議日安排經典景點與夜景。",
+  "tripOverview": "這份行程先以「景點與每日動線」為主，住宿先暫緩。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；我已把每天拆成可直接執行的時段，先把玩樂與會議節奏定稿。",
+  "attractionPlan": [
+    "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
+    "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
+    "7/6 半日景點 + 線上會議：Kampong Glam / Sultan Mosque，14:00-15:30 固定線上",
+    "7/7-7/9 會議日：SUSS 為中心，固定三餐與短距離晚間行程，避免過累",
+    "7/10 會後放鬆：Sentosa 半日 + VivoCity 晚餐",
+    "7/11 文化藝術日：Little India -> Bugis -> National Gallery -> Bayfront 夜景",
+    "7/12 離境日：輕量行程 + 12:30 出發機場，確保 15:00 前抵達"
+  ],
   "weather": {
     "summary": "新加坡 7 月通常高溫潮濕，白天約 25-32°C，午後雷陣雨機率高。建議輕薄快乾衣物、可折傘、室內冷氣外套與防水鞋。",
     "tags": [
@@ -20,35 +29,10 @@
     ]
   },
   "accommodation": {
-    "summary": "你重視大床、隔音與便宜，這三項通常需要權衡：會議友善選擇可優先看 ICPR 官網提到的 YWCA Fort Canning；若要壓低預算，建議優先挑評價有提到隔音較穩定、且可訂 King/Queen 房型的連鎖商務旅館。",
-    "hotels": [
-      {
-        "name": "YWCA Fort Canning（ICPR 建議）",
-        "mapUrl": "https://www.google.com/maps/search/?api=1&query=YWCA+Fort+Canning+Singapore",
-        "priceRange": "約 SGD 150-230/晚（季節浮動）",
-        "bed": "部分房型可選大床（以訂房頁為準）",
-        "soundproof": "中等到中上，建議選高樓層且離電梯遠"
-      },
-      {
-        "name": "Hotel Mi Bencoolen（預算型）",
-        "mapUrl": "https://www.google.com/maps/search/?api=1&query=Hotel+Mi+Bencoolen+Singapore",
-        "priceRange": "約 SGD 120-210/晚",
-        "bed": "可選雙人床房型",
-        "soundproof": "中等，建議加註安靜房需求"
-      },
-      {
-        "name": "lyf Bugis Singapore（年輕商旅）",
-        "mapUrl": "https://www.google.com/maps/search/?api=1&query=lyf+Bugis+Singapore",
-        "priceRange": "約 SGD 130-220/晚",
-        "bed": "部分房型有雙人床",
-        "soundproof": "中等，選非走道端房間較佳"
-      }
-    ],
+    "summary": "住宿先暫緩：目前先把景點與每日時程定稿。等你確認景點不再調整後，我再用同一套行程動線反推最適合的住宿區域與 3-5 間候選飯店。",
+    "hotels": [],
     "tips": [
-      "訂房時明確要求：1 張大雙人床（King/Queen）、安靜房、離電梯與製冰機遠。",
-      "若重視睡眠品質，優先查看住客近半年評論中的隔音關鍵字。",
-      "平價房型隔音波動較大，可自備耳塞與白噪音 App。",
-      "會議日建議住宿在 Downtown Line 或 East-West Line 轉乘便利區域。"
+      "下一步會依已定案行程，優先比對：通勤時間、隔音評價、大床房型、總價。"
     ]
   },
   "transportNotes": [
