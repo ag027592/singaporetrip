@@ -47,9 +47,17 @@ body {
   padding: 0.9rem;
 }
 
+.sidebar {
+  position: sticky;
+  top: 0.5rem;
+  max-height: calc(100vh - 1rem);
+  overflow: auto;
+}
+
 .day-nav {
   display: grid;
   gap: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .day-button {
@@ -64,6 +72,36 @@ body {
 .day-button.active {
   border-color: var(--accent);
   background: #edf4ff;
+}
+
+.all-days-overview {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.overview-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.55rem;
+  background: #fcfdff;
+}
+
+.overview-card.active {
+  border-color: var(--accent);
+  background: #edf4ff;
+}
+
+.overview-card h3 {
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+.overview-open-btn {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
 }
 
 .content {
@@ -163,5 +201,10 @@ ul {
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    max-height: none;
   }
 }

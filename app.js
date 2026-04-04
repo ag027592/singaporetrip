@@ -29,27 +29,27 @@ function renderList(container, items) {
   container.appendChild(ul);
 }
 
-function renderAllDaysOverview(data) {
+function renderAllDaysOverview(days, onSelect) {
   const allDaysOverview = document.getElementById("all-days-overview");
-  allDaysOverview.innerHTML = data.days
-    .map((day) => {
-      const items = day.blocks
-        .slice(0, 4)
-        .map((block) => `<li>${block.startTime}-${block.endTime} ${block.name}</li>`)
-        .join("");
-      const route = day.mrtRoute ? day.mrtRoute.label : "依當日行程移動";
-      const firstMap = day.blocks[0]?.mapUrl || "https://www.google.com/maps/search/?api=1&query=Singapore";
+  allDaysOverview.innerHTML = days
+    .map((day, index) => {
+      const firstTwo = day.blocks.slice(0, 2);
       return `
-      <article class="block-card">
-        <h3>${day.date}（${day.weekday}）</h3>
-        <p>${day.summary}</p>
-        <p><strong>交通主軸：</strong>${route}</p>
-        <ul>${items}</ul>
-        <p><a href="${firstMap}" target="_blank" rel="noopener noreferrer">當日第一站地圖</a></p>
+      <article class="overview-card" data-overview-index="${index}">
+        <h3>${day.date}</h3>
+        <p class="meta">${day.weekday}</p>
+        <p>${firstTwo.map((block) => `${block.startTime} ${block.name}`).join(" / ")}</p>
+        <button type="button" class="overview-open-btn" data-open-index="${index}">看這一天</button>
       </article>
     `;
     })
     .join("");
+
+  Array.from(allDaysOverview.querySelectorAll(".overview-open-btn")).forEach((button) => {
+    button.addEventListener("click", () => {
+      onSelect(Number(button.dataset.openIndex));
+    });
+  });
 }
 
 function renderTopSection(data) {
@@ -65,7 +65,6 @@ function renderTopSection(data) {
 
   tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
   renderList(attractionPlan, data.attractionPlan);
-  renderAllDaysOverview(data);
 
   weatherSummary.innerHTML = `
     <p>${data.weather.summary}</p>
@@ -277,11 +276,16 @@ function renderDayMap(day) {
   mapFrame.src = embedUrl;
 }
 
-function markActiveButton(index) {
+function markActiveSelection(index) {
   const buttons = Array.from(document.querySelectorAll(".day-button"));
   buttons.forEach((button) => {
     const buttonIndex = Number(button.dataset.index);
     button.classList.toggle("active", buttonIndex === index);
+  });
+  const overviewCards = Array.from(document.querySelectorAll(".overview-card"));
+  overviewCards.forEach((card) => {
+    const cardIndex = Number(card.dataset.overviewIndex);
+    card.classList.toggle("active", cardIndex === index);
   });
 }
 
@@ -289,17 +293,16 @@ async function main() {
   try {
     const data = await loadItinerary();
     renderTopSection(data);
-    renderDayNav(data.days, (index) => {
+    const selectDay = (index) => {
       renderBlocks(data.days[index]);
       renderMrtVisual(data.days[index]);
       renderDayMap(data.days[index]);
-      markActiveButton(index);
-    });
+      markActiveSelection(index);
+    };
+    renderDayNav(data.days, selectDay);
+    renderAllDaysOverview(data.days, selectDay);
 
-    renderBlocks(data.days[0]);
-    renderMrtVisual(data.days[0]);
-    renderDayMap(data.days[0]);
-    markActiveButton(0);
+    selectDay(0);
   } catch (error) {
     document.body.innerHTML = `<main style="padding: 2rem;"><h1>載入失敗</h1><p>${error.message}</p></main>`;
   }
