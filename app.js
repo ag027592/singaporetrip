@@ -23,6 +23,21 @@ function byId(id) {
   return document.getElementById(id);
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function scrollMainIntoView() {
+  const main = byId("main-content");
+  if (!main) {
+    return;
+  }
+  main.scrollIntoView({
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+    block: "start"
+  });
+}
+
 function escapeHtml(value) {
   if (value === undefined || value === null) {
     return "";
@@ -195,11 +210,16 @@ function renderAllDaysOverview(days, onSelect) {
     })
     .join("");
 
-  Array.from(allDaysOverview.querySelectorAll(".overview-open-btn")).forEach((button) => {
-    button.addEventListener("click", () => {
+  if (!allDaysOverview.dataset.bound) {
+    allDaysOverview.addEventListener("click", (event) => {
+      const button = event.target.closest(".overview-open-btn");
+      if (!button || !allDaysOverview.contains(button)) {
+        return;
+      }
       onSelect(Number(button.dataset.openIndex));
     });
-  });
+    allDaysOverview.dataset.bound = "1";
+  }
 }
 
 function renderTripInfoForm(data) {
@@ -331,7 +351,8 @@ function renderTripInfoForm(data) {
   `;
 }
 
-function renderPrepOverviewMap(days) {
+function renderPrepOverviewMap(days, options = {}) {
+  const loadEmbed = Boolean(options.loadEmbed);
   const mapSummary = byId("overview-map-summary");
   const mapAreas = byId("overview-map-areas");
   const routeLink = byId("overview-map-route-link");
@@ -355,7 +376,10 @@ function renderPrepOverviewMap(days) {
   mapSummary.textContent =
     "內嵌地圖為新加坡本島概覽；下方連結可開啟 Google Maps「依行程順序」多站路線（最多 10 站）。點各景點時間軸內連結可單點導航。";
   routeLink.href = routeUrl;
-  mapFrame.src = "https://www.google.com/maps?q=Singapore&hl=zh-TW&z=11&output=embed";
+  if (loadEmbed && !mapFrame.dataset.loaded) {
+    mapFrame.src = "https://www.google.com/maps?q=Singapore&hl=zh-TW&z=11&output=embed";
+    mapFrame.dataset.loaded = "1";
+  }
 }
 
 function renderDayNav(days, onSelectDaily) {
@@ -447,6 +471,11 @@ function updateNavHighlight(dayIndex) {
   document.querySelectorAll(".day-pick").forEach((btn) => {
     const idx = Number(btn.dataset.index);
     btn.classList.toggle("active", idx === dayIndex);
+    if (idx === dayIndex) {
+      btn.setAttribute("aria-current", "page");
+    } else {
+      btn.removeAttribute("aria-current");
+    }
   });
   document.querySelectorAll(".overview-card").forEach((card) => {
     const cardIndex = Number(card.dataset.overviewIndex);
@@ -455,6 +484,29 @@ function updateNavHighlight(dayIndex) {
 }
 
 async function main() {
+  const loading = byId("app-loading");
+  const errorBox = byId("app-error");
+  const viewDaily = byId("view-daily");
+  const showError = (message) => {
+    if (errorBox) {
+      errorBox.innerHTML = `<h2>載入失敗</h2><p>${escapeHtml(message)}</p><p><a href="#" id="retry-load-link">重新整理</a></p>`;
+      errorBox.hidden = false;
+      const retry = byId("retry-load-link");
+      if (retry) {
+        retry.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.location.reload();
+        });
+      }
+    }
+    if (loading) {
+      loading.hidden = true;
+    }
+    if (viewDaily) {
+      viewDaily.hidden = true;
+    }
+  };
+
   try {
     const requiredIds = [
       "day-nav",
@@ -484,31 +536,39 @@ async function main() {
     }
 
     renderTripInfoForm(data);
-    renderPrepOverviewMap(data.days);
+    renderPrepOverviewMap(data.days, { loadEmbed: false });
 
     const fullTripStatic = byId("full-trip-static");
     const mainQuickOverview = byId("main-quick-overview");
     const fullTripTimelineBlock = byId("full-trip-timeline-block");
+    let hasLoadedOverviewMap = false;
+    let hasRenderedFullTimeline = false;
 
     const selectDaily = (index) => {
       if (index === -1) {
         fullTripStatic.hidden = false;
         mainQuickOverview.hidden = true;
         fullTripTimelineBlock.hidden = false;
-        renderPrepOverviewMap(data.days);
-        renderAllBlocks(data.days);
-        const mrtSummary = byId("mrt-summary");
-        const mrtVisual = byId("mrt-visual");
-        if (mrtSummary) {
-          mrtSummary.textContent = "一次看完：全行程主要捷運節點（去重後）";
+        if (!hasLoadedOverviewMap) {
+          renderPrepOverviewMap(data.days, { loadEmbed: true });
+          hasLoadedOverviewMap = true;
         }
-        if (mrtVisual) {
-          mrtVisual.innerHTML = data.days
-            .flatMap((day) => (day.mrtRoute ? day.mrtRoute.stations : []))
-            .filter((station, i, arr) => arr.indexOf(station) === i)
-            .slice(0, 16)
-            .map((station) => `<span class="route-stop">${escapeHtml(station)}</span>`)
-            .join("");
+        if (!hasRenderedFullTimeline) {
+          renderAllBlocks(data.days);
+          const mrtSummary = byId("mrt-summary");
+          const mrtVisual = byId("mrt-visual");
+          if (mrtSummary) {
+            mrtSummary.textContent = "一次看完：全行程主要捷運節點（去重後）";
+          }
+          if (mrtVisual) {
+            mrtVisual.innerHTML = data.days
+              .flatMap((day) => (day.mrtRoute ? day.mrtRoute.stations : []))
+              .filter((station, i, arr) => arr.indexOf(station) === i)
+              .slice(0, 16)
+              .map((station) => `<span class="route-stop">${escapeHtml(station)}</span>`)
+              .join("");
+          }
+          hasRenderedFullTimeline = true;
         }
       } else {
         fullTripStatic.hidden = true;
@@ -516,18 +576,29 @@ async function main() {
         fullTripTimelineBlock.hidden = true;
         const card = document.querySelector(`.overview-card[data-overview-index="${index}"]`);
         if (card) {
-          card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          card.scrollIntoView({
+            behavior: prefersReducedMotion() ? "auto" : "smooth",
+            block: "nearest"
+          });
         }
       }
       updateNavHighlight(index);
+      scrollMainIntoView();
     };
 
     renderDayNav(data.days, selectDaily);
     renderAllDaysOverview(data.days, selectDaily);
 
+    if (viewDaily) {
+      viewDaily.hidden = false;
+    }
+    if (loading) {
+      loading.hidden = true;
+    }
     selectDaily(0);
   } catch (error) {
-    document.body.innerHTML = `<main style="padding: 2rem;"><h1>載入失敗</h1><p>${error.message}</p></main>`;
+    const message = error instanceof Error ? error.message : String(error);
+    showError(message);
   }
 }
 

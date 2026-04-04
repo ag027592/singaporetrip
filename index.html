@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="新加坡雙人旅行行程（2026/07/04-2026/07/12），含一次看完總表、捷運動線、地圖與時間軸。">
+  <meta property="og:title" content="新加坡雙人行程 2026/07/04 - 2026/07/12">
+  <meta property="og:description" content="含行前資訊總表、景點地圖、交通與每日時間軸的旅遊行程網站。">
   <title>新加坡雙人行程 2026/07/04 - 2026/07/12</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
   <header class="page-header">
     <h1>新加坡雙人行程網站</h1>
     <p>2026/07/04 抵達樟宜 - 2026/07/12 下午 3 點前抵達樟宜離境</p>
   </header>
 
-  <main class="layout">
+  <main id="main-content" class="layout">
     <aside class="sidebar" aria-label="網站導覽">
       <h2>每日行程</h2>
       <p class="sidebar-hint">單日：主畫面僅卡片；完整內容請按「一次看完」。</p>
@@ -20,7 +24,9 @@
     </aside>
 
     <section class="content">
-      <div id="view-daily" class="content-view is-active">
+      <div id="app-loading" class="panel app-loading" role="status" aria-live="polite">載入中...</div>
+      <div id="app-error" class="panel app-error" role="alert" hidden></div>
+      <div id="view-daily" class="content-view is-active" hidden>
         <!-- 僅「一次看完」：單一總表 + 全境地圖 -->
         <div id="full-trip-static" class="full-trip-static" hidden>
           <article class="panel panel-trip-info">
