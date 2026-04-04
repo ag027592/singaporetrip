@@ -29,6 +29,29 @@ function renderList(container, items) {
   container.appendChild(ul);
 }
 
+function renderAllDaysOverview(data) {
+  const allDaysOverview = document.getElementById("all-days-overview");
+  allDaysOverview.innerHTML = data.days
+    .map((day) => {
+      const items = day.blocks
+        .slice(0, 4)
+        .map((block) => `<li>${block.startTime}-${block.endTime} ${block.name}</li>`)
+        .join("");
+      const route = day.mrtRoute ? day.mrtRoute.label : "依當日行程移動";
+      const firstMap = day.blocks[0]?.mapUrl || "https://www.google.com/maps/search/?api=1&query=Singapore";
+      return `
+      <article class="block-card">
+        <h3>${day.date}（${day.weekday}）</h3>
+        <p>${day.summary}</p>
+        <p><strong>交通主軸：</strong>${route}</p>
+        <ul>${items}</ul>
+        <p><a href="${firstMap}" target="_blank" rel="noopener noreferrer">當日第一站地圖</a></p>
+      </article>
+    `;
+    })
+    .join("");
+}
+
 function renderTopSection(data) {
   const tripOverview = document.getElementById("trip-overview");
   const attractionPlan = document.getElementById("attraction-plan");
@@ -42,6 +65,7 @@ function renderTopSection(data) {
 
   tripOverview.innerHTML = `<p>${data.tripOverview}</p>`;
   renderList(attractionPlan, data.attractionPlan);
+  renderAllDaysOverview(data);
 
   weatherSummary.innerHTML = `
     <p>${data.weather.summary}</p>
