@@ -123,6 +123,27 @@ ul {
   margin-top: 0.4rem;
 }
 
+.mrt-visual {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.route-stop {
+  display: inline-block;
+  border: 1px solid #9dc0ff;
+  background: #edf4ff;
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.88rem;
+}
+
+.route-arrow {
+  color: #6a7b8f;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;

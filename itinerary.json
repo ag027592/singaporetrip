@@ -28,16 +28,120 @@
       }
     ]
   },
-  "accommodation": {
-    "summary": "住宿先暫緩：目前先把景點與每日時程定稿。等你確認景點不再調整後，我再用同一套行程動線反推最適合的住宿區域與 3-5 間候選飯店。",
-    "hotels": [],
-    "tips": [
-      "下一步會依已定案行程，優先比對：通勤時間、隔音評價、大床房型、總價。"
+  "hotel": {
+    "name": "Citadines Rochor Singapore",
+    "address": "2 Serangoon Road, Little India, Singapore 218227",
+    "nearestMrt": "Little India MRT（約 300 公尺步行）",
+    "phone": "以預訂確認函為準（平台會顯示完整電話）",
+    "bookedPriceUsd": "US$1,726.19",
+    "bookedPriceSgd": "S$2,217.55",
+    "perNightSgd": "約 S$277/晚（8 晚估算）",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore"
+  },
+  "priceCheck": {
+    "summary": "目前公開頁面可見的價格多為『起價』而非同房型、同取消條件、同稅費的最終總價；你的成交價屬可接受區間。若要二次確認是否最划算，請在同一天同時比官方與 OTA 的『最終含稅總價』。",
+    "references": [
+      {
+        "source": "Citadines 官方 ASR 網站",
+        "note": "官方常有會員折扣與長住折扣，適合比對最終含稅總價。",
+        "url": "https://www.discoverasr.com/en/citadines/singapore/citadines-rochor-singapore/studio"
+      },
+      {
+        "source": "Booking.com（Citadines Rochor）",
+        "note": "可用免費取消房型先鎖房，再做二次比價。",
+        "url": "https://www.booking.com/hotel/sg/citadines-rochor.html"
+      },
+      {
+        "source": "公開比價頁（Bencoolen 區）",
+        "note": "可看區域起價帶；但不是你的同條件最終成交價。",
+        "url": "https://ohotel.sg/hotels/singapore/singapore/district-bencoolen"
+      }
     ]
   },
+  "payment": {
+    "summary": "以你目前持卡情況，實務上最省通常是：能刷卡就刷『無海外交易手續費』的卡；MRT/巴士用 Visa/Mastercard 感應進站最方便，現金只保留少量備用。",
+    "recommendations": [
+      "MRT/巴士：優先用 Visa/Mastercard 感應（SimplyGo），外卡會有每日 SGD 0.60 管理費，仍通常比換匯與提領手續費穩定。",
+      "Discover：一般無海外交易手續費，但在新加坡收單覆蓋可能不如 Visa/Mastercard，建議當備援卡。",
+      "BofA Cash Rewards：多數情況有 3% 海外交易費，除非店家不能刷其他卡，否則不建議當主力。",
+      "PayPal Debit Card：海外刷卡與提款成本可能偏高，僅作備援。",
+      "美金現鈔：只換 200-400 SGD 當小額備用；大量消費改刷卡通常更省且匯率透明。",
+      "DCC（動態貨幣轉換）：結帳時一律選 SGD 入帳，不要選 USD。"
+    ],
+    "sources": [
+      {
+        "name": "SimplyGo Contactless FAQs",
+        "url": "https://www.simplygo.com.sg/faqs/cards-and-charms/simplygo/contactless-bank-cards"
+      },
+      {
+        "name": "SMRT How To Pay",
+        "url": "https://www.smrt.com.sg/public-transport/getting-around/visiting-singapore/how-to-pay/"
+      },
+      {
+        "name": "Discover Abroad",
+        "url": "https://www.discover.com/credit-cards/resources/discover-card-abroad/"
+      },
+      {
+        "name": "BofA Foreign Transaction Fee 參考",
+        "url": "https://wise.com/us/blog/bank-of-america-foreign-transaction"
+      }
+    ]
+  },
+  "bookingChecklist": [
+    {
+      "name": "ICPR7 Conference（7/7-7/9）",
+      "type": "會議",
+      "needBooking": true,
+      "action": "已報名者確認 QR / 票券與每日入場規則",
+      "when": "出發前 7-10 天",
+      "url": "https://counsel.org.sg/icpr-home/"
+    },
+    {
+      "name": "Gardens by the Bay 冷室與 Skyway",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "建議先購票與挑時段，避免現場排隊",
+      "when": "出發前 3-7 天",
+      "url": "https://ticket3.gardensbythebay.com.sg/"
+    },
+    {
+      "name": "Marina Bay Sands SkyPark",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "建議預約傍晚場次（天亮到夜景）",
+      "when": "出發前 3-7 天",
+      "url": "https://www.marinabaysands.com/attractions/sands-skypark-observation-deck.html"
+    },
+    {
+      "name": "National Gallery Singapore",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "先線上購票；熱門展期可提早選時段",
+      "when": "出發前 2-5 天",
+      "url": "https://www.nationalgallery.sg/visit"
+    },
+    {
+      "name": "Sentosa（若加購館內設施）",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "若你們要玩館內設施，先買電子票更省時",
+      "when": "出發前 2-5 天",
+      "url": "https://www.sentosa.com.sg/"
+    },
+    {
+      "name": "熟食中心/一般餐廳（行程內多數）",
+      "type": "餐飲",
+      "needBooking": false,
+      "action": "多可現場，避開 12:00-13:30 及 19:00-20:00 尖峰",
+      "when": "當天",
+      "url": "https://www.visitsingapore.com/"
+    }
+  ],
   "transportNotes": [
+    "住宿位置在 Little India，前往 Bugis、City Hall、Bayfront、HarbourFront 都很方便，適合作為觀光基地。",
     "新加坡大眾運輸可直接使用 Visa/Mastercard 感應進出閘門，或使用 EZ-Link。",
     "MRT / 巴士單程常見約 SGD 0.90-2.30（依里程與轉乘而異）。",
+    "外國發卡的 Visa/Mastercard 走 SimplyGo 會有每日 SGD 0.60 管理費（每卡每天）。",
     "往 SUSS 常見路徑：Clementi (EW23) 或 King Albert Park (DT6) 再轉巴士 74/151/154。",
     "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。"
   ],
@@ -46,6 +150,28 @@
       "date": "2026-07-04",
       "weekday": "週六",
       "summary": "凌晨抵達日，以入境、休息與輕量活動為主，避免過度操勞。",
+      "mrtRoute": {
+        "label": "Citadines Rochor -> Jewel / Marina Bay / Clarke Quay",
+        "fare": "約 SGD 1.8-2.3 / 單程",
+        "stations": [
+          "Little India (NE7/DT12)",
+          "Dhoby Ghaut (NE6/NS24/CC1)",
+          "Bayfront (CE1/DT16)",
+          "Clarke Quay (NE5)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "Jewel Changi 輕鬆逛與早午餐",
+          "needBooking": false,
+          "action": "可現場"
+        },
+        {
+          "blockName": "Clarke Quay 晚餐",
+          "needBooking": false,
+          "action": "一般可現場，熱門餐廳可先電話預約"
+        }
+      ],
       "blocks": [
         {
           "startTime": "01:00",
@@ -146,6 +272,27 @@
       "date": "2026-07-05",
       "weekday": "週日",
       "summary": "歷史街區與濱海花園經典路線，白天文化景點、晚上燈光秀。",
+      "mrtRoute": {
+        "label": "Little India -> Chinatown -> Bayfront",
+        "fare": "約 SGD 1.0-2.0 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Chinatown (DT19/NE4)",
+          "Bayfront (DT16/CE1)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "Gardens by the Bay 園區",
+          "needBooking": true,
+          "action": "冷室門票建議先線上購票"
+        },
+        {
+          "blockName": "Marina Bay Sands 商場晚餐 + 夜景",
+          "needBooking": false,
+          "action": "商場餐廳可現場，熱門店建議先訂位"
+        }
+      ],
       "blocks": [
         {
           "startTime": "08:30",
@@ -245,6 +392,27 @@
       "date": "2026-07-06",
       "weekday": "週一",
       "summary": "上午文青區散步，下午固定線上研討，晚間海邊放鬆。",
+      "mrtRoute": {
+        "label": "Little India -> Bugis -> 住宿 -> East Coast",
+        "fare": "約 SGD 1.0-2.3 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Bugis (DT14/EW12)",
+          "Bedok (EW5)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "線上活動：Service Users and Others Involvement in Practice Research",
+          "needBooking": true,
+          "action": "確認報名連結與登入設備"
+        },
+        {
+          "blockName": "East Coast Park 晚餐與海風散步",
+          "needBooking": false,
+          "action": "熟食中心可現場"
+        }
+      ],
       "blocks": [
         {
           "startTime": "08:30",
@@ -342,6 +510,28 @@
       "date": "2026-07-07",
       "weekday": "週二",
       "summary": "ICPR7 Day 1：固定會議日，三餐皆納入，通勤以 SUSS 為中心。",
+      "mrtRoute": {
+        "label": "Little India -> Clementi -> SUSS",
+        "fare": "約 SGD 1.2-2.2 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Bugis (DT14/EW12)",
+          "Clementi (EW23)",
+          "巴士 74/151/154"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "ICPR7 Conference Day 1",
+          "needBooking": true,
+          "action": "需會議報到資料"
+        },
+        {
+          "blockName": "早餐：Toast Box Clementi",
+          "needBooking": false,
+          "action": "可現場"
+        }
+      ],
       "blocks": [
         {
           "startTime": "07:30",
@@ -422,6 +612,27 @@
       "date": "2026-07-08",
       "weekday": "週三",
       "summary": "ICPR7 Day 2：維持固定節奏，午晚餐選擇可切換至 Beauty World 一帶。",
+      "mrtRoute": {
+        "label": "Little India -> Clementi/SUSS -> Beauty World",
+        "fare": "約 SGD 1.2-2.3 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Clementi (EW23)",
+          "Beauty World (DT5)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "ICPR7 Conference Day 2",
+          "needBooking": true,
+          "action": "需會議報到資料"
+        },
+        {
+          "blockName": "晚餐：Beauty World Food Centre",
+          "needBooking": false,
+          "action": "可現場"
+        }
+      ],
       "blocks": [
         {
           "startTime": "07:20",
@@ -502,6 +713,28 @@
       "date": "2026-07-09",
       "weekday": "週四",
       "summary": "ICPR7 Day 3：收尾日，晚餐安排慶祝型餐廳。",
+      "mrtRoute": {
+        "label": "Little India -> Clementi/SUSS -> Holland Village",
+        "fare": "約 SGD 1.2-2.2 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Clementi (EW23)",
+          "Buona Vista (EW21/CC22)",
+          "Holland Village (CC21)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "ICPR7 Conference Day 3 + Closing",
+          "needBooking": true,
+          "action": "需會議報到資料"
+        },
+        {
+          "blockName": "晚餐慶祝：Holland Village",
+          "needBooking": false,
+          "action": "一般可現場，熱門餐廳建議訂位"
+        }
+      ],
       "blocks": [
         {
           "startTime": "07:30",
@@ -584,6 +817,28 @@
       "date": "2026-07-10",
       "weekday": "週五",
       "summary": "會後放鬆日，安排聖淘沙與海邊景點。",
+      "mrtRoute": {
+        "label": "Little India -> HarbourFront -> Sentosa",
+        "fare": "約 SGD 2.5-6.0（含島內交通）",
+        "stations": [
+          "Little India (NE7/DT12)",
+          "Dhoby Ghaut (NE6/NS24/CC1)",
+          "HarbourFront (NE1/CC29)",
+          "Sentosa Express"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "聖淘沙半日（海灘/景點）",
+          "needBooking": true,
+          "action": "若有付費設施建議先買電子票"
+        },
+        {
+          "blockName": "晚餐：VivoCity / HarbourFront 區域",
+          "needBooking": false,
+          "action": "多可現場"
+        }
+      ],
       "blocks": [
         {
           "startTime": "09:00",
@@ -664,6 +919,28 @@
       "date": "2026-07-11",
       "weekday": "週六",
       "summary": "文化與藝術日：小印度、國家美術館、夜景收尾。",
+      "mrtRoute": {
+        "label": "Little India -> Bugis -> City Hall -> Bayfront",
+        "fare": "約 SGD 0.9-1.8 / 單程",
+        "stations": [
+          "Little India (NE7/DT12)",
+          "Bugis (EW12/DT14)",
+          "City Hall (EW13/NS25)",
+          "Bayfront (DT16/CE1)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "國家美術館 + 午餐",
+          "needBooking": true,
+          "action": "建議先線上購票"
+        },
+        {
+          "blockName": "濱海灣空中景觀與晚餐",
+          "needBooking": true,
+          "action": "SkyPark 建議先預約傍晚時段"
+        }
+      ],
       "blocks": [
         {
           "startTime": "08:30",
@@ -745,6 +1022,23 @@
       "date": "2026-07-12",
       "weekday": "週日",
       "summary": "離境日：保留充足緩衝，確保 15:00 前抵達樟宜。",
+      "mrtRoute": {
+        "label": "Citadines Rochor -> Changi Airport",
+        "fare": "約 SGD 1.5-2.2 / 單程",
+        "stations": [
+          "Little India (DT12/NE7)",
+          "Bugis (DT14/EW12)",
+          "Tanah Merah (EW4)",
+          "Changi Airport (CG2)"
+        ]
+      },
+      "bookingItems": [
+        {
+          "blockName": "前往樟宜機場與辦理登機",
+          "needBooking": false,
+          "action": "不需預約，建議提早到站"
+        }
+      ],
       "blocks": [
         {
           "startTime": "08:00",
