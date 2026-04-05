@@ -1,4 +1,4 @@
-function itineraryJsonUrl() {
+function currentDirUrl() {
   const path = window.location.pathname;
   let dir = path;
   if (!dir.endsWith("/")) {
@@ -8,7 +8,11 @@ function itineraryJsonUrl() {
       dir = `${dir}/`;
     }
   }
-  return new URL("itinerary.json", `${window.location.origin}${dir}`);
+  return new URL(`${window.location.origin}${dir}`);
+}
+
+function itineraryJsonUrl() {
+  return new URL("itinerary.json", currentDirUrl());
 }
 
 async function loadItinerary() {
@@ -235,7 +239,10 @@ function makePhotoFallbackSvg(label) {
 
 function getLocalFoodImage(imageKey, fallbackLabel) {
   const local = imageKey ? LOCAL_FOOD_IMAGES[imageKey] : "";
-  return local || makePhotoFallbackSvg(fallbackLabel || "Food photo");
+  if (!local) {
+    return makePhotoFallbackSvg(fallbackLabel || "Food photo");
+  }
+  return new URL(local, currentDirUrl()).href;
 }
 
 function makeMenuCardSvg(label) {
