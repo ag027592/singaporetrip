@@ -43,6 +43,75 @@
       <div id="trip-kpis" class="panel trip-kpis" hidden></div>
       <div id="view-daily" class="content-view is-active" hidden>
         <!-- 僅「一次看完」：單一總表 + 全境地圖 -->
+        <div id="full-trip-timeline-block" class="full-trip-timeline-block" hidden>
+          <div class="detail-actions">
+            <button id="btn-back-cards" type="button" class="toolbar-btn toolbar-btn-subtle">回快速跳轉</button>
+          </div>
+          <article class="panel panel-daily">
+            <h2 id="day-title">每日時間軸</h2>
+            <p id="day-summary"></p>
+            <div class="timeline-legend" id="timeline-legend" aria-hidden="true">
+              <span class="leg-item"><span class="leg-dot dot-main"></span>景點／活動</span>
+              <span class="leg-item"><span class="leg-dot dot-food"></span>餐飲</span>
+              <span class="leg-item"><span class="leg-dot dot-conf"></span>研討會</span>
+              <span class="leg-item"><span class="leg-dot dot-alert"></span>重要／交通</span>
+              <span class="leg-item"><span class="leg-dot dot-gray"></span>其他</span>
+            </div>
+            <div id="blocks" class="blocks"></div>
+          </article>
+          <article id="panel-daily-mrt" class="panel">
+            <h2 id="daily-mrt-title">全行程捷運動線（去重）</h2>
+            <p id="mrt-summary"></p>
+            <div id="mrt-visual" class="mrt-visual"></div>
+          </article>
+          <article id="panel-daily-transit-map" class="panel" hidden>
+            <h2 id="daily-transit-map-title">每日交通地圖（MRT / Bus）</h2>
+            <p id="daily-transit-map-summary" class="meta"></p>
+            <div id="daily-transit-links" class="transit-map-links"></div>
+            <div class="transit-map-grid">
+              <figure id="card-full-metro-map" class="transit-map-card">
+                <figcaption>完整 Metro Map（互動）</figcaption>
+                <iframe id="full-metro-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="完整 Metro Map"></iframe>
+              </figure>
+              <figure id="card-full-bus-map" class="transit-map-card">
+                <figcaption>完整 Bus Map（互動）</figcaption>
+                <iframe id="full-bus-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="完整 Bus Map"></iframe>
+              </figure>
+            </div>
+            <div class="transit-map-grid">
+              <figure id="card-local-metro-map" class="transit-map-card">
+                <figcaption>MRT / Metro Map（本地圖檔）</figcaption>
+                <img id="daily-metro-map-img" class="transit-map-image" src="" alt="新加坡 MRT / Metro 路網圖" loading="lazy">
+              </figure>
+              <figure id="card-mrt-sequence-map" class="transit-map-card">
+                <figcaption>當日 MRT 站點順序圖</figcaption>
+                <div id="daily-mrt-sequence-map" class="bus-route-map"></div>
+              </figure>
+              <figure id="card-bus-route-map" class="transit-map-card">
+                <figcaption>需要搭乘的巴士路線圖</figcaption>
+                <div id="daily-bus-route-map" class="bus-route-map"></div>
+              </figure>
+              <figure id="card-transit-flow" class="transit-map-card">
+                <figcaption>今日轉乘流程</figcaption>
+                <div id="daily-transit-flow" class="transit-flow"></div>
+              </figure>
+              <figure id="card-daily-local-map" class="transit-map-card">
+                <figcaption>每日行程局部地圖（依當日行程）</figcaption>
+                <iframe id="daily-local-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="每日行程局部地圖"></iframe>
+              </figure>
+            </div>
+            <p id="daily-transit-route-wrap"><a id="daily-transit-route-link" href="#" target="_blank" rel="noopener noreferrer">開啟 Google Maps 當日動線（含轉乘）</a></p>
+            <iframe
+              id="daily-transit-map-frame"
+              class="day-map-frame"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src=""
+              title="每日交通路線地圖"
+            ></iframe>
+          </article>
+        </div>
+
         <div id="full-trip-static" class="full-trip-static" hidden>
           <article class="panel">
             <h2>行程總覽</h2>
@@ -103,75 +172,6 @@
           <p id="quick-overview-empty" class="meta quick-overview-empty" hidden>找不到符合條件的日期，請調整關鍵字。</p>
         </div>
 
-        <!-- 僅「一次看完」：全行程捷運 + 時間軸 -->
-        <div id="full-trip-timeline-block" class="full-trip-timeline-block" hidden>
-          <div class="detail-actions">
-            <button id="btn-back-cards" type="button" class="toolbar-btn toolbar-btn-subtle">回快速跳轉</button>
-          </div>
-          <article id="panel-daily-mrt" class="panel">
-            <h2 id="daily-mrt-title">全行程捷運動線（去重）</h2>
-            <p id="mrt-summary"></p>
-            <div id="mrt-visual" class="mrt-visual"></div>
-          </article>
-          <article id="panel-daily-transit-map" class="panel" hidden>
-            <h2 id="daily-transit-map-title">每日交通地圖（MRT / Bus）</h2>
-            <p id="daily-transit-map-summary" class="meta"></p>
-            <div id="daily-transit-links" class="transit-map-links"></div>
-            <div class="transit-map-grid">
-              <figure class="transit-map-card">
-                <figcaption>完整 Metro Map（互動）</figcaption>
-                <iframe id="full-metro-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="完整 Metro Map"></iframe>
-              </figure>
-              <figure class="transit-map-card">
-                <figcaption>完整 Bus Map（互動）</figcaption>
-                <iframe id="full-bus-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="完整 Bus Map"></iframe>
-              </figure>
-            </div>
-            <div class="transit-map-grid">
-              <figure class="transit-map-card">
-                <figcaption>MRT / Metro Map（本地圖檔）</figcaption>
-                <img id="daily-metro-map-img" class="transit-map-image" src="" alt="新加坡 MRT / Metro 路網圖" loading="lazy">
-              </figure>
-              <figure class="transit-map-card">
-                <figcaption>當日 MRT 站點順序圖</figcaption>
-                <div id="daily-mrt-sequence-map" class="bus-route-map"></div>
-              </figure>
-              <figure class="transit-map-card">
-                <figcaption>需要搭乘的巴士路線圖</figcaption>
-                <div id="daily-bus-route-map" class="bus-route-map"></div>
-              </figure>
-              <figure class="transit-map-card">
-                <figcaption>今日轉乘流程</figcaption>
-                <div id="daily-transit-flow" class="transit-flow"></div>
-              </figure>
-              <figure class="transit-map-card">
-                <figcaption>每日行程局部地圖（依當日行程）</figcaption>
-                <iframe id="daily-local-map-frame" class="transit-map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="" title="每日行程局部地圖"></iframe>
-              </figure>
-            </div>
-            <p><a id="daily-transit-route-link" href="#" target="_blank" rel="noopener noreferrer">開啟 Google Maps 當日動線（含轉乘）</a></p>
-            <iframe
-              id="daily-transit-map-frame"
-              class="day-map-frame"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src=""
-              title="每日交通路線地圖"
-            ></iframe>
-          </article>
-          <article class="panel panel-daily">
-            <h2 id="day-title">每日時間軸</h2>
-            <p id="day-summary"></p>
-            <div class="timeline-legend" id="timeline-legend" aria-hidden="true">
-              <span class="leg-item"><span class="leg-dot dot-main"></span>景點／活動</span>
-              <span class="leg-item"><span class="leg-dot dot-food"></span>餐飲</span>
-              <span class="leg-item"><span class="leg-dot dot-conf"></span>研討會</span>
-              <span class="leg-item"><span class="leg-dot dot-alert"></span>重要／交通</span>
-              <span class="leg-item"><span class="leg-dot dot-gray"></span>其他</span>
-            </div>
-            <div id="blocks" class="blocks"></div>
-          </article>
-        </div>
       </div>
     </section>
   </main>
@@ -180,6 +180,6 @@
     <p>註：交通、餐費與門票均為估算值，實際以當日價格與路況為準。</p>
   </footer>
 
-  <script src="app.js?v=20260404s"></script>
+  <script src="app.js?v=20260404t"></script>
 </body>
 </html>

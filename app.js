@@ -864,6 +864,14 @@ function renderDailyTransitMap(day, hotelStart) {
   const title = byId("daily-transit-map-title");
   const summary = byId("daily-transit-map-summary");
   const links = byId("daily-transit-links");
+  const cardFullMetroMap = byId("card-full-metro-map");
+  const cardFullBusMap = byId("card-full-bus-map");
+  const cardLocalMetroMap = byId("card-local-metro-map");
+  const cardMrtSequenceMap = byId("card-mrt-sequence-map");
+  const cardBusRouteMap = byId("card-bus-route-map");
+  const cardTransitFlow = byId("card-transit-flow");
+  const cardDailyLocalMap = byId("card-daily-local-map");
+  const routeWrap = byId("daily-transit-route-wrap");
   const fullMetroMapFrame = byId("full-metro-map-frame");
   const fullBusMapFrame = byId("full-bus-map-frame");
   const metroImg = byId("daily-metro-map-img");
@@ -874,8 +882,10 @@ function renderDailyTransitMap(day, hotelStart) {
   const routeLink = byId("daily-transit-route-link");
   const frame = byId("daily-transit-map-frame");
   if (
-    !panel || !title || !summary || !links || !fullMetroMapFrame || !fullBusMapFrame || !metroImg ||
-    !mrtSequenceMap || !busRouteMap || !transitFlow || !dailyLocalMapFrame || !routeLink || !frame || !day
+    !panel || !title || !summary || !links || !cardFullMetroMap || !cardFullBusMap || !cardLocalMetroMap ||
+    !cardMrtSequenceMap || !cardBusRouteMap || !cardTransitFlow || !cardDailyLocalMap || !routeWrap ||
+    !fullMetroMapFrame || !fullBusMapFrame || !metroImg || !mrtSequenceMap || !busRouteMap ||
+    !transitFlow || !dailyLocalMapFrame || !routeLink || !frame || !day
   ) {
     return;
   }
@@ -885,6 +895,11 @@ function renderDailyTransitMap(day, hotelStart) {
   const mrtStations = collectOrderedMrtStations(day, hotelStart);
   const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit", hotelStart);
   const busRoutes = extractBusRoutes(day);
+  const hasMrtMap = mrtStations.length > 0;
+  const hasBusMap = busRoutes.length > 0;
+  const hasTransitRoute = routeStops.length > 1;
+  const hasLocalMap = dayStops.length > 0;
+  const hasTransitFlow = dedupeBlocks(day.blocks || []).length > 1;
   const mrtMapUrl = "https://www.lta.gov.sg/content/ltagov/en/map/train.html";
   const busMapUrl = "https://www.transitlink.com.sg/travel-guide/busservice/";
   const localMetroUrl = new URL(LOCAL_MAP_ASSETS.metroMap, currentDirUrl()).href;
@@ -894,28 +909,67 @@ function renderDailyTransitMap(day, hotelStart) {
   title.textContent = `${day.date} 交通地圖（MRT / Bus）`;
   summary.textContent = day.mrtRoute
     ? `${day.mrtRoute.label}｜${day.mrtRoute.fare}。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`
-    : `已提供本地 MRT 圖與當日巴士路線圖。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`;
-  if (!fullMetroMapFrame.dataset.loaded) {
-    fullMetroMapFrame.src = fullMetroUrl;
-    fullMetroMapFrame.dataset.loaded = "1";
+    : `依當日路線顯示可用交通地圖。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`;
+
+  cardFullMetroMap.hidden = !hasMrtMap;
+  cardLocalMetroMap.hidden = !hasMrtMap;
+  cardMrtSequenceMap.hidden = !hasMrtMap;
+  if (hasMrtMap) {
+    if (!fullMetroMapFrame.dataset.loaded) {
+      fullMetroMapFrame.src = fullMetroUrl;
+      fullMetroMapFrame.dataset.loaded = "1";
+    }
+    metroImg.src = localMetroUrl;
+    mrtSequenceMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} MRT 站點順序`, mrtStations, "#1a69c7")}" alt="${escapeHtml(day.date)} MRT 站點順序圖">`;
+  } else {
+    mrtSequenceMap.innerHTML = "";
   }
-  if (!fullBusMapFrame.dataset.loaded) {
-    fullBusMapFrame.src = fullBusUrl;
-    fullBusMapFrame.dataset.loaded = "1";
+
+  cardFullBusMap.hidden = !hasBusMap;
+  cardBusRouteMap.hidden = !hasBusMap;
+  if (hasBusMap) {
+    if (!fullBusMapFrame.dataset.loaded) {
+      fullBusMapFrame.src = fullBusUrl;
+      fullBusMapFrame.dataset.loaded = "1";
+    }
+    busRouteMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} 巴士路線順序`, busRoutes.map((r) => `Bus ${r}`), "#1d9e75")}" alt="${escapeHtml(day.date)} 需要搭乘的巴士路線圖">`;
+  } else {
+    busRouteMap.innerHTML = "";
   }
-  metroImg.src = localMetroUrl;
-  mrtSequenceMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} MRT 站點順序`, mrtStations, "#1a69c7")}" alt="${escapeHtml(day.date)} MRT 站點順序圖">`;
-  busRouteMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} 巴士路線順序`, busRoutes.map((r) => `Bus ${r}`), "#1d9e75")}" alt="${escapeHtml(day.date)} 需要搭乘的巴士路線圖">`;
-  transitFlow.innerHTML = buildTransitFlowHtml(day);
-  dailyLocalMapFrame.src = buildDailyLocalMapEmbedUrl(day, hotelStart);
-  links.innerHTML = `
-    <a class="tag" href="${escapeHtml(mrtMapUrl)}" target="_blank" rel="noopener noreferrer">MRT / Metro Map</a>
-    <a class="tag" href="${escapeHtml(busMapUrl)}" target="_blank" rel="noopener noreferrer">Bus Map / 路線查詢</a>
-    ${busRoutes.map((route) => `<a class="tag" href="https://busrouter.sg/#/services/${encodeURIComponent(route)}" target="_blank" rel="noopener noreferrer">Bus ${escapeHtml(route)} 路線圖</a>`).join("")}
-  `;
-  routeLink.href = routeUrl;
-  frame.src = buildDailyTransitMapEmbedUrl(routeStops, hotelStart);
-  panel.hidden = false;
+
+  cardTransitFlow.hidden = !hasTransitFlow;
+  transitFlow.innerHTML = hasTransitFlow ? buildTransitFlowHtml(day) : "";
+
+  cardDailyLocalMap.hidden = !hasLocalMap;
+  if (hasLocalMap) {
+    dailyLocalMapFrame.src = buildDailyLocalMapEmbedUrl(day, hotelStart);
+  } else {
+    dailyLocalMapFrame.src = "";
+  }
+
+  const mapLinks = [];
+  if (hasMrtMap) {
+    mapLinks.push(`<a class="tag" href="${escapeHtml(mrtMapUrl)}" target="_blank" rel="noopener noreferrer">MRT / Metro Map</a>`);
+  }
+  if (hasBusMap) {
+    mapLinks.push(`<a class="tag" href="${escapeHtml(busMapUrl)}" target="_blank" rel="noopener noreferrer">Bus Map / 路線查詢</a>`);
+    mapLinks.push(...busRoutes.map((route) => `<a class="tag" href="https://busrouter.sg/#/services/${encodeURIComponent(route)}" target="_blank" rel="noopener noreferrer">Bus ${escapeHtml(route)} 路線圖</a>`));
+  }
+  links.innerHTML = mapLinks.join("");
+  links.hidden = mapLinks.length === 0;
+
+  routeWrap.hidden = !hasTransitRoute;
+  if (hasTransitRoute) {
+    routeLink.href = routeUrl;
+    frame.src = buildDailyTransitMapEmbedUrl(routeStops, hotelStart);
+    frame.hidden = false;
+  } else {
+    routeLink.removeAttribute("href");
+    frame.src = "";
+    frame.hidden = true;
+  }
+
+  panel.hidden = !(hasMrtMap || hasBusMap || hasTransitFlow || hasLocalMap || hasTransitRoute);
 }
 
 function updateNavHighlight(dayIndex) {
@@ -1021,6 +1075,14 @@ async function main() {
       "daily-transit-map-title",
       "daily-transit-map-summary",
       "daily-transit-links",
+      "card-full-metro-map",
+      "card-full-bus-map",
+      "card-local-metro-map",
+      "card-mrt-sequence-map",
+      "card-bus-route-map",
+      "card-transit-flow",
+      "card-daily-local-map",
+      "daily-transit-route-wrap",
       "full-metro-map-frame",
       "full-bus-map-frame",
       "daily-metro-map-img",
@@ -1071,6 +1133,7 @@ async function main() {
     const btnBackCards = byId("btn-back-cards");
     const dailyMrtTitle = byId("daily-mrt-title");
     const panelDailyTransitMap = byId("panel-daily-transit-map");
+    const panelDailyMrt = byId("panel-daily-mrt");
     const staticInfoPanels = Array.from(
       document.querySelectorAll("#full-trip-static > .panel:not(.panel-map-overview)")
     );
@@ -1147,6 +1210,9 @@ async function main() {
         if (panelDailyTransitMap) {
           panelDailyTransitMap.hidden = true;
         }
+        if (panelDailyMrt) {
+          panelDailyMrt.hidden = false;
+        }
         if (!hasLoadedOverviewMap) {
           renderPrepOverviewMap(data.days, { loadEmbed: true, hotelStart });
           hasLoadedOverviewMap = true;
@@ -1185,8 +1251,14 @@ async function main() {
         if (day) {
           renderDailyTransitMap(day, hotelStart);
           renderSingleDayBlocks(day);
+          const hasMrtStations = Array.isArray(day.mrtRoute?.stations)
+            ? day.mrtRoute.stations.some((station) => normalizeMrtStation(station))
+            : false;
           const mrtSummary = byId("mrt-summary");
           const mrtVisual = byId("mrt-visual");
+          if (panelDailyMrt) {
+            panelDailyMrt.hidden = !hasMrtStations;
+          }
           if (dailyMrtTitle) {
             dailyMrtTitle.textContent = `${day.date} 當日捷運 / 公車動線`;
           }
