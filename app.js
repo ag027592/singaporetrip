@@ -366,6 +366,8 @@ function buildBlockDetailLines(block, bookingInfo) {
 function renderTimelineRow(block, bookingInfo, isLastRow) {
   const dot = getBlockDotClass(block);
   const timeLabel = `${escapeHtml(block.startTime)}<br>${escapeHtml(block.endTime)}`;
+  const galleryHtml = buildFoodGallery(block);
+  const hasGalleryClass = galleryHtml ? " has-gallery" : "";
 
   const lineHtml = isLastRow ? "" : `<div class="tline" aria-hidden="true"></div>`;
 
@@ -378,8 +380,9 @@ function renderTimelineRow(block, bookingInfo, isLastRow) {
       </div>
       <div class="tcontent">
         <div class="tblock">${escapeHtml(block.name)}</div>
-        <div class="tdetail-layout">
+        <div class="tdetail-layout${hasGalleryClass}">
           <div class="tdesc">${buildBlockDetailLines(block, bookingInfo)}</div>
+          ${galleryHtml}
         </div>
       </div>
     </div>
