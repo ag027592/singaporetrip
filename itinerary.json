@@ -92,24 +92,6 @@
       "mustEatStatus": "離境日，以穩定腸胃為主。"
     }
   ],
-  "weather": {
-    "summary": "7 月高溫潮濕、午後常雨（約 25-32°C）；輕薄衣物＋折傘＋薄外套。",
-    "tags": [
-      "高溫潮濕",
-      "午後雷雨",
-      "室內冷氣強"
-    ],
-    "sources": [
-      {
-        "name": "Meteorological Service Singapore - Climate of Singapore",
-        "url": "https://www.weather.gov.sg/climate-climate-of-singapore/"
-      },
-      {
-        "name": "NEA Weather",
-        "url": "https://www.nea.gov.sg/weather"
-      }
-    ]
-  },
   "hotel": {
     "name": "Citadines Rochor Singapore",
     "address": "2 Serangoon Road, Singapore 550532",
@@ -310,7 +292,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Singapore",
           "notes": "若精神狀況普通"
         },
@@ -330,7 +311,6 @@
             ],
             "fareEstimate": "MRT 約 SGD 1.50-2.20"
           },
-          "weather": "凌晨悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=City+Hall+MRT+Singapore",
           "notes": "若住宿尚未可入住"
         },
@@ -348,7 +328,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.50-2.20"
           },
-          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Jewel+Changi+Airport",
           "notes": "Jet lag 日以低體力活動為主"
         },
@@ -367,7 +346,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.10-2.00"
           },
-          "weather": "午後可能驟雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Marina+Bay+Waterfront+Singapore",
           "notes": "若下雨可改室內商場休息"
         },
@@ -385,7 +363,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.80"
           },
-          "weather": "晚間仍悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clarke+Quay+Singapore",
           "notes": "第一天建議 21:00 前回住宿休息"
         }
@@ -431,7 +408,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.60"
           },
-          "weather": "早晨較悶",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Complex+Food+Centre+Singapore",
           "notes": "建議提早去避開排隊"
         },
@@ -450,7 +426,6 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "中午前升溫快",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Buddha+Tooth+Relic+Temple+Singapore",
           "notes": "可加入天福宮、Ann Siang Hill"
         },
@@ -469,7 +444,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.50"
           },
-          "weather": "用餐區半開放",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Lau+Pa+Sat+Singapore",
           "notes": "沙嗲街通常晚間更熱鬧"
         },
@@ -487,7 +461,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "午後雷陣雨機率高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gardens+by+the+Bay",
           "notes": "可先預約時段節省排隊"
         },
@@ -505,7 +478,6 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "室內展館",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=IMBA+Theatre+Gardens+by+the+Bay",
           "notes": "2026 年新興熱門展館"
         },
@@ -523,7 +495,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "晚間外圍步行仍潮濕",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=JUMBO+Seafood+Riverside+Point",
           "notes": "必吃辣椒螃蟹建議先訂位"
         }
@@ -564,7 +535,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.70"
           },
-          "weather": "上午偏熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Haji+Lane+Singapore",
           "notes": "避開午後熱時段"
         },
@@ -582,7 +552,6 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "中午前開始悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sultan+Mosque+Singapore",
           "notes": "中午前後可回住宿休整"
         },
@@ -600,7 +569,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.70"
           },
-          "weather": "室內準備為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
           "notes": "預留午後休息與補水時間"
         },
@@ -618,7 +586,6 @@
             ],
             "fareEstimate": "MRT+巴士約 SGD 1.50-2.30"
           },
-          "weather": "晚間有海風",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=East+Coast+Lagoon+Food+Village",
           "notes": "下午休整後用海邊行程放鬆"
         }
@@ -665,7 +632,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "早晨炎熱感已明顯",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Toast+Box+Clementi+Mall",
           "notes": "建議 8:15 前結束"
         },
@@ -684,7 +650,6 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
           },
-          "weather": "會場室內冷氣偏強",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences+463+Clementi+Road",
           "notes": "會議細部場次請以主辦單位最終議程為準"
         },
@@ -702,7 +667,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SIM+Campus+Singapore",
           "notes": "午餐時段請依大會休息時間調整"
         },
@@ -720,7 +684,6 @@
             ],
             "fareEstimate": "巴士/MRT 約 SGD 1.00-1.80"
           },
-          "weather": "晚間仍悶",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=448+Clementi+Ave+3+Singapore",
           "notes": "會議首日以近距離用餐減少疲勞"
         }
@@ -766,7 +729,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "早上濕度仍高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ya+Kun+Clementi+Mall",
           "notes": "若前一晚晚睡"
         },
@@ -785,7 +747,6 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.30"
           },
-          "weather": "午後雷雨常見",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Singapore",
           "notes": "中午可依會議安排在校內用餐"
         },
@@ -803,7 +764,6 @@
             ],
             "fareEstimate": "巴士/地鐵約 SGD 1.00-2.00"
           },
-          "weather": "半開放市場悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bukit+Timah+Market+%26+Food+Centre",
           "notes": "若會議排程緊湊"
         },
@@ -821,7 +781,6 @@
             ],
             "fareEstimate": "MRT+巴士約 SGD 1.20-2.20"
           },
-          "weather": "晚間偶有雷雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Beauty+World+Centre+Singapore",
           "notes": "可嘗試在地熟食"
         }
@@ -869,7 +828,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-2.00"
           },
-          "weather": "早晨潮濕",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clementi+MRT+Station",
           "notes": "第三天可優先求穩"
         },
@@ -888,7 +846,6 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
           },
-          "weather": "室內冷氣環境",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences",
           "notes": "閉幕日常有交流時段"
         },
@@ -906,7 +863,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Campus+Singapore",
           "notes": "減少外出時間"
         },
@@ -925,7 +881,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "晚間有機會陣雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Holland+Village+Singapore",
           "notes": "會議結束日可安排稍好一點的晚餐"
         }
@@ -977,7 +932,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "早晨悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=2+Serangoon+Road+Singapore+550532",
           "notes": "新興景點日"
         },
@@ -996,7 +950,6 @@
             ],
             "fareEstimate": "MRT+接駁約 SGD 2.0-3.0"
           },
-          "weather": "室內沉浸式展館",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Exploria+Mandai+Wildlife+Reserve",
           "notes": "2026/03 開幕新景點"
         },
@@ -1014,7 +967,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內外皆可",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mandai+Wildlife+Reserve+food",
           "notes": "建議避開 12:30 尖峰"
         },
@@ -1032,7 +984,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內互動體驗",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Minecraft+Experience+Singapore+Mandai",
           "notes": "2026/04 開放"
         },
@@ -1050,7 +1001,6 @@
             ],
             "fareEstimate": "單程約 SGD 1.20-2.20"
           },
-          "weather": "室內商場舒適",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sio+Pasta+Raffles+City+Singapore",
           "notes": "東京 Michelin 認可品牌 2026 新據點"
         }
@@ -1097,7 +1047,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "上午已偏熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tekka+Centre+Singapore",
           "notes": "週末人潮較多"
         },
@@ -1116,7 +1065,6 @@
             ],
             "fareEstimate": "約 SGD 0.90-1.20"
           },
-          "weather": "室內外混合",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Street+Singapore",
           "notes": "可彈性作為購物補貨時段"
         },
@@ -1134,7 +1082,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.40"
           },
-          "weather": "中午炎熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Song+Fa+Bak+Kut+Teh+New+Bridge+Road",
           "notes": "必吃肉骨茶已安排在此時段"
         },
@@ -1152,7 +1099,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.30"
           },
-          "weather": "午後多雨機率高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=National+Gallery+Singapore",
           "notes": "展區大"
         },
@@ -1171,7 +1117,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.40"
           },
-          "weather": "室內用餐",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
           "notes": "Chef André Chiang 2026 新餐廳"
         },
@@ -1190,7 +1135,6 @@
             ],
             "fareEstimate": "約 SGD 0.90-1.40"
           },
-          "weather": "商場室內採買",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Junction+Raffles+City+Singapore",
           "notes": "優先買 Irvins、Bacha、TWG"
         }
@@ -1232,7 +1176,6 @@
             ],
             "fareEstimate": "SGD 0-1.20"
           },
-          "weather": "上午悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
           "notes": "確認護照、機票、退稅單據"
         },
@@ -1250,7 +1193,6 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.60"
           },
-          "weather": "日照開始變強",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fort+Canning+Park",
           "notes": "離境日前不建議安排遠距離行程"
         },
@@ -1268,7 +1210,6 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "中午前後體感悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+city+lunch",
           "notes": "行李較多時"
         },
@@ -1287,7 +1228,6 @@
             ],
             "fareEstimate": "MRT 約 SGD 1.50-2.20"
           },
-          "weather": "午後常有雷陣雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Terminal+1",
           "notes": "建議在樟宜航廈內做最後伴手禮補貨（Irvins、Bee Cheng Hiang、TWG）"
         }

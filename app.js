@@ -455,7 +455,6 @@ function renderOverviewContent(data) {
 }
 
 function renderPrepContent(data) {
-  const weatherSummary = byId("weather-summary");
   const hotelFixed = byId("hotel-fixed");
   const paymentStrategy = byId("payment-strategy");
   const budgetDashboard = byId("budget-dashboard");
@@ -463,15 +462,9 @@ function renderPrepContent(data) {
   const reservationPlan = byId("reservation-plan");
   const souvenirPlan = byId("souvenir-plan");
   const transportNotes = byId("transport-notes");
-  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !foodPlan || !reservationPlan || !souvenirPlan || !transportNotes) {
+  if (!hotelFixed || !paymentStrategy || !budgetDashboard || !foodPlan || !reservationPlan || !souvenirPlan || !transportNotes) {
     return;
   }
-
-  weatherSummary.innerHTML = `
-    <p>${escapeHtml(data.weather?.summary || "")}</p>
-    <div>${(data.weather?.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
-    <p>資料來源：${(data.weather?.sources || []).map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`).join("、")}</p>
-  `;
 
   hotelFixed.innerHTML = `
     <article class="block-card">
@@ -677,7 +670,7 @@ function renderAllBlocks(days) {
   }
 
   dayTitle.textContent = "一次看完：全行程時間軸";
-  daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、花費、交通、天氣、預約與地圖連結。";
+  daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、交通、預約與地圖連結。";
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
   bindFoodImageFallback(blocks);
 }
@@ -1005,7 +998,6 @@ async function main() {
       "day-nav",
       "trip-overview",
       "attraction-plan",
-      "weather-summary",
       "hotel-fixed",
       "payment-strategy",
       "budget-dashboard",

@@ -6,7 +6,7 @@
 - 預計花費（SGD）
 - 交通建議（含 MRT 站名與預估車資）
 - 每個地標的 Google Maps 連結
-- 7 月氣候概況、住宿建議與注意事項
+- 住宿建議與注意事項
 
 ## 本地預覽
 
@@ -58,12 +58,7 @@ git push -u origin main
 
 - 會議資訊：ICPR7 官網  
   https://counsel.org.sg/icpr-home/
-- 天氣：新加坡氣象與環境資訊（MSS / NEA）  
-  https://www.weather.gov.sg/climate-climate-of-singapore/  
-  https://www.nea.gov.sg/weather
-
 注意：
 
 - 車資、票價與餐費是估算值，實際以當天為準。
-- 2026 年 7 月逐日精準預報目前不可可靠取得，網站提供的是 7 月氣候概況。
 - 會議細部場次請以主辦方公布的最終議程為準。
