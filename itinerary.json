@@ -3,7 +3,7 @@
   "attractionPlan": [
     "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
     "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
-    "7/6 半日景點 + 線上會議：Kampong Glam / Sultan Mosque，14:00-15:30 固定線上",
+    "7/6 半日景點：Kampong Glam / Sultan Mosque，下午彈性休整",
     "7/7-7/9 會議日：SUSS 為中心，固定三餐與短距離晚間行程，避免過累",
     "7/10 會後放鬆：Sentosa 半日 + VivoCity 晚餐",
     "7/11 文化藝術日：Little India -> Bugis -> National Gallery -> Bayfront 夜景",
@@ -471,7 +471,7 @@
     {
       "date": "2026-07-06",
       "weekday": "週一",
-      "summary": "上午文青區散步，下午固定線上研討，晚間海邊放鬆。",
+      "summary": "上午文青區散步，下午彈性休整，晚間海邊放鬆。",
       "mrtRoute": {
         "label": "Little India -> Bugis -> 住宿 -> East Coast",
         "fare": "約 SGD 1.0-2.3 / 單程",
@@ -482,11 +482,6 @@
         ]
       },
       "bookingItems": [
-        {
-          "blockName": "線上活動：Service Users and Others Involvement in Practice Research",
-          "needBooking": true,
-          "action": "確認報名連結與登入設備"
-        },
         {
           "blockName": "East Coast Park 晚餐與海風散步",
           "needBooking": false,
@@ -528,12 +523,12 @@
           },
           "weather": "中午前開始悶熱，穿著需端莊並透氣。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sultan+Mosque+Singapore",
-          "notes": "中午前後回住宿準備線上活動。"
+          "notes": "中午前後可回住宿休整，保留彈性。"
         },
         {
           "startTime": "12:00",
           "endTime": "13:15",
-          "name": "回住宿午餐與網路測試",
+          "name": "回住宿午餐與休整",
           "location": "住宿附近",
           "address": "依住宿位置",
           "cost": "每人 SGD 8-18",
@@ -546,25 +541,7 @@
           },
           "weather": "室內準備為主。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
-          "notes": "預留 20 分鐘測試麥克風與鏡頭。"
-        },
-        {
-          "startTime": "14:00",
-          "endTime": "15:30",
-          "name": "線上活動：Service Users and Others Involvement in Practice Research",
-          "location": "住宿房間（安靜且網路穩定）",
-          "address": "依住宿位置",
-          "cost": "SGD 0（已報名為前提）",
-          "transport": {
-            "route": "無需移動",
-            "mrtStations": [
-              "不適用"
-            ],
-            "fareEstimate": "SGD 0"
-          },
-          "weather": "室內冷氣較強，可準備薄外套。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore",
-          "notes": "講者：Dr Sidsel Therese Natland，時段固定不可衝突。"
+          "notes": "預留午後休息與補水時間。"
         },
         {
           "startTime": "17:30",
@@ -582,7 +559,7 @@
           },
           "weather": "晚間有海風，但偶有短暫降雨。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=East+Coast+Lagoon+Food+Village",
-          "notes": "線上活動後用海邊行程放鬆。"
+          "notes": "下午休整後用海邊行程放鬆。"
         }
       ]
     },

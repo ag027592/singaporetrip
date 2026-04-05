@@ -92,7 +92,7 @@ function getDayMeta(dateStr) {
   const map = {
     "2026-07-04": { label: "抵達日", tag: "travel", tagText: "交通" },
     "2026-07-05": { label: "自由日", tag: "free", tagText: "自由" },
-    "2026-07-06": { label: "線上研討日", tag: "online", tagText: "線上" },
+    "2026-07-06": { label: "彈性調整日", tag: "free", tagText: "自由" },
     "2026-07-07": { label: "ICPR7 Day 1", tag: "conf", tagText: "ICPR7" },
     "2026-07-08": { label: "ICPR7 Day 2", tag: "conf", tagText: "ICPR7" },
     "2026-07-09": { label: "ICPR7 Day 3", tag: "conf", tagText: "ICPR7" },
@@ -229,6 +229,10 @@ const LOCAL_FOOD_IMAGES = {
   hainanese_chicken_rice: "assets/food/hainanese_chicken_rice.jpg",
   laksa: "assets/food/laksa.jpg",
   roti_prata: "assets/food/roti_prata.jpg"
+};
+
+const LOCAL_MAP_ASSETS = {
+  metroMap: "assets/maps/singapore_metro_map.jpg"
 };
 
 function makePhotoFallbackSvg(label) {
@@ -734,30 +738,151 @@ function buildDailyTransitMapEmbedUrl(stops, originHint) {
   return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=zh-TW&z=12&output=embed`;
 }
 
+function shortLabel(text, maxLen = 34) {
+  const raw = String(text || "").trim();
+  if (raw.length <= maxLen) {
+    return raw;
+  }
+  return `${raw.slice(0, maxLen - 1)}…`;
+}
+
+function normalizeMrtStation(station) {
+  const s = String(station || "").trim();
+  if (!s) {
+    return "";
+  }
+  if (/不適用|住宿最近|依住宿|步行為主/i.test(s)) {
+    return "";
+  }
+  return s;
+}
+
+function collectOrderedMrtStations(day, hotelStart) {
+  const ordered = [];
+  const push = (name) => {
+    const n = normalizeMrtStation(name);
+    if (!n) {
+      return;
+    }
+    if (!ordered.includes(n)) {
+      ordered.push(n);
+    }
+  };
+
+  push(shortLabel(hotelStart, 26));
+  dedupeBlocks(day.blocks || []).forEach((block) => {
+    (block?.transport?.mrtStations || []).forEach(push);
+  });
+  if (!ordered.length) {
+    (day?.mrtRoute?.stations || []).forEach(push);
+  }
+  return ordered.slice(0, 12);
+}
+
+function extractBusRoutes(day) {
+  const out = [];
+  const seen = new Set();
+  const push = (routeNo) => {
+    const normalized = String(routeNo || "").trim().toUpperCase();
+    if (!/^[0-9]{1,3}[A-Z]?$/.test(normalized) || seen.has(normalized)) {
+      return;
+    }
+    seen.add(normalized);
+    out.push(normalized);
+  };
+  const sources = [
+    day?.mrtRoute?.label || "",
+    ...(day?.mrtRoute?.stations || []),
+    ...(day?.blocks || []).map((block) => block?.transport?.route || "")
+  ];
+  const pattern = /(巴士|bus)\s*([0-9A-Za-z/、,\s-]+)/gi;
+  sources.forEach((text) => {
+    let match;
+    while ((match = pattern.exec(String(text))) !== null) {
+      String(match[2])
+        .split(/[\/、,\s-]+/)
+        .forEach(push);
+    }
+  });
+  return out;
+}
+
+function makeSequenceSvg(title, items, colorHex) {
+  const nodes = (items || []).filter(Boolean);
+  if (!nodes.length) {
+    const empty = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200"><rect width="900" height="200" fill="#f8fbff"/><text x="36" y="46" font-size="24" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#28486f">${escapeHtml(title)}</text><text x="36" y="110" font-size="22" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#5a708f">今日無需固定轉乘，依現場狀況彈性移動。</text></svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(empty)}`;
+  }
+  const rowHeight = 56;
+  const height = 68 + nodes.length * rowHeight;
+  const lines = nodes
+    .slice(0, -1)
+    .map((_, i) => {
+      const y1 = 48 + (i + 1) * rowHeight + 10;
+      const y2 = y1 + rowHeight - 20;
+      return `<line x1="44" y1="${y1}" x2="44" y2="${y2}" stroke="${colorHex}" stroke-opacity="0.45" stroke-width="4"/>`;
+    })
+    .join("");
+  const rows = nodes
+    .map((item, i) => {
+      const y = 48 + (i + 1) * rowHeight;
+      return `<circle cx="44" cy="${y}" r="9" fill="${colorHex}"/><text x="72" y="${y + 6}" font-size="22" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#1f426c">${escapeHtml(shortLabel(item, 42))}</text>`;
+    })
+    .join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="${height}" viewBox="0 0 900 ${height}"><rect width="900" height="${height}" fill="#f8fbff"/><text x="30" y="36" font-size="24" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#28486f">${escapeHtml(title)}</text>${lines}${rows}</svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function buildTransitFlowHtml(day) {
+  const blocks = dedupeBlocks(day.blocks || []).slice(0, 8);
+  if (!blocks.length) {
+    return `<span class="flow-empty">今日無固定流程，建議保留彈性移動。</span>`;
+  }
+  return blocks
+    .map((block, index) => {
+      const chip = `<span class="flow-chip"><span class="flow-chip-time">${escapeHtml(block.startTime)}</span>${escapeHtml(shortLabel(block.name, 18))}</span>`;
+      const arrow = index < blocks.length - 1 ? `<span class="route-arrow">→</span>` : "";
+      return `${chip}${arrow}`;
+    })
+    .join("");
+}
+
 function renderDailyTransitMap(day, hotelStart) {
   const panel = byId("panel-daily-transit-map");
   const title = byId("daily-transit-map-title");
   const summary = byId("daily-transit-map-summary");
   const links = byId("daily-transit-links");
+  const metroImg = byId("daily-metro-map-img");
+  const mrtSequenceMap = byId("daily-mrt-sequence-map");
+  const busRouteMap = byId("daily-bus-route-map");
+  const transitFlow = byId("daily-transit-flow");
   const routeLink = byId("daily-transit-route-link");
   const frame = byId("daily-transit-map-frame");
-  if (!panel || !title || !summary || !links || !routeLink || !frame || !day) {
+  if (!panel || !title || !summary || !links || !metroImg || !mrtSequenceMap || !busRouteMap || !transitFlow || !routeLink || !frame || !day) {
     return;
   }
 
   const dayStops = dedupeBlocks(day.blocks).map((block) => mapQueryFromBlock(block)).filter(Boolean);
   const routeStops = [hotelStart, ...dayStops].filter((q, index, arr) => arr.indexOf(q) === index).slice(0, 10);
+  const mrtStations = collectOrderedMrtStations(day, hotelStart);
   const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit", hotelStart);
+  const busRoutes = extractBusRoutes(day);
   const mrtMapUrl = "https://www.lta.gov.sg/content/ltagov/en/map/train.html";
   const busMapUrl = "https://www.transitlink.com.sg/travel-guide/busservice/";
+  const localMetroUrl = new URL(LOCAL_MAP_ASSETS.metroMap, currentDirUrl()).href;
 
   title.textContent = `${day.date} 交通地圖（MRT / Bus）`;
   summary.textContent = day.mrtRoute
-    ? `${day.mrtRoute.label}｜${day.mrtRoute.fare}。下方地圖已視覺化當日主要移動動線。`
-    : "下方地圖已視覺化當日主要移動動線。";
+    ? `${day.mrtRoute.label}｜${day.mrtRoute.fare}。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`
+    : `已提供本地 MRT 圖與當日巴士路線圖。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`;
+  metroImg.src = localMetroUrl;
+  mrtSequenceMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} MRT 站點順序`, mrtStations, "#1a69c7")}" alt="${escapeHtml(day.date)} MRT 站點順序圖">`;
+  busRouteMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} 巴士路線順序`, busRoutes.map((r) => `Bus ${r}`), "#1d9e75")}" alt="${escapeHtml(day.date)} 需要搭乘的巴士路線圖">`;
+  transitFlow.innerHTML = buildTransitFlowHtml(day);
   links.innerHTML = `
     <a class="tag" href="${escapeHtml(mrtMapUrl)}" target="_blank" rel="noopener noreferrer">MRT / Metro Map</a>
     <a class="tag" href="${escapeHtml(busMapUrl)}" target="_blank" rel="noopener noreferrer">Bus Map / 路線查詢</a>
+    ${busRoutes.map((route) => `<a class="tag" href="https://busrouter.sg/#/services/${encodeURIComponent(route)}" target="_blank" rel="noopener noreferrer">Bus ${escapeHtml(route)} 路線圖</a>`).join("")}
   `;
   routeLink.href = routeUrl;
   frame.src = buildDailyTransitMapEmbedUrl(routeStops, hotelStart);
@@ -867,6 +992,10 @@ async function main() {
       "daily-transit-map-title",
       "daily-transit-map-summary",
       "daily-transit-links",
+      "daily-metro-map-img",
+      "daily-mrt-sequence-map",
+      "daily-bus-route-map",
+      "daily-transit-flow",
       "daily-transit-route-link",
       "daily-transit-map-frame",
       "day-title",
