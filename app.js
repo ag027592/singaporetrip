@@ -743,6 +743,39 @@ function updateNavHighlight(dayIndex) {
   });
 }
 
+const FONT_MODE_KEY = "sgTripFontMode";
+const FONT_MODES = ["standard", "large"];
+
+function applyFontMode(mode) {
+  const root = document.documentElement;
+  if (!root) {
+    return "standard";
+  }
+  const safeMode = FONT_MODES.includes(mode) ? mode : "standard";
+  if (safeMode === "large") {
+    root.setAttribute("data-font-mode", "large");
+  } else {
+    root.removeAttribute("data-font-mode");
+  }
+  return safeMode;
+}
+
+function loadFontMode() {
+  try {
+    return localStorage.getItem(FONT_MODE_KEY) || "standard";
+  } catch (error) {
+    return "standard";
+  }
+}
+
+function saveFontMode(mode) {
+  try {
+    localStorage.setItem(FONT_MODE_KEY, mode);
+  } catch (error) {
+    // ignore storage errors
+  }
+}
+
 async function main() {
   const loading = byId("app-loading");
   const errorBox = byId("app-error");
@@ -798,6 +831,7 @@ async function main() {
       "btn-show-overview",
       "btn-show-cards",
       "btn-print",
+      "btn-font-mode",
       "btn-back-cards",
       "day-filter-input",
       "btn-clear-filter",
@@ -828,6 +862,7 @@ async function main() {
     const btnShowOverview = byId("btn-show-overview");
     const btnShowCards = byId("btn-show-cards");
     const btnPrint = byId("btn-print");
+    const btnFontMode = byId("btn-font-mode");
     const btnBackCards = byId("btn-back-cards");
     const staticInfoPanels = Array.from(
       document.querySelectorAll("#full-trip-static > .panel:not(.panel-map-overview)")
@@ -841,6 +876,16 @@ async function main() {
         viewStatus.textContent = text;
         viewStatus.hidden = false;
       }
+    };
+
+    const updateFontModeButton = (mode) => {
+      if (!btnFontMode) {
+        return;
+      }
+      const large = mode === "large";
+      btnFontMode.textContent = large ? "字體：放大" : "字體：標準";
+      btnFontMode.setAttribute("aria-pressed", large ? "true" : "false");
+      btnFontMode.setAttribute("aria-label", large ? "目前為放大字體，點擊切回標準字體" : "目前為標準字體，點擊切換放大字體");
     };
 
     const toggleStaticInfoPanels = (visible) => {
@@ -949,6 +994,15 @@ async function main() {
     btnShowCards?.addEventListener("click", showCardsOnly);
     btnBackCards?.addEventListener("click", showCardsOnly);
     btnPrint?.addEventListener("click", () => window.print());
+    let fontMode = applyFontMode(loadFontMode());
+    updateFontModeButton(fontMode);
+    btnFontMode?.addEventListener("click", () => {
+      fontMode = fontMode === "large" ? "standard" : "large";
+      fontMode = applyFontMode(fontMode);
+      saveFontMode(fontMode);
+      updateFontModeButton(fontMode);
+      setViewStatus(fontMode === "large" ? "已切換為放大字體模式。" : "已切換為標準字體模式。");
+    });
     dayFilterInput?.addEventListener("input", applyQuickFilter);
     btnClearFilter?.addEventListener("click", () => {
       if (dayFilterInput) {

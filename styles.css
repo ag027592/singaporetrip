@@ -6,7 +6,7 @@
   --muted: #5e6b7a;
   --accent: #2563eb;
   --line: #d9e1ea;
-  --font-base: 17px;
+  --font-base: 18px;
 }
 
 * {
@@ -25,6 +25,10 @@ body {
   color: var(--text);
   background: var(--bg);
   text-rendering: optimizeLegibility;
+}
+
+html[data-font-mode="large"] {
+  font-size: 112.5%;
 }
 
 .skip-link {
@@ -276,6 +280,16 @@ body {
   background: #f7faff;
   padding: 0.35rem 0.65rem;
   cursor: pointer;
+}
+
+#btn-font-mode {
+  font-weight: 600;
+}
+
+#btn-font-mode[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: #eaf2ff;
+  color: #123d8f;
 }
 
 .toolbar-btn:hover {
