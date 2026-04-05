@@ -245,6 +245,21 @@ function getLocalFoodImage(imageKey, fallbackLabel) {
   return new URL(local, currentDirUrl()).href;
 }
 
+function bindFoodImageFallback(root) {
+  const scope = root || document;
+  const imgs = Array.from(scope.querySelectorAll(".food-card img"));
+  imgs.forEach((img) => {
+    if (img.dataset.boundError) {
+      return;
+    }
+    img.addEventListener("error", () => {
+      const label = img.dataset.fallbackLabel || "Food photo";
+      img.src = makePhotoFallbackSvg(label);
+    });
+    img.dataset.boundError = "1";
+  });
+}
+
 function makeMenuCardSvg(label) {
   const text = label.length > 16 ? `${label.slice(0, 16)}...` : label;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eef4ff"/><stop offset="1" stop-color="#dfeaff"/></linearGradient></defs><rect width="640" height="420" fill="url(#g)"/><text x="50%" y="42%" text-anchor="middle" font-size="34" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#185fa5">Menu</text><text x="50%" y="58%" text-anchor="middle" font-size="24" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#2e4058">${escapeHtml(text)}</text></svg>`;
@@ -295,6 +310,7 @@ function buildFoodGallery(block) {
               alt="${escapeHtml(item.title)} - ${escapeHtml(item.caption)}"
               loading="lazy"
               referrerpolicy="no-referrer"
+              data-fallback-label="${escapeHtml(item.caption)}"
             >
             <span class="food-card-title">${escapeHtml(item.title)}</span>
             <span class="food-card-caption">${escapeHtml(item.caption)}</span>
@@ -647,6 +663,7 @@ function renderAllBlocks(days) {
   dayTitle.textContent = "一次看完：全行程時間軸";
   daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、花費、交通、天氣、預約與地圖連結。";
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
+  bindFoodImageFallback(blocks);
 }
 
 function renderSingleDayBlocks(day) {
@@ -660,6 +677,7 @@ function renderSingleDayBlocks(day) {
   dayTitle.textContent = `${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）詳細時間軸`;
   daySummary.textContent = day.summary || "";
   blocks.innerHTML = renderDayTimelineCard(day);
+  bindFoodImageFallback(blocks);
 }
 
 function getUsefulBlocks(day) {
