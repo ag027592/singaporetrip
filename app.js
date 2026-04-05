@@ -12,7 +12,7 @@ function currentDirUrl() {
 }
 
 function itineraryJsonUrl() {
-  return new URL("itinerary.json?v=20260404m", currentDirUrl());
+  return new URL("itinerary.json?v=20260404n", currentDirUrl());
 }
 
 async function loadItinerary() {
@@ -96,7 +96,7 @@ function getDayMeta(dateStr) {
     "2026-07-07": { label: "ICPR7 Day 1", tag: "conf", tagText: "ICPR7" },
     "2026-07-08": { label: "ICPR7 Day 2", tag: "conf", tagText: "ICPR7" },
     "2026-07-09": { label: "ICPR7 Day 3", tag: "conf", tagText: "ICPR7" },
-    "2026-07-10": { label: "會後放鬆", tag: "free", tagText: "自由" },
+    "2026-07-10": { label: "新興景點日", tag: "free", tagText: "自由" },
     "2026-07-11": { label: "文化藝術日", tag: "free", tagText: "自由" },
     "2026-07-12": { label: "離境日", tag: "travel", tagText: "交通" }
   };

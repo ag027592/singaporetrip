@@ -1,12 +1,12 @@
 {
-  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，安排為不重複的情侶旅行版本，並已排入必吃辣椒螃蟹與肉骨茶。",
+  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。2026 年新增熱門點（Exploria、Minecraft Experience、IMBA Theatre）與新餐廳（1887 by André、Sio Pasta）已直接納入每日安排。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，並已保留必吃辣椒螃蟹與肉骨茶。",
   "attractionPlan": [
     "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
-    "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
+    "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay + IMBA Theatre -> Marina Bay 夜景",
     "7/6 半日景點：Kampong Glam / Sultan Mosque，下午彈性休整",
     "7/7-7/9 會議日：SUSS 為中心，固定三餐與短距離晚間行程，避免過累",
-    "7/10 會後放鬆：Sentosa 半日 + VivoCity 晚餐",
-    "7/11 文化藝術日：Little India -> Bugis -> National Gallery -> Bayfront 夜景",
+    "7/10 新興景點日：Mandai Exploria + Minecraft Experience（2026 新熱點）",
+    "7/11 文化藝術日：Little India -> Bugis -> National Gallery，晚餐 1887 by André",
     "7/12 離境日：輕量行程 + 12:30 出發機場，確保 15:00 前抵達"
   ],
   "foodPlan": [
@@ -67,20 +67,20 @@
     {
       "date": "2026-07-10",
       "weekday": "週五",
-      "lunch": "Sentosa / HarbourFront 區域餐廳",
-      "dinner": "VivoCity 晚餐（可選新馬或日式）",
-      "afternoonTea": "聖淘沙海邊飲品",
-      "supper": "回住宿前便利商店補給",
-      "mustEatStatus": "放鬆日，口味可彈性。"
+      "lunch": "Mandai 園區午餐（配合 Exploria / Minecraft）",
+      "dinner": "Sio Pasta（Raffles City，2026 新進駐）",
+      "afternoonTea": "Mandai 園區飲品",
+      "supper": "Citadines Rochor Singapore 周邊輕食",
+      "mustEatStatus": "已納入 2026 新興景點 + 新餐廳。"
     },
     {
       "date": "2026-07-11",
       "weekday": "週六",
       "lunch": "松發肉骨茶（Song Fa Bak Kut Teh）",
-      "dinner": "Marina Bay 區域景觀晚餐",
+      "dinner": "1887 by André（Raffles Hotel，2026 新開）",
       "afternoonTea": "National Gallery 咖啡廳",
       "supper": "Bugis/Little India 甜品或豆花",
-      "mustEatStatus": "已排入必吃：肉骨茶。"
+      "mustEatStatus": "必吃肉骨茶已完成，晚餐升級 2026 新餐廳。"
     },
     {
       "date": "2026-07-12",
@@ -215,6 +215,46 @@
       "action": "多可現場，避開 12:00-13:30 及 19:00-20:00 尖峰",
       "when": "當天",
       "url": "https://www.visitsingapore.com/"
+    },
+    {
+      "name": "Exploria（Mandai，2026/03）",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "建議先選時段與票種",
+      "when": "出發前 3-7 天",
+      "url": "https://www.mandai.com/en/about-mandai/media-centre/New-Indoor-Multimedia-Attraction-Exploria-To-Open-At-The-Mandai-Wildlife-Reserve-In-March-2026.html"
+    },
+    {
+      "name": "Minecraft Experience Singapore（Mandai，2026/04）",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "熱門時段先預約",
+      "when": "出發前 5-10 天",
+      "url": "https://www.timeout.com/singapore/news/asias-first-minecraft-immersive-experience-is-opening-in-singapore-this-april-030426"
+    },
+    {
+      "name": "IMBA Theatre（Gardens by the Bay，2026）",
+      "type": "景點門票",
+      "needBooking": true,
+      "action": "先查當期展覽與場次",
+      "when": "出發前 3-7 天",
+      "url": "https://www.fzine.com/culture/imba-theatre"
+    },
+    {
+      "name": "1887 by André（Raffles Hotel，2026）",
+      "type": "餐飲",
+      "needBooking": true,
+      "action": "熱門晚餐時段建議訂位",
+      "when": "出發前 7-14 天",
+      "url": "https://www.timeout.com/singapore/news/1887-by-andre-michelin-star-chef-andre-chiang-to-open-new-restaurant-at-raffles-hotel-singapore-012126"
+    },
+    {
+      "name": "Sio Pasta（Raffles City，2026）",
+      "type": "餐飲",
+      "needBooking": false,
+      "action": "可現場，尖峰建議避開",
+      "when": "當天",
+      "url": "https://www.timeout.com/singapore/news/this-michelin-recognised-tokyo-pasta-restaurant-opens-in-singapore-this-march-with-dishes-from-13-80-022626"
     }
   ],
   "transportNotes": [
@@ -223,7 +263,8 @@
     "建議先各儲值 SGD 30-50，並在會議日後依餘額彈性加值。",
     "MRT / 巴士單程常見約 SGD 0.90-2.30（依里程與轉乘而異）。",
     "往 SUSS 常見路徑：Clementi (EW23) 或 King Albert Park (DT6) 再轉巴士 74/151/154。",
-    "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。"
+    "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。",
+    "Mandai 新園區（Exploria / Minecraft）可走 Khatib (NS14) + Mandai Shuttle，建議避開中午尖峰。"
   ],
   "days": [
     {
@@ -447,6 +488,24 @@
           "weather": "午後雷陣雨機率高，可先走冷室。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gardens+by+the+Bay",
           "notes": "可先預約時段節省排隊。"
+        },
+        {
+          "startTime": "18:10",
+          "endTime": "18:50",
+          "name": "IMBA Theatre 沉浸式藝術館（2026 新開）",
+          "location": "IMBA Theatre, Gardens by the Bay",
+          "address": "18 Marina Gardens Dr, Singapore 018953",
+          "cost": "門票每人約 SGD 28-48（依展覽）",
+          "transport": {
+            "route": "由 Gardens 園區步行可達",
+            "mrtStations": [
+              "Bayfront (CE1/DT16)"
+            ],
+            "fareEstimate": "步行為主"
+          },
+          "weather": "室內展館，雨天備案優先。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=IMBA+Theatre+Gardens+by+the+Bay",
+          "notes": "2026 年新興熱門展館，建議先看當期展名與時段。"
         },
         {
           "startTime": "19:00",
@@ -873,102 +932,125 @@
     {
       "date": "2026-07-10",
       "weekday": "週五",
-      "summary": "會後放鬆日，安排聖淘沙與海邊景點。",
+      "summary": "2026 新興景點主題日：Mandai 新園區沉浸式體驗 + 市區新餐廳收尾。",
       "mrtRoute": {
-        "label": "Little India -> HarbourFront -> Sentosa",
-        "fare": "約 SGD 2.5-6.0（含島內交通）",
+        "label": "Little India -> Khatib -> Mandai Wildlife Reserve -> City Hall",
+        "fare": "約 SGD 2.0-3.6 / 單程（含接駁）",
         "stations": [
           "Little India (NE7/DT12)",
-          "Dhoby Ghaut (NE6/NS24/CC1)",
-          "HarbourFront (NE1/CC29)",
-          "Sentosa Express"
+          "Khatib (NS14)",
+          "Mandai Khatib Shuttle",
+          "City Hall (EW13/NS25)"
         ]
       },
       "bookingItems": [
         {
-          "blockName": "聖淘沙半日（海灘/景點）",
+          "blockName": "Exploria（Mandai，2026/03 開幕）",
           "needBooking": true,
-          "action": "若有付費設施建議先買電子票"
+          "action": "建議先選時段與票種"
         },
         {
-          "blockName": "晚餐：VivoCity / HarbourFront 區域",
+          "blockName": "Minecraft Experience Singapore（Mandai，2026/04）",
+          "needBooking": true,
+          "action": "熱門時段建議先預約"
+        },
+        {
+          "blockName": "晚餐：Sio Pasta（Raffles City）",
           "needBooking": false,
-          "action": "多可現場"
+          "action": "可現場，尖峰建議避開 19:00-20:00"
         }
       ],
       "blocks": [
         {
-          "startTime": "09:00",
-          "endTime": "10:00",
-          "name": "早餐：Tiong Bahru Bakery（市區分店）",
-          "location": "Tiong Bahru Bakery",
-          "address": "56 Eng Hoon St, Singapore 160056",
-          "cost": "每人 SGD 12-22",
-          "transport": {
-            "route": "MRT 至 Tiong Bahru (EW17) 步行",
-            "mrtStations": [
-              "Tiong Bahru (EW17)"
-            ],
-            "fareEstimate": "單程約 SGD 0.90-1.70"
-          },
-          "weather": "早上仍熱，室內冷氣舒服。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tiong+Bahru+Bakery+Eng+Hoon",
-          "notes": "想省錢可改在熟食中心用餐。"
-        },
-        {
-          "startTime": "10:45",
-          "endTime": "16:00",
-          "name": "聖淘沙半日（海灘/景點）",
-          "location": "Sentosa",
-          "address": "Sentosa Island, Singapore",
-          "cost": "交通與設施每人 SGD 10-45（看是否買門票）",
-          "transport": {
-            "route": "MRT 至 HarbourFront (NE1/CC29) 轉 Sentosa Express",
-            "mrtStations": [
-              "HarbourFront (NE1/CC29)",
-              "Imbiah / Beach Station (Sentosa Express)"
-            ],
-            "fareEstimate": "MRT+島內交通約 SGD 2.50-6.00"
-          },
-          "weather": "正午高溫，戶外請防曬與補水。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sentosa+Island+Singapore",
-          "notes": "若下大雨可改 S.E.A. Aquarium 或室內活動。"
-        },
-        {
-          "startTime": "16:30",
-          "endTime": "17:30",
-          "name": "休息與回住宿梳洗",
-          "location": "住宿",
+          "startTime": "08:40",
+          "endTime": "09:30",
+          "name": "早餐：飯店周邊簡餐",
+          "location": "Citadines Rochor Singapore 周邊",
           "address": "2 Serangoon Road, Singapore 550532",
-          "cost": "SGD 0",
+          "cost": "每人 SGD 8-15",
           "transport": {
-            "route": "由 HarbourFront 返程至Little India MRT（約 300 公尺步行）",
+            "route": "步行至周邊餐廳",
             "mrtStations": [
-              "HarbourFront (NE1/CC29)"
+              "Little India MRT（約 300 公尺步行）"
             ],
-            "fareEstimate": "單程約 SGD 1.00-1.90"
+            "fareEstimate": "SGD 0"
           },
-          "weather": "室內休息，補充水分。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
-          "notes": "晚餐前小休有助行程體力。"
+          "weather": "早晨悶熱，先補水。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=2+Serangoon+Road+Singapore+550532",
+          "notes": "新興景點日，建議提早出發。"
         },
         {
-          "startTime": "19:00",
-          "endTime": "21:00",
-          "name": "晚餐：VivoCity / HarbourFront 區域",
-          "location": "VivoCity",
-          "address": "1 HarbourFront Walk, Singapore 098585",
-          "cost": "每人 SGD 15-35",
+          "startTime": "10:20",
+          "endTime": "12:15",
+          "name": "Exploria（Mandai，2026 新開幕）",
+          "location": "Mandai Wildlife Reserve",
+          "address": "20 Mandai Lake Rd, Singapore 729825",
+          "cost": "每人約 SGD 38 起",
           "transport": {
-            "route": "MRT 至 HarbourFront 出站即達商場",
+            "route": "MRT 至 Khatib (NS14) 後轉 Mandai Shuttle",
             "mrtStations": [
-              "HarbourFront (NE1/CC29)"
+              "Khatib (NS14)",
+              "Mandai Khatib Shuttle"
             ],
-            "fareEstimate": "單程約 SGD 1.00-1.90"
+            "fareEstimate": "MRT+接駁約 SGD 2.0-3.0"
+          },
+          "weather": "室內沉浸式展館，雨天友善。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Exploria+Mandai+Wildlife+Reserve",
+          "notes": "2026/03 開幕新景點。"
+        },
+        {
+          "startTime": "12:25",
+          "endTime": "13:20",
+          "name": "午餐：Mandai 區域餐飲",
+          "location": "Mandai Wildlife Reserve",
+          "address": "20 Mandai Lake Rd, Singapore 729825",
+          "cost": "每人 SGD 14-28",
+          "transport": {
+            "route": "園區內步行",
+            "mrtStations": [
+              "不適用"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內外皆可，依人潮調整。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mandai+Wildlife+Reserve+food",
+          "notes": "建議避開 12:30 尖峰。"
+        },
+        {
+          "startTime": "13:35",
+          "endTime": "15:00",
+          "name": "Minecraft Experience Singapore（2026 新熱點）",
+          "location": "Mandai Wildlife Reserve",
+          "address": "20 Mandai Lake Rd, Singapore 729825",
+          "cost": "每人約 SGD 40-46 起",
+          "transport": {
+            "route": "園區內步行至活動場館",
+            "mrtStations": [
+              "不適用"
+            ],
+            "fareEstimate": "SGD 0"
+          },
+          "weather": "室內互動體驗。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Minecraft+Experience+Singapore+Mandai",
+          "notes": "2026/04 開放，熱門時段建議事先預約。"
+        },
+        {
+          "startTime": "17:40",
+          "endTime": "19:00",
+          "name": "晚餐：Sio Pasta（2026 新進駐）",
+          "location": "Raffles City Shopping Centre",
+          "address": "252 North Bridge Rd, Singapore 179103",
+          "cost": "每人 SGD 14-30",
+          "transport": {
+            "route": "Mandai 回市區，MRT 至 City Hall 後步行",
+            "mrtStations": [
+              "City Hall (EW13/NS25)"
+            ],
+            "fareEstimate": "單程約 SGD 1.20-2.20"
           },
           "weather": "室內商場舒適。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=VivoCity+Singapore",
-          "notes": "想看夜景可到頂樓空中花園。"
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sio+Pasta+Raffles+City+Singapore",
+          "notes": "東京 Michelin 認可品牌 2026 新據點。"
         }
       ]
     },
@@ -1075,21 +1157,21 @@
         {
           "startTime": "18:30",
           "endTime": "21:00",
-          "name": "濱海灣空中景觀與晚餐",
-          "location": "Marina Bay Sands SkyPark 一帶",
-          "address": "10 Bayfront Ave, Singapore 018956",
-          "cost": "觀景票每人約 SGD 35-40；晚餐每人 SGD 20-50",
+          "name": "晚餐：1887 by André（2026 新開）+ Raffles 夜景散步",
+          "location": "Raffles Hotel Singapore",
+          "address": "1 Beach Rd, Singapore 189673",
+          "cost": "每人約 SGD 198+（依菜單）",
           "transport": {
-            "route": "City Hall/Promenade -> Bayfront",
+            "route": "City Hall / Esplanade 步行至 Raffles 區域",
             "mrtStations": [
-              "Bayfront (CE1/DT16)",
-              "Promenade (CC4/DT15)"
+              "City Hall (EW13/NS25)",
+              "Esplanade (CC3)"
             ],
-            "fareEstimate": "單程約 SGD 0.90-1.60"
+            "fareEstimate": "單程約 SGD 0.90-1.40"
           },
-          "weather": "晚間戶外觀景需注意陣雨與風勢。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Marina+Bay+Sands+SkyPark",
-          "notes": "作為最後完整夜晚的浪漫收尾。"
+          "weather": "室內用餐，飯後可短距離散步。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
+          "notes": "Chef André Chiang 2026 新餐廳，建議提前訂位。"
         }
       ]
     },
