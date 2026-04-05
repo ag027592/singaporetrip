@@ -727,6 +727,43 @@ function buildGoogleMapsDirUrl(stops, travelMode, originHint) {
   return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}${waypoints}&travelmode=${mode}`;
 }
 
+function buildDailyTransitMapEmbedUrl(stops, originHint) {
+  const path = (Array.isArray(stops) ? stops : []).filter(Boolean);
+  const base = path.length ? path : [originHint || "Singapore"];
+  const query = `directions from ${base.join(" to ")}`;
+  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=zh-TW&z=12&output=embed`;
+}
+
+function renderDailyTransitMap(day, hotelStart) {
+  const panel = byId("panel-daily-transit-map");
+  const title = byId("daily-transit-map-title");
+  const summary = byId("daily-transit-map-summary");
+  const links = byId("daily-transit-links");
+  const routeLink = byId("daily-transit-route-link");
+  const frame = byId("daily-transit-map-frame");
+  if (!panel || !title || !summary || !links || !routeLink || !frame || !day) {
+    return;
+  }
+
+  const dayStops = dedupeBlocks(day.blocks).map((block) => mapQueryFromBlock(block)).filter(Boolean);
+  const routeStops = [hotelStart, ...dayStops].filter((q, index, arr) => arr.indexOf(q) === index).slice(0, 10);
+  const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit", hotelStart);
+  const mrtMapUrl = "https://www.lta.gov.sg/content/ltagov/en/map/train.html";
+  const busMapUrl = "https://www.transitlink.com.sg/travel-guide/busservice/";
+
+  title.textContent = `${day.date} 交通地圖（MRT / Bus）`;
+  summary.textContent = day.mrtRoute
+    ? `${day.mrtRoute.label}｜${day.mrtRoute.fare}。下方地圖已視覺化當日主要移動動線。`
+    : "下方地圖已視覺化當日主要移動動線。";
+  links.innerHTML = `
+    <a class="tag" href="${escapeHtml(mrtMapUrl)}" target="_blank" rel="noopener noreferrer">MRT / Metro Map</a>
+    <a class="tag" href="${escapeHtml(busMapUrl)}" target="_blank" rel="noopener noreferrer">Bus Map / 路線查詢</a>
+  `;
+  routeLink.href = routeUrl;
+  frame.src = buildDailyTransitMapEmbedUrl(routeStops, hotelStart);
+  panel.hidden = false;
+}
+
 function updateNavHighlight(dayIndex) {
   document.querySelectorAll(".day-pick").forEach((btn) => {
     const idx = Number(btn.dataset.index);
@@ -825,6 +862,13 @@ async function main() {
       "overview-map-frame",
       "mrt-summary",
       "mrt-visual",
+      "daily-mrt-title",
+      "panel-daily-transit-map",
+      "daily-transit-map-title",
+      "daily-transit-map-summary",
+      "daily-transit-links",
+      "daily-transit-route-link",
+      "daily-transit-map-frame",
       "day-title",
       "day-summary",
       "blocks",
@@ -864,6 +908,8 @@ async function main() {
     const btnPrint = byId("btn-print");
     const btnFontMode = byId("btn-font-mode");
     const btnBackCards = byId("btn-back-cards");
+    const dailyMrtTitle = byId("daily-mrt-title");
+    const panelDailyTransitMap = byId("panel-daily-transit-map");
     const staticInfoPanels = Array.from(
       document.querySelectorAll("#full-trip-static > .panel:not(.panel-map-overview)")
     );
@@ -937,6 +983,9 @@ async function main() {
         mainQuickOverview.hidden = true;
         fullTripTimelineBlock.hidden = false;
         toggleStaticInfoPanels(true);
+        if (panelDailyTransitMap) {
+          panelDailyTransitMap.hidden = true;
+        }
         if (!hasLoadedOverviewMap) {
           renderPrepOverviewMap(data.days, { loadEmbed: true, hotelStart });
           hasLoadedOverviewMap = true;
@@ -945,6 +994,9 @@ async function main() {
           renderAllBlocks(data.days);
           const mrtSummary = byId("mrt-summary");
           const mrtVisual = byId("mrt-visual");
+          if (dailyMrtTitle) {
+            dailyMrtTitle.textContent = "全行程捷運動線（去重）";
+          }
           if (mrtSummary) {
             mrtSummary.textContent = "一次看完：全行程主要捷運節點（去重後）";
           }
@@ -970,9 +1022,13 @@ async function main() {
         }
         const day = data.days[index];
         if (day) {
+          renderDailyTransitMap(day, hotelStart);
           renderSingleDayBlocks(day);
           const mrtSummary = byId("mrt-summary");
           const mrtVisual = byId("mrt-visual");
+          if (dailyMrtTitle) {
+            dailyMrtTitle.textContent = `${day.date} 當日捷運 / 公車動線`;
+          }
           if (mrtSummary) {
             mrtSummary.textContent = day.mrtRoute
               ? `${day.mrtRoute.label}（估計交通費：${day.mrtRoute.fare}）`

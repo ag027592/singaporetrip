@@ -447,6 +447,13 @@ ul {
   font-weight: 700;
 }
 
+.transit-map-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.35rem 0 0.65rem;
+}
+
 .budget-card {
   border-left: 4px solid #7aa6ff;
 }
