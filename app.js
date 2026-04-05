@@ -175,45 +175,57 @@ const FOOD_GALLERY_PRESETS = [
   {
     pattern: /JUMBO|螃蟹|Seafood/i,
     menuKeyword: "JUMBO Seafood Riverside menu Singapore",
-    picks: ["chili crab singapore", "black pepper crab singapore"]
+    picks: ["chili crab singapore", "black pepper crab singapore"],
+    imageKeys: ["chili_crab", "black_pepper_crab"]
   },
   {
     pattern: /肉骨茶|Song Fa|松發/i,
     menuKeyword: "Song Fa Bak Kut Teh menu Singapore",
-    picks: ["bak kut teh singapore", "youtiao soup singapore"]
+    picks: ["bak kut teh singapore", "youtiao soup singapore"],
+    imageKeys: ["bak_kut_teh", "roti_prata"]
   },
   {
     pattern: /Lau Pa Sat|沙嗲|satay/i,
     menuKeyword: "Lau Pa Sat satay menu Singapore",
-    picks: ["satay singapore", "hawker food singapore"]
+    picks: ["satay singapore", "hawker food singapore"],
+    imageKeys: ["satay", "hainanese_chicken_rice"]
   },
   {
     pattern: /Toast Box|Ya Kun|Kaya Toast/i,
     menuKeyword: "Toast Box menu Singapore",
-    picks: ["kaya toast singapore", "soft boiled eggs singapore breakfast"]
+    picks: ["kaya toast singapore", "soft boiled eggs singapore breakfast"],
+    imageKeys: ["kaya_toast", "hainanese_chicken_rice"]
   },
   {
     pattern: /Tekka|Little India|Bugis/i,
     menuKeyword: "Tekka Centre food stalls Singapore",
-    picks: ["indian food singapore hawker", "roti prata singapore"]
+    picks: ["indian food singapore hawker", "roti prata singapore"],
+    imageKeys: ["roti_prata", "satay"]
   },
   {
     pattern: /VivoCity|HarbourFront|Clarke Quay/i,
     menuKeyword: "VivoCity restaurants menu Singapore",
-    picks: ["singapore seafood dinner", "riverfront dining singapore"]
+    picks: ["singapore seafood dinner", "riverfront dining singapore"],
+    imageKeys: ["black_pepper_crab", "laksa"]
   },
   {
     pattern: /早餐|午餐|晚餐|餐廳|Food|food|熟食/i,
     menuKeyword: "Singapore local food menu",
-    picks: ["singapore local cuisine", "singapore dessert"]
+    picks: ["singapore local cuisine", "singapore dessert"],
+    imageKeys: ["hainanese_chicken_rice", "laksa"]
   }
 ];
 
-const WIKI_IMAGE_CACHE = new Map();
-
-function makeFoodPhotoUrl(query) {
-  return `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrlimit=1&prop=pageimages&piprop=thumbnail&pithumbsize=640&format=json&origin=*`;
-}
+const LOCAL_FOOD_IMAGES = {
+  chili_crab: "assets/food/chili_crab.png",
+  black_pepper_crab: "assets/food/black_pepper_crab.jpg",
+  bak_kut_teh: "assets/food/bak_kut_teh.jpg",
+  satay: "assets/food/satay.jpg",
+  kaya_toast: "assets/food/kaya_toast.jpg",
+  hainanese_chicken_rice: "assets/food/hainanese_chicken_rice.jpg",
+  laksa: "assets/food/laksa.jpg",
+  roti_prata: "assets/food/roti_prata.jpg"
+};
 
 function makePhotoFallbackSvg(label) {
   const safe = escapeHtml(label.length > 18 ? `${label.slice(0, 18)}...` : label);
@@ -221,45 +233,9 @@ function makePhotoFallbackSvg(label) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-async function fetchWikimediaPhoto(query) {
-  if (WIKI_IMAGE_CACHE.has(query)) {
-    return WIKI_IMAGE_CACHE.get(query);
-  }
-  try {
-    const url = makeFoodPhotoUrl(query);
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`wiki ${response.status}`);
-    }
-    const data = await response.json();
-    const pages = data?.query?.pages ? Object.values(data.query.pages) : [];
-    const image = pages.find((p) => p?.thumbnail?.source)?.thumbnail?.source || null;
-    WIKI_IMAGE_CACHE.set(query, image);
-    return image;
-  } catch (error) {
-    WIKI_IMAGE_CACHE.set(query, null);
-    return null;
-  }
-}
-
-async function hydrateFoodGalleryImages(root) {
-  const scope = root || document;
-  const images = Array.from(scope.querySelectorAll("img[data-wiki-query]"));
-  await Promise.all(
-    images.map(async (img) => {
-      const query = img.dataset.wikiQuery;
-      if (!query) {
-        return;
-      }
-      const found = await fetchWikimediaPhoto(query);
-      if (found) {
-        img.src = found;
-      } else {
-        const fallbackLabel = img.dataset.fallbackLabel || "Food photo";
-        img.src = makePhotoFallbackSvg(fallbackLabel);
-      }
-    })
-  );
+function getLocalFoodImage(imageKey, fallbackLabel) {
+  const local = imageKey ? LOCAL_FOOD_IMAGES[imageKey] : "";
+  return local || makePhotoFallbackSvg(fallbackLabel || "Food photo");
 }
 
 function makeMenuCardSvg(label) {
@@ -286,16 +262,14 @@ function buildFoodGallery(block) {
     {
       title: "猜你會點",
       caption: "熱門第一名",
-      imageUrl: makePhotoFallbackSvg(preset.picks[0]),
-      photoQuery: `${block.location} ${preset.picks[0]} food`,
+      imageUrl: getLocalFoodImage(preset.imageKeys?.[0], preset.picks[0]),
       targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[0]} reviews`)}`,
       isPhoto: true
     },
     {
       title: "猜你會點",
       caption: "熱門第二名",
-      imageUrl: makePhotoFallbackSvg(preset.picks[1]),
-      photoQuery: `${block.location} ${preset.picks[1]} dish`,
+      imageUrl: getLocalFoodImage(preset.imageKeys?.[1], preset.picks[1]),
       targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[1]} reviews`)}`,
       isPhoto: true
     }
@@ -314,8 +288,6 @@ function buildFoodGallery(block) {
               alt="${escapeHtml(item.title)} - ${escapeHtml(item.caption)}"
               loading="lazy"
               referrerpolicy="no-referrer"
-              ${item.photoQuery ? `data-wiki-query="${escapeHtml(item.photoQuery)}"` : ""}
-              data-fallback-label="${escapeHtml(item.caption)}"
             >
             <span class="food-card-title">${escapeHtml(item.title)}</span>
             <span class="food-card-caption">${escapeHtml(item.caption)}</span>
@@ -668,7 +640,6 @@ function renderAllBlocks(days) {
   dayTitle.textContent = "一次看完：全行程時間軸";
   daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、花費、交通、天氣、預約與地圖連結。";
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
-  hydrateFoodGalleryImages(blocks);
 }
 
 function renderSingleDayBlocks(day) {
@@ -682,7 +653,6 @@ function renderSingleDayBlocks(day) {
   dayTitle.textContent = `${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）詳細時間軸`;
   daySummary.textContent = day.summary || "";
   blocks.innerHTML = renderDayTimelineCard(day);
-  hydrateFoodGalleryImages(blocks);
 }
 
 function getUsefulBlocks(day) {
