@@ -1,13 +1,13 @@
 {
-  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。2026 年新增熱門點（Exploria、Minecraft Experience、IMBA Theatre）與新餐廳（1887 by André、Sio Pasta）已直接納入每日安排。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，並已保留必吃辣椒螃蟹與肉骨茶。",
+  "tripOverview": "已固定住宿 Citadines Rochor，行程以動線效率、ICPR7（7/7-7/9）與 7/12 15:00 前到機場為核心。",
   "attractionPlan": [
-    "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
-    "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay + IMBA Theatre -> Marina Bay 夜景",
-    "7/6 半日景點：Kampong Glam / Sultan Mosque，下午彈性休整",
-    "7/7-7/9 會議日：SUSS 為中心，固定三餐與短距離晚間行程，避免過累",
-    "7/10 新興景點日：Mandai Exploria + Minecraft Experience（2026 新熱點）",
-    "7/11 文化藝術日：Little India -> Bugis -> National Gallery，晚餐 1887 by André",
-    "7/12 離境日：輕量行程 + 12:30 出發機場，確保 15:00 前抵達"
+    "7/4 抵達＋低強度市區",
+    "7/5 經典市區＋濱海灣夜景",
+    "7/6 甘榜格南半日＋彈性休整",
+    "7/7-7/9 會議日（SUSS）",
+    "7/10 Mandai 新興景點日",
+    "7/11 文化藝術＋新餐廳",
+    "7/12 離境日（12:30 出發機場）"
   ],
   "foodPlan": [
     {
@@ -93,12 +93,11 @@
     }
   ],
   "weather": {
-    "summary": "新加坡 7 月通常高溫潮濕，白天約 25-32°C，午後雷陣雨機率高。建議輕薄快乾衣物、可折傘、室內冷氣外套與防水鞋。",
+    "summary": "7 月高溫潮濕、午後常雨（約 25-32°C）；輕薄衣物＋折傘＋薄外套。",
     "tags": [
-      "體感悶熱",
-      "午後雷雨常見",
-      "紫外線偏強",
-      "室內冷氣偏強"
+      "高溫潮濕",
+      "午後雷雨",
+      "室內冷氣強"
     ],
     "sources": [
       {
@@ -125,14 +124,12 @@
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore"
   },
   "payment": {
-    "summary": "你們已有兩張新加坡交通卡，建議全程以交通卡儲值搭乘 MRT/巴士；日常消費再用一般刷卡，現金只保留少量備用。",
+    "summary": "交通以兩張新加坡交通卡儲值為主；消費刷卡，現金少量備用。",
     "recommendations": [
-      "MRT/巴士：以兩張交通卡（如 EZ-Link/NETS FlashPay）儲值使用為主，進出站穩定且不用計算外卡附加費。",
-      "儲值建議：先各自儲值 SGD 30-50，會議日與聖淘沙日後再視餘額加值。",
-      "加值方式：MRT 站加值機或便利商店可加值，建議避開尖峰時段操作。",
-      "一般消費：餐飲與購物可刷卡，交通不必改用外卡感應。",
-      "美金現鈔：只換 200-400 SGD 當小額備用；其餘以刷卡與交通卡儲值為主。",
-      "DCC（動態貨幣轉換）：結帳時一律選 SGD 入帳，不要選 USD。"
+      "交通卡先各儲 SGD 30-50，餘額不足再加值。",
+      "MRT/巴士優先交通卡，不用外卡管理費。",
+      "一般消費刷卡，結帳幣別選 SGD。",
+      "現金僅備小額應急。"
     ],
     "sources": [
       {
@@ -150,7 +147,7 @@
     ]
   },
   "budget": {
-    "summary": "已固定為中位平衡版（雙人，9 晚，7/3 入住起算）；住宿已按收據實付 US$1,688.99 轉換後納入。",
+    "summary": "雙人中位版預算已含已確認住宿（9 晚）。",
     "exchangeRate": {
       "twdPerSgd": 24,
       "usdPerSgd": 0.74
@@ -180,7 +177,7 @@
       "name": "Gardens by the Bay 冷室與 Skyway",
       "type": "景點門票",
       "needBooking": true,
-      "action": "建議先購票與挑時段，避免現場排隊",
+      "action": "建議先購票與挑時段",
       "when": "出發前 3-7 天",
       "url": "https://ticket3.gardensbythebay.com.sg/"
     },
@@ -196,7 +193,7 @@
       "name": "National Gallery Singapore",
       "type": "景點門票",
       "needBooking": true,
-      "action": "先線上購票；熱門展期可提早選時段",
+      "action": "先線上購票",
       "when": "出發前 2-5 天",
       "url": "https://www.nationalgallery.sg/visit"
     },
@@ -204,7 +201,7 @@
       "name": "Sentosa（若加購館內設施）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "若你們要玩館內設施，先買電子票更省時",
+      "action": "若你們要玩館內設施",
       "when": "出發前 2-5 天",
       "url": "https://www.sentosa.com.sg/"
     },
@@ -212,7 +209,7 @@
       "name": "熟食中心/一般餐廳（行程內多數）",
       "type": "餐飲",
       "needBooking": false,
-      "action": "多可現場，避開 12:00-13:30 及 19:00-20:00 尖峰",
+      "action": "多可現場",
       "when": "當天",
       "url": "https://www.visitsingapore.com/"
     },
@@ -252,7 +249,7 @@
       "name": "Sio Pasta（Raffles City，2026）",
       "type": "餐飲",
       "needBooking": false,
-      "action": "可現場，尖峰建議避開",
+      "action": "可現場",
       "when": "當天",
       "url": "https://www.timeout.com/singapore/news/this-michelin-recognised-tokyo-pasta-restaurant-opens-in-singapore-this-march-with-dishes-from-13-80-022626"
     },
@@ -260,25 +257,22 @@
       "name": "伴手禮採買（Irvins / Bee Cheng Hiang / Bacha / TWG）",
       "type": "購物",
       "needBooking": false,
-      "action": "不需預約；機場與市區雙段採買，冷藏品最後一天購買",
+      "action": "不需預約",
       "when": "7/11 市區 + 7/12 機場",
       "url": "https://www.changiairport.com/"
     }
   ],
   "transportNotes": [
-    "住宿位置在 Little India，前往 Bugis、City Hall、Bayfront、HarbourFront 都很方便，適合作為觀光基地。",
-    "你們已有兩張新加坡交通卡，MRT/巴士將以交通卡儲值搭乘為主。",
-    "建議先各儲值 SGD 30-50，並在會議日後依餘額彈性加值。",
-    "MRT / 巴士單程常見約 SGD 0.90-2.30（依里程與轉乘而異）。",
-    "往 SUSS 常見路徑：Clementi (EW23) 或 King Albert Park (DT6) 再轉巴士 74/151/154。",
-    "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。",
-    "Mandai 新園區（Exploria / Minecraft）可走 Khatib (NS14) + Mandai Shuttle，建議避開中午尖峰。"
+    "住宿在 Little India，市區移動方便。",
+    "MRT/巴士以交通卡儲值搭乘。",
+    "往 SUSS 可走 Clementi 或 King Albert Park 轉巴士。",
+    "雨天或晚間可改 Grab。"
   ],
   "days": [
     {
       "date": "2026-07-04",
       "weekday": "週六",
-      "summary": "凌晨抵達日，以入境、休息與輕量活動為主，避免過度操勞。",
+      "summary": "凌晨抵達日",
       "mrtRoute": {
         "label": "Citadines Rochor -> Jewel / Marina Bay / Clarke Quay",
         "fare": "約 SGD 1.8-2.3 / 單程",
@@ -298,7 +292,7 @@
         {
           "blockName": "Clarke Quay 晚餐",
           "needBooking": false,
-          "action": "一般可現場，熱門餐廳可先電話預約"
+          "action": "一般可現場"
         }
       ],
       "blocks": [
@@ -310,15 +304,15 @@
           "address": "Airport Blvd, Singapore",
           "cost": "SGD 0（不含簽證與行李額外費）",
           "transport": {
-            "route": "航廈內步行與 Skytrain 轉移，完成入境與提領行李",
+            "route": "航廈內步行與 Skytrain 轉移",
             "mrtStations": [
               "Changi Airport (CG2)"
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主，補水與簡單伸展即可。",
+          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Singapore",
-          "notes": "若精神狀況普通，先到住宿放行李再安排活動。"
+          "notes": "若精神狀況普通"
         },
         {
           "startTime": "03:00",
@@ -328,7 +322,7 @@
           "address": "依訂房地點而定",
           "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-40",
           "transport": {
-            "route": "MRT: CG2 -> Expo (CG1) 轉 EW 線往市區；或凌晨直接 Grab",
+            "route": "MRT: CG2 -> Expo (CG1) 轉 EW 線往市區",
             "mrtStations": [
               "Changi Airport (CG2)",
               "Expo (CG1/DT35)",
@@ -336,9 +330,9 @@
             ],
             "fareEstimate": "MRT 約 SGD 1.50-2.20"
           },
-          "weather": "凌晨悶熱，冷氣車廂與室外溫差大。",
+          "weather": "凌晨悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=City+Hall+MRT+Singapore",
-          "notes": "若住宿尚未可入住，先寄放行李並休息。"
+          "notes": "若住宿尚未可入住"
         },
         {
           "startTime": "10:30",
@@ -348,15 +342,15 @@
           "address": "78 Airport Blvd, Singapore 819666",
           "cost": "餐費每人 SGD 12-25",
           "transport": {
-            "route": "市區搭 MRT 返回 CG2，依指標步行至 Jewel",
+            "route": "市區搭 MRT 返回 CG2",
             "mrtStations": [
               "Changi Airport (CG2)"
             ],
             "fareEstimate": "單程約 SGD 1.50-2.20"
           },
-          "weather": "室內為主，舒適。",
+          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Jewel+Changi+Airport",
-          "notes": "Jet lag 日以低體力活動為主。"
+          "notes": "Jet lag 日以低體力活動為主"
         },
         {
           "startTime": "15:00",
@@ -373,9 +367,9 @@
             ],
             "fareEstimate": "單程約 SGD 1.10-2.00"
           },
-          "weather": "午後可能驟雨，建議攜帶折傘。",
+          "weather": "午後可能驟雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Marina+Bay+Waterfront+Singapore",
-          "notes": "若下雨可改室內商場休息。"
+          "notes": "若下雨可改室內商場休息"
         },
         {
           "startTime": "18:30",
@@ -391,16 +385,16 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.80"
           },
-          "weather": "晚間仍悶熱，河邊較通風。",
+          "weather": "晚間仍悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clarke+Quay+Singapore",
-          "notes": "第一天建議 21:00 前回住宿休息。"
+          "notes": "第一天建議 21:00 前回住宿休息"
         }
       ]
     },
     {
       "date": "2026-07-05",
       "weekday": "週日",
-      "summary": "歷史街區與濱海花園經典路線，白天文化景點、晚上燈光秀。",
+      "summary": "歷史街區與濱海花園經典路線",
       "mrtRoute": {
         "label": "Little India -> Chinatown -> Bayfront",
         "fare": "約 SGD 1.0-2.0 / 單程",
@@ -419,7 +413,7 @@
         {
           "blockName": "Marina Bay Sands 商場晚餐 + 夜景",
           "needBooking": false,
-          "action": "商場餐廳可現場，熱門店建議先訂位"
+          "action": "商場餐廳可現場"
         }
       ],
       "blocks": [
@@ -437,9 +431,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.60"
           },
-          "weather": "早晨較悶，室內外混合。",
+          "weather": "早晨較悶",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Complex+Food+Centre+Singapore",
-          "notes": "建議提早去避開排隊。"
+          "notes": "建議提早去避開排隊"
         },
         {
           "startTime": "10:00",
@@ -456,9 +450,9 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "中午前升溫快，請補水。",
+          "weather": "中午前升溫快",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Buddha+Tooth+Relic+Temple+Singapore",
-          "notes": "可加入天福宮、Ann Siang Hill。"
+          "notes": "可加入天福宮、Ann Siang Hill"
         },
         {
           "startTime": "12:30",
@@ -475,9 +469,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.50"
           },
-          "weather": "用餐區半開放，注意悶熱。",
+          "weather": "用餐區半開放",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Lau+Pa+Sat+Singapore",
-          "notes": "沙嗲街通常晚間更熱鬧。"
+          "notes": "沙嗲街通常晚間更熱鬧"
         },
         {
           "startTime": "15:00",
@@ -493,9 +487,9 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "午後雷陣雨機率高，可先走冷室。",
+          "weather": "午後雷陣雨機率高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gardens+by+the+Bay",
-          "notes": "可先預約時段節省排隊。"
+          "notes": "可先預約時段節省排隊"
         },
         {
           "startTime": "18:10",
@@ -511,9 +505,9 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "室內展館，雨天備案優先。",
+          "weather": "室內展館",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=IMBA+Theatre+Gardens+by+the+Bay",
-          "notes": "2026 年新興熱門展館，建議先看當期展名與時段。"
+          "notes": "2026 年新興熱門展館"
         },
         {
           "startTime": "19:00",
@@ -523,22 +517,22 @@
           "address": "30 Merchant Rd, #01-01/02 Riverside Point, Singapore 058282",
           "cost": "每人 SGD 35-70（含螃蟹）",
           "transport": {
-            "route": "Gardens by the Bay 回市區，MRT 至 Clarke Quay 後步行",
+            "route": "Gardens by the Bay 回市區",
             "mrtStations": [
               "Clarke Quay (NE5)"
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "晚間外圍步行仍潮濕。",
+          "weather": "晚間外圍步行仍潮濕",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=JUMBO+Seafood+Riverside+Point",
-          "notes": "必吃辣椒螃蟹建議先訂位。"
+          "notes": "必吃辣椒螃蟹建議先訂位"
         }
       ]
     },
     {
       "date": "2026-07-06",
       "weekday": "週一",
-      "summary": "上午文青區散步，下午彈性休整，晚間海邊放鬆。",
+      "summary": "上午文青區散步",
       "mrtRoute": {
         "label": "Little India -> Bugis -> 住宿 -> East Coast",
         "fare": "約 SGD 1.0-2.3 / 單程",
@@ -570,9 +564,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.70"
           },
-          "weather": "上午偏熱，建議遮陽。",
+          "weather": "上午偏熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Haji+Lane+Singapore",
-          "notes": "避開午後熱時段，拍照體驗較好。"
+          "notes": "避開午後熱時段"
         },
         {
           "startTime": "10:15",
@@ -588,9 +582,9 @@
             ],
             "fareEstimate": "步行為主"
           },
-          "weather": "中午前開始悶熱，穿著需端莊並透氣。",
+          "weather": "中午前開始悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sultan+Mosque+Singapore",
-          "notes": "中午前後可回住宿休整，保留彈性。"
+          "notes": "中午前後可回住宿休整"
         },
         {
           "startTime": "12:00",
@@ -606,9 +600,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.70"
           },
-          "weather": "室內準備為主。",
+          "weather": "室內準備為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
-          "notes": "預留午後休息與補水時間。"
+          "notes": "預留午後休息與補水時間"
         },
         {
           "startTime": "17:30",
@@ -618,22 +612,22 @@
           "address": "1220 East Coast Pkwy, Singapore 468960",
           "cost": "每人 SGD 12-25",
           "transport": {
-            "route": "MRT 至 Bedok (EW5) 轉巴士，或直接 Grab",
+            "route": "MRT 至 Bedok (EW5) 轉巴士",
             "mrtStations": [
               "Bedok (EW5)"
             ],
             "fareEstimate": "MRT+巴士約 SGD 1.50-2.30"
           },
-          "weather": "晚間有海風，但偶有短暫降雨。",
+          "weather": "晚間有海風",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=East+Coast+Lagoon+Food+Village",
-          "notes": "下午休整後用海邊行程放鬆。"
+          "notes": "下午休整後用海邊行程放鬆"
         }
       ]
     },
     {
       "date": "2026-07-07",
       "weekday": "週二",
-      "summary": "ICPR7 Day 1：固定會議日，三餐皆納入，通勤以 SUSS 為中心。",
+      "summary": "ICPR7 Day 1：固定會議日",
       "mrtRoute": {
         "label": "Little India -> Clementi -> SUSS",
         "fare": "約 SGD 1.2-2.2 / 單程",
@@ -665,15 +659,15 @@
           "address": "3155 Commonwealth Ave West, Singapore 129588",
           "cost": "每人 SGD 7-12",
           "transport": {
-            "route": "先到 Clementi 站附近用餐，再轉巴士到 SUSS",
+            "route": "先到 Clementi 站附近用餐",
             "mrtStations": [
               "Clementi (EW23)"
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "早晨炎熱感已明顯。",
+          "weather": "早晨炎熱感已明顯",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Toast+Box+Clementi+Mall",
-          "notes": "建議 8:15 前結束，保留通勤緩衝。"
+          "notes": "建議 8:15 前結束"
         },
         {
           "startTime": "09:00",
@@ -690,9 +684,9 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
           },
-          "weather": "會場室內冷氣偏強，備薄外套。",
+          "weather": "會場室內冷氣偏強",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences+463+Clementi+Road",
-          "notes": "會議細部場次請以主辦單位最終議程為準。"
+          "notes": "會議細部場次請以主辦單位最終議程為準"
         },
         {
           "startTime": "12:30",
@@ -708,9 +702,9 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主。",
+          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SIM+Campus+Singapore",
-          "notes": "午餐時段請依大會休息時間調整。"
+          "notes": "午餐時段請依大會休息時間調整"
         },
         {
           "startTime": "18:30",
@@ -726,16 +720,16 @@
             ],
             "fareEstimate": "巴士/MRT 約 SGD 1.00-1.80"
           },
-          "weather": "晚間仍悶，建議補充電解質。",
+          "weather": "晚間仍悶",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=448+Clementi+Ave+3+Singapore",
-          "notes": "會議首日以近距離用餐減少疲勞。"
+          "notes": "會議首日以近距離用餐減少疲勞"
         }
       ]
     },
     {
       "date": "2026-07-08",
       "weekday": "週三",
-      "summary": "ICPR7 Day 2：維持固定節奏，午晚餐選擇可切換至 Beauty World 一帶。",
+      "summary": "ICPR7 Day 2：維持固定節奏",
       "mrtRoute": {
         "label": "Little India -> Clementi/SUSS -> Beauty World",
         "fare": "約 SGD 1.2-2.3 / 單程",
@@ -772,9 +766,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "早上濕度仍高。",
+          "weather": "早上濕度仍高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ya+Kun+Clementi+Mall",
-          "notes": "若前一晚晚睡，可改飯店早餐。"
+          "notes": "若前一晚晚睡"
         },
         {
           "startTime": "09:00",
@@ -791,9 +785,9 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.30"
           },
-          "weather": "午後雷雨常見，校內移動請備傘。",
+          "weather": "午後雷雨常見",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Singapore",
-          "notes": "中午可依會議安排在校內用餐。"
+          "notes": "中午可依會議安排在校內用餐"
         },
         {
           "startTime": "12:20",
@@ -809,9 +803,9 @@
             ],
             "fareEstimate": "巴士/地鐵約 SGD 1.00-2.00"
           },
-          "weather": "半開放市場悶熱，建議輕裝。",
+          "weather": "半開放市場悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bukit+Timah+Market+%26+Food+Centre",
-          "notes": "若會議排程緊湊，改校內午餐更穩妥。"
+          "notes": "若會議排程緊湊"
         },
         {
           "startTime": "18:30",
@@ -821,22 +815,22 @@
           "address": "144 Upper Bukit Timah Rd, Singapore 588177",
           "cost": "每人 SGD 10-18",
           "transport": {
-            "route": "SUSS 搭巴士至 Beauty World，晚餐後返住宿",
+            "route": "SUSS 搭巴士至 Beauty World",
             "mrtStations": [
               "Beauty World (DT5)"
             ],
             "fareEstimate": "MRT+巴士約 SGD 1.20-2.20"
           },
-          "weather": "晚間偶有雷雨，注意回程時間。",
+          "weather": "晚間偶有雷雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Beauty+World+Centre+Singapore",
-          "notes": "可嘗試在地熟食，控制預算。"
+          "notes": "可嘗試在地熟食"
         }
       ]
     },
     {
       "date": "2026-07-09",
       "weekday": "週四",
-      "summary": "ICPR7 Day 3：收尾日，晚餐安排慶祝型餐廳。",
+      "summary": "ICPR7 Day 3：收尾日",
       "mrtRoute": {
         "label": "Little India -> Clementi/SUSS -> Holland Village",
         "fare": "約 SGD 1.2-2.2 / 單程",
@@ -856,7 +850,7 @@
         {
           "blockName": "晚餐慶祝：Holland Village",
           "needBooking": false,
-          "action": "一般可現場，熱門餐廳建議訂位"
+          "action": "一般可現場"
         }
       ],
       "blocks": [
@@ -875,9 +869,9 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-2.00"
           },
-          "weather": "早晨潮濕，建議多補水。",
+          "weather": "早晨潮濕",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Clementi+MRT+Station",
-          "notes": "第三天可優先求穩，避免繞路。"
+          "notes": "第三天可優先求穩"
         },
         {
           "startTime": "09:00",
@@ -894,9 +888,9 @@
             ],
             "fareEstimate": "MRT+巴士單程約 SGD 1.20-2.20"
           },
-          "weather": "室內冷氣環境，外套建議隨身。",
+          "weather": "室內冷氣環境",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+University+of+Social+Sciences",
-          "notes": "閉幕日常有交流時段，回程抓彈性。"
+          "notes": "閉幕日常有交流時段"
         },
         {
           "startTime": "12:30",
@@ -912,9 +906,9 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內為主。",
+          "weather": "室內為主",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=SUSS+Campus+Singapore",
-          "notes": "減少外出時間，確保下午準時返場。"
+          "notes": "減少外出時間"
         },
         {
           "startTime": "19:00",
@@ -931,16 +925,16 @@
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
-          "weather": "晚間有機會陣雨，建議帶傘。",
+          "weather": "晚間有機會陣雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Holland+Village+Singapore",
-          "notes": "會議結束日可安排稍好一點的晚餐。"
+          "notes": "會議結束日可安排稍好一點的晚餐"
         }
       ]
     },
     {
       "date": "2026-07-10",
       "weekday": "週五",
-      "summary": "2026 新興景點主題日：Mandai 新園區沉浸式體驗 + 市區新餐廳收尾。",
+      "summary": "2026 新興景點主題日：Mandai 新園區沉浸式體驗 + 市區新餐廳收尾",
       "mrtRoute": {
         "label": "Little India -> Khatib -> Mandai Wildlife Reserve -> City Hall",
         "fare": "約 SGD 2.0-3.6 / 單程（含接駁）",
@@ -965,7 +959,7 @@
         {
           "blockName": "晚餐：Sio Pasta（Raffles City）",
           "needBooking": false,
-          "action": "可現場，尖峰建議避開 19:00-20:00"
+          "action": "可現場"
         }
       ],
       "blocks": [
@@ -983,9 +977,9 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "早晨悶熱，先補水。",
+          "weather": "早晨悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=2+Serangoon+Road+Singapore+550532",
-          "notes": "新興景點日，建議提早出發。"
+          "notes": "新興景點日"
         },
         {
           "startTime": "10:20",
@@ -1002,9 +996,9 @@
             ],
             "fareEstimate": "MRT+接駁約 SGD 2.0-3.0"
           },
-          "weather": "室內沉浸式展館，雨天友善。",
+          "weather": "室內沉浸式展館",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Exploria+Mandai+Wildlife+Reserve",
-          "notes": "2026/03 開幕新景點。"
+          "notes": "2026/03 開幕新景點"
         },
         {
           "startTime": "12:25",
@@ -1020,9 +1014,9 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內外皆可，依人潮調整。",
+          "weather": "室內外皆可",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mandai+Wildlife+Reserve+food",
-          "notes": "建議避開 12:30 尖峰。"
+          "notes": "建議避開 12:30 尖峰"
         },
         {
           "startTime": "13:35",
@@ -1038,9 +1032,9 @@
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "室內互動體驗。",
+          "weather": "室內互動體驗",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Minecraft+Experience+Singapore+Mandai",
-          "notes": "2026/04 開放，熱門時段建議事先預約。"
+          "notes": "2026/04 開放"
         },
         {
           "startTime": "17:40",
@@ -1050,22 +1044,22 @@
           "address": "252 North Bridge Rd, Singapore 179103",
           "cost": "每人 SGD 14-30",
           "transport": {
-            "route": "Mandai 回市區，MRT 至 City Hall 後步行",
+            "route": "Mandai 回市區",
             "mrtStations": [
               "City Hall (EW13/NS25)"
             ],
             "fareEstimate": "單程約 SGD 1.20-2.20"
           },
-          "weather": "室內商場舒適。",
+          "weather": "室內商場舒適",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sio+Pasta+Raffles+City+Singapore",
-          "notes": "東京 Michelin 認可品牌 2026 新據點。"
+          "notes": "東京 Michelin 認可品牌 2026 新據點"
         }
       ]
     },
     {
       "date": "2026-07-11",
       "weekday": "週六",
-      "summary": "文化與藝術日：小印度、國家美術館、夜景收尾。",
+      "summary": "文化與藝術日：小印度、國家美術館、夜景收尾",
       "mrtRoute": {
         "label": "Little India -> Bugis -> City Hall -> Bayfront",
         "fare": "約 SGD 0.9-1.8 / 單程",
@@ -1103,9 +1097,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.80"
           },
-          "weather": "上午已偏熱，建議輕裝。",
+          "weather": "上午已偏熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tekka+Centre+Singapore",
-          "notes": "週末人潮較多，提早到較舒服。"
+          "notes": "週末人潮較多"
         },
         {
           "startTime": "10:30",
@@ -1122,9 +1116,9 @@
             ],
             "fareEstimate": "約 SGD 0.90-1.20"
           },
-          "weather": "室內外混合，留意午後陣雨。",
+          "weather": "室內外混合",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Street+Singapore",
-          "notes": "可彈性作為購物補貨時段。"
+          "notes": "可彈性作為購物補貨時段"
         },
         {
           "startTime": "12:30",
@@ -1140,9 +1134,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.40"
           },
-          "weather": "中午炎熱，室內用餐較舒適。",
+          "weather": "中午炎熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Song+Fa+Bak+Kut+Teh+New+Bridge+Road",
-          "notes": "必吃肉骨茶已安排在此時段。"
+          "notes": "必吃肉骨茶已安排在此時段"
         },
         {
           "startTime": "14:00",
@@ -1158,9 +1152,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.30"
           },
-          "weather": "午後多雨機率高，室內美術館很適合。",
+          "weather": "午後多雨機率高",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=National+Gallery+Singapore",
-          "notes": "展區大，建議先看當期重點展。"
+          "notes": "展區大"
         },
         {
           "startTime": "18:30",
@@ -1177,9 +1171,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.40"
           },
-          "weather": "室內用餐，飯後可短距離散步。",
+          "weather": "室內用餐",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
-          "notes": "Chef André Chiang 2026 新餐廳，建議提前訂位。"
+          "notes": "Chef André Chiang 2026 新餐廳"
         },
         {
           "startTime": "16:10",
@@ -1189,23 +1183,23 @@
           "address": "200 Victoria St, Singapore 188021",
           "cost": "雙人約 SGD 120-280（依品牌）",
           "transport": {
-            "route": "National Gallery 結束後，MRT/步行至 City Hall-Bugis 商圈",
+            "route": "National Gallery 結束後",
             "mrtStations": [
               "City Hall (EW13/NS25)",
               "Bugis (EW12/DT14)"
             ],
             "fareEstimate": "約 SGD 0.90-1.40"
           },
-          "weather": "商場室內採買，不受午後雷雨影響。",
+          "weather": "商場室內採買",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Junction+Raffles+City+Singapore",
-          "notes": "優先買 Irvins、Bacha、TWG，冷藏品最後一天再買。"
+          "notes": "優先買 Irvins、Bacha、TWG"
         }
       ]
     },
     {
       "date": "2026-07-12",
       "weekday": "週日",
-      "summary": "離境日：保留充足緩衝，確保 15:00 前抵達樟宜。",
+      "summary": "離境日：保留充足緩衝",
       "mrtRoute": {
         "label": "Citadines Rochor -> Changi Airport",
         "fare": "約 SGD 1.5-2.2 / 單程",
@@ -1220,7 +1214,7 @@
         {
           "blockName": "前往樟宜機場與辦理登機",
           "needBooking": false,
-          "action": "不需預約，建議提早到站"
+          "action": "不需預約"
         }
       ],
       "blocks": [
@@ -1238,9 +1232,9 @@
             ],
             "fareEstimate": "SGD 0-1.20"
           },
-          "weather": "上午悶熱，行李打包注意防潮。",
+          "weather": "上午悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
-          "notes": "確認護照、機票、退稅單據。"
+          "notes": "確認護照、機票、退稅單據"
         },
         {
           "startTime": "09:30",
@@ -1256,9 +1250,9 @@
             ],
             "fareEstimate": "單程約 SGD 0.90-1.60"
           },
-          "weather": "日照開始變強，戶外停留不宜過久。",
+          "weather": "日照開始變強",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fort+Canning+Park",
-          "notes": "離境日前不建議安排遠距離行程。"
+          "notes": "離境日前不建議安排遠距離行程"
         },
         {
           "startTime": "11:15",
@@ -1268,15 +1262,15 @@
           "address": "2 Serangoon Road, Singapore 550532",
           "cost": "每人 SGD 10-20",
           "transport": {
-            "route": "步行為主，確保 12:30 前可出發",
+            "route": "步行為主",
             "mrtStations": [
               "Little India MRT（約 300 公尺步行）"
             ],
             "fareEstimate": "SGD 0"
           },
-          "weather": "中午前後體感悶熱。",
+          "weather": "中午前後體感悶熱",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+city+lunch",
-          "notes": "行李較多時，建議直接叫車去機場。"
+          "notes": "行李較多時"
         },
         {
           "startTime": "12:30",
@@ -1286,36 +1280,33 @@
           "address": "Airport Blvd, Singapore",
           "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-45；伴手禮預留雙人 SGD 40-120",
           "transport": {
-            "route": "MRT: 市區 -> Tanah Merah (EW4) 轉往 CG2；或直接 Grab",
+            "route": "MRT: 市區 -> Tanah Merah (EW4) 轉往 CG2",
             "mrtStations": [
               "Tanah Merah (EW4)",
               "Changi Airport (CG2)"
             ],
             "fareEstimate": "MRT 約 SGD 1.50-2.20"
           },
-          "weather": "午後常有雷陣雨，提早出發更穩。",
+          "weather": "午後常有雷陣雨",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Terminal+1",
-          "notes": "建議在樟宜航廈內做最後伴手禮補貨（Irvins、Bee Cheng Hiang、TWG），再辦理登機。"
+          "notes": "建議在樟宜航廈內做最後伴手禮補貨（Irvins、Bee Cheng Hiang、TWG）"
         }
       ]
     }
   ],
   "souvenirs": {
-    "summary": "已納入台灣旅客常買的新加坡伴手禮清單，並安排市區採買 + 機場最後補貨兩段。",
+    "summary": "已排市區＋機場兩段採買，優先台灣旅客常買品項。",
     "topPicks": [
-      "Irvins 鹹蛋黃魚皮/洋芋片（耐放、機場可買）",
-      "Bee Cheng Hiang 肉乾（經典必買）",
-      "Bacha Coffee 掛耳/咖啡豆（送禮辨識度高）",
-      "TWG Tea 茶包禮盒（輕量好攜）",
-      "松發肉骨茶香料包（台灣旅客回購高）",
-      "斑蘭蛋糕 / Kaya 醬（短天數內食用）",
-      "Pineapple Tart 與 CNY 禮盒（節慶季熱度高）"
+      "Irvins 鹹蛋黃零食",
+      "Bee Cheng Hiang 肉乾",
+      "Bacha Coffee",
+      "TWG Tea",
+      "肉骨茶香料包"
     ],
-    "statsNote": "2025-2026 公開資料以媒體榜單、旅遊內容與熱搜趨勢為主；目前缺乏跨平台官方銷量總表。已將可取得指標整合成採買優先順序。",
+    "statsNote": "2025-2026 以公開榜單與熱搜趨勢整合，作為採買優先順序。",
     "buySpots": [
-      "7/11 16:10-17:40：Bugis Junction / Raffles City（Bacha、TWG、Irvins）",
-      "7/11 晚餐前：Raffles 區域精品店補齊高單價送禮品",
-      "7/12 13:00 後：Changi Airport（Irvins、Bee Cheng Hiang、TWG 最後補貨）"
+      "7/11 市區：Bugis / Raffles City",
+      "7/12 機場：Changi 航廈補貨"
     ],
     "sources": [
       {
@@ -1383,6 +1374,6 @@
         "lastDayBuy": false
       }
     ],
-    "handlingNote": "航空規範與海關規定可能變動；液體/半流體（如 Kaya）與易碎玻璃容器優先托運，生鮮與短保存期限品項建議最後一天購買。"
+    "handlingNote": "液體/玻璃優先托運；短保存品（蛋糕/冷藏）最後一天購買。"
   }
 }

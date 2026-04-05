@@ -12,7 +12,7 @@ function currentDirUrl() {
 }
 
 function itineraryJsonUrl() {
-  return new URL("itinerary.json?v=20260404p", currentDirUrl());
+  return new URL("itinerary.json?v=20260404q", currentDirUrl());
 }
 
 async function loadItinerary() {
