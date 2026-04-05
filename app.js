@@ -209,8 +209,57 @@ const FOOD_GALLERY_PRESETS = [
   }
 ];
 
+const WIKI_IMAGE_CACHE = new Map();
+
 function makeFoodPhotoUrl(query) {
-  return `https://source.unsplash.com/640x420/?${encodeURIComponent(query)}`;
+  return `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrlimit=1&prop=pageimages&piprop=thumbnail&pithumbsize=640&format=json&origin=*`;
+}
+
+function makePhotoFallbackSvg(label) {
+  const safe = escapeHtml(label.length > 18 ? `${label.slice(0, 18)}...` : label);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eef3fb"/><stop offset="1" stop-color="#dde8f8"/></linearGradient></defs><rect width="640" height="420" fill="url(#g)"/><text x="50%" y="44%" text-anchor="middle" font-size="30" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#2b4f82">Photo loading</text><text x="50%" y="58%" text-anchor="middle" font-size="21" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#56729a">${safe}</text></svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+async function fetchWikimediaPhoto(query) {
+  if (WIKI_IMAGE_CACHE.has(query)) {
+    return WIKI_IMAGE_CACHE.get(query);
+  }
+  try {
+    const url = makeFoodPhotoUrl(query);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`wiki ${response.status}`);
+    }
+    const data = await response.json();
+    const pages = data?.query?.pages ? Object.values(data.query.pages) : [];
+    const image = pages.find((p) => p?.thumbnail?.source)?.thumbnail?.source || null;
+    WIKI_IMAGE_CACHE.set(query, image);
+    return image;
+  } catch (error) {
+    WIKI_IMAGE_CACHE.set(query, null);
+    return null;
+  }
+}
+
+async function hydrateFoodGalleryImages(root) {
+  const scope = root || document;
+  const images = Array.from(scope.querySelectorAll("img[data-wiki-query]"));
+  await Promise.all(
+    images.map(async (img) => {
+      const query = img.dataset.wikiQuery;
+      if (!query) {
+        return;
+      }
+      const found = await fetchWikimediaPhoto(query);
+      if (found) {
+        img.src = found;
+      } else {
+        const fallbackLabel = img.dataset.fallbackLabel || "Food photo";
+        img.src = makePhotoFallbackSvg(fallbackLabel);
+      }
+    })
+  );
 }
 
 function makeMenuCardSvg(label) {
@@ -237,14 +286,16 @@ function buildFoodGallery(block) {
     {
       title: "猜你會點",
       caption: "熱門第一名",
-      imageUrl: makeFoodPhotoUrl(preset.picks[0]),
+      imageUrl: makePhotoFallbackSvg(preset.picks[0]),
+      photoQuery: `${block.location} ${preset.picks[0]} food`,
       targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[0]} reviews`)}`,
       isPhoto: true
     },
     {
       title: "猜你會點",
       caption: "熱門第二名",
-      imageUrl: makeFoodPhotoUrl(preset.picks[1]),
+      imageUrl: makePhotoFallbackSvg(preset.picks[1]),
+      photoQuery: `${block.location} ${preset.picks[1]} dish`,
       targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[1]} reviews`)}`,
       isPhoto: true
     }
@@ -258,9 +309,16 @@ function buildFoodGallery(block) {
           .map(
             (item) => `
           <a class="food-card" href="${escapeHtml(item.targetUrl)}" target="_blank" rel="noopener noreferrer">
-            <img src="${escapeHtml(item.imageUrl)}" alt="${escapeHtml(item.title)} - ${escapeHtml(item.caption)}" loading="lazy" referrerpolicy="no-referrer">
+            <img
+              src="${escapeHtml(item.imageUrl)}"
+              alt="${escapeHtml(item.title)} - ${escapeHtml(item.caption)}"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              ${item.photoQuery ? `data-wiki-query="${escapeHtml(item.photoQuery)}"` : ""}
+              data-fallback-label="${escapeHtml(item.caption)}"
+            >
             <span class="food-card-title">${escapeHtml(item.title)}</span>
-            <span class="food-card-caption">${escapeHtml(item.caption)}${item.isPhoto ? "（示意照）" : ""}</span>
+            <span class="food-card-caption">${escapeHtml(item.caption)}</span>
           </a>
         `
           )
@@ -610,6 +668,7 @@ function renderAllBlocks(days) {
   dayTitle.textContent = "一次看完：全行程時間軸";
   daySummary.textContent = "以下為 7/4～7/12 完整逐日時間軸，含地點、花費、交通、天氣、預約與地圖連結。";
   blocks.innerHTML = days.map((day) => renderDayTimelineCard(day)).join("");
+  hydrateFoodGalleryImages(blocks);
 }
 
 function renderSingleDayBlocks(day) {
@@ -623,6 +682,7 @@ function renderSingleDayBlocks(day) {
   dayTitle.textContent = `${escapeHtml(day.date)}（${escapeHtml(day.weekday)}）詳細時間軸`;
   daySummary.textContent = day.summary || "";
   blocks.innerHTML = renderDayTimelineCard(day);
+  hydrateFoodGalleryImages(blocks);
 }
 
 function getUsefulBlocks(day) {
