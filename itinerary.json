@@ -1,5 +1,5 @@
 {
-  "tripOverview": "這份行程已納入你們定案住宿 Citadines Rochor，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數已按 7/3 入住起算，並把每日安排調成不重複呈現的情侶旅行版本。",
+  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，安排為不重複的情侶旅行版本。",
   "attractionPlan": [
     "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
     "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
@@ -30,33 +30,16 @@
   },
   "hotel": {
     "name": "Citadines Rochor Singapore",
-    "address": "2 Serangoon Road, Little India, Singapore 218227",
+    "address": "2 Serangoon Road, Singapore 550532",
     "nearestMrt": "Little India MRT（約 300 公尺步行）",
+    "confirmationNumber": "322-4555586",
+    "roomType": "Studio Executive - Bed and Breakfast",
+    "checkIn": "2026-07-03",
+    "checkOut": "2026-07-12",
     "phone": "以預訂確認函為準（平台會顯示完整電話）",
-    "bookedPriceUsd": "US$1,726.19",
-    "bookedPriceSgd": "S$2,217.55",
-    "perNightSgd": "約 S$246/晚（9 晚，7/3 入住起算）",
+    "bookedPriceUsd": "US$1,688.99（收據實付）",
+    "perNightUsd": "約 US$187.67/晚（9 晚）",
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore"
-  },
-  "priceCheck": {
-    "summary": "目前公開頁面可見的價格多為『起價』而非同房型、同取消條件、同稅費的最終總價；你的成交價屬可接受區間。若要二次確認是否最划算，請在同一天同時比官方與 OTA 的『最終含稅總價』。",
-    "references": [
-      {
-        "source": "Citadines 官方 ASR 網站",
-        "note": "官方常有會員折扣與長住折扣，適合比對最終含稅總價。",
-        "url": "https://www.discoverasr.com/en/citadines/singapore/citadines-rochor-singapore/studio"
-      },
-      {
-        "source": "Booking.com（Citadines Rochor）",
-        "note": "可用免費取消房型先鎖房，再做二次比價。",
-        "url": "https://www.booking.com/hotel/sg/citadines-rochor.html"
-      },
-      {
-        "source": "公開比價頁（Bencoolen 區）",
-        "note": "可看區域起價帶；但不是你的同條件最終成交價。",
-        "url": "https://ohotel.sg/hotels/singapore/singapore/district-bencoolen"
-      }
-    ]
   },
   "payment": {
     "summary": "以你目前持卡情況，實務上最省通常是：能刷卡就刷『無海外交易手續費』的卡；MRT/巴士用 Visa/Mastercard 感應進站最方便，現金只保留少量備用。",

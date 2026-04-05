@@ -318,12 +318,11 @@ function renderOverviewContent(data) {
 function renderPrepContent(data) {
   const weatherSummary = byId("weather-summary");
   const hotelFixed = byId("hotel-fixed");
-  const priceCheck = byId("price-check");
   const paymentStrategy = byId("payment-strategy");
   const budgetDashboard = byId("budget-dashboard");
   const reservationPlan = byId("reservation-plan");
   const transportNotes = byId("transport-notes");
-  if (!weatherSummary || !hotelFixed || !priceCheck || !paymentStrategy || !budgetDashboard || !reservationPlan || !transportNotes) {
+  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !reservationPlan || !transportNotes) {
     return;
   }
 
@@ -338,28 +337,14 @@ function renderPrepContent(data) {
       <h3>${escapeHtml(data.hotel?.name || "")}</h3>
       <p><strong>地址：</strong>${escapeHtml(data.hotel?.address || "")}</p>
       <p><strong>最近 MRT：</strong>${escapeHtml(data.hotel?.nearestMrt || "")}</p>
+      <p><strong>確認號：</strong>${escapeHtml(data.hotel?.confirmationNumber || "以收據為準")}</p>
+      <p><strong>房型：</strong>${escapeHtml(data.hotel?.roomType || "以收據為準")}</p>
+      <p><strong>入住/退房：</strong>${escapeHtml(data.hotel?.checkIn || "")} - ${escapeHtml(data.hotel?.checkOut || "")}</p>
       <p><strong>電話：</strong>${escapeHtml(data.hotel?.phone || "")}</p>
-      <p><strong>已訂總價：</strong>${escapeHtml(data.hotel?.bookedPriceUsd || "")} / ${escapeHtml(data.hotel?.bookedPriceSgd || "")}</p>
-      <p><strong>每晚均價：</strong>${escapeHtml(data.hotel?.perNightSgd || "")}</p>
+      <p><strong>已訂總價：</strong>${escapeHtml(data.hotel?.bookedPriceUsd || "")}</p>
+      <p><strong>每晚均價：</strong>${escapeHtml(data.hotel?.perNightUsd || "")}</p>
       <p><a href="${escapeHtml(data.hotel?.mapUrl || "#")}" target="_blank" rel="noopener noreferrer">住宿 Google Maps</a></p>
     </article>
-  `;
-
-  priceCheck.innerHTML = `
-    <p>${escapeHtml(data.priceCheck?.summary || "")}</p>
-    <div class="blocks">
-      ${(data.priceCheck?.references || [])
-        .map(
-          (ref) => `
-        <article class="block-card">
-          <h3>${escapeHtml(ref.source)}</h3>
-          <p>${escapeHtml(ref.note)}</p>
-          <p><a href="${escapeHtml(ref.url)}" target="_blank" rel="noopener noreferrer">查看來源</a></p>
-        </article>
-      `
-        )
-        .join("")}
-    </div>
   `;
 
   paymentStrategy.innerHTML = `<p>${escapeHtml(data.payment?.summary || "")}</p>`;
@@ -434,6 +419,7 @@ function renderKpis(data) {
 
 function renderPrepOverviewMap(days, options = {}) {
   const loadEmbed = Boolean(options.loadEmbed);
+  const hotelStart = options.hotelStart || "Citadines Rochor Singapore";
   const mapSummary = byId("overview-map-summary");
   const mapAreas = byId("overview-map-areas");
   const routeLink = byId("overview-map-route-link");
@@ -443,9 +429,9 @@ function renderPrepOverviewMap(days, options = {}) {
   }
 
   const allStops = collectChronologicalStops(days);
-  const withHotel = ["Citadines Rochor Singapore", ...allStops].filter((q, i, arr) => arr.indexOf(q) === i);
+  const withHotel = [hotelStart, ...allStops].filter((q, i, arr) => arr.indexOf(q) === i);
   const routeStops = withHotel.slice(0, 10);
-  const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit");
+  const routeUrl = buildGoogleMapsDirUrl(routeStops, "transit", hotelStart);
 
   const uniqueAreas = Array.from(
     new Set(days.flatMap((d) => getUsefulBlocks(d).map((b) => b.location)))
@@ -544,13 +530,14 @@ function collectChronologicalStops(days) {
   return out;
 }
 
-function buildGoogleMapsDirUrl(stops, travelMode) {
+function buildGoogleMapsDirUrl(stops, travelMode, originHint) {
   const mode = travelMode || "transit";
+  const defaultOrigin = originHint || "Singapore";
   if (stops.length === 0) {
     return "https://www.google.com/maps/search/?api=1&query=Singapore";
   }
   if (stops.length === 1) {
-    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent("Citadines Rochor Singapore")}&destination=${encodeURIComponent(stops[0])}&travelmode=${mode}`;
+    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(defaultOrigin)}&destination=${encodeURIComponent(stops[0])}&travelmode=${mode}`;
   }
   const max = 10;
   const slice = stops.slice(0, max);
@@ -610,7 +597,6 @@ async function main() {
       "attraction-plan",
       "weather-summary",
       "hotel-fixed",
-      "price-check",
       "payment-strategy",
       "budget-dashboard",
       "reservation-plan",
@@ -650,7 +636,8 @@ async function main() {
     renderOverviewContent(data);
     renderPrepContent(data);
     renderKpis(data);
-    renderPrepOverviewMap(data.days, { loadEmbed: false });
+    const hotelStart = `${data.hotel?.name || ""} ${data.hotel?.address || ""}`.trim() || "Citadines Rochor Singapore";
+    renderPrepOverviewMap(data.days, { loadEmbed: false, hotelStart });
 
     const fullTripStatic = byId("full-trip-static");
     const mainQuickOverview = byId("main-quick-overview");
@@ -716,7 +703,7 @@ async function main() {
         fullTripTimelineBlock.hidden = false;
         toggleStaticInfoPanels(true);
         if (!hasLoadedOverviewMap) {
-          renderPrepOverviewMap(data.days, { loadEmbed: true });
+          renderPrepOverviewMap(data.days, { loadEmbed: true, hotelStart });
           hasLoadedOverviewMap = true;
         }
         if (!hasRenderedFullTimeline) {
@@ -743,7 +730,7 @@ async function main() {
         fullTripTimelineBlock.hidden = false;
         toggleStaticInfoPanels(false);
         if (!hasLoadedOverviewMap) {
-          renderPrepOverviewMap(data.days, { loadEmbed: true });
+          renderPrepOverviewMap(data.days, { loadEmbed: true, hotelStart });
           hasLoadedOverviewMap = true;
         }
         const day = data.days[index];
