@@ -12,7 +12,7 @@ function currentDirUrl() {
 }
 
 function itineraryJsonUrl() {
-  return new URL("itinerary.json?v=20260404n", currentDirUrl());
+  return new URL("itinerary.json?v=20260404p", currentDirUrl());
 }
 
 async function loadItinerary() {
@@ -483,8 +483,9 @@ function renderPrepContent(data) {
   const budgetDashboard = byId("budget-dashboard");
   const foodPlan = byId("food-plan");
   const reservationPlan = byId("reservation-plan");
+  const souvenirPlan = byId("souvenir-plan");
   const transportNotes = byId("transport-notes");
-  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !foodPlan || !reservationPlan || !transportNotes) {
+  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !foodPlan || !reservationPlan || !souvenirPlan || !transportNotes) {
     return;
   }
 
@@ -576,6 +577,39 @@ function renderPrepContent(data) {
         )
         .join("")}
     </div>
+  `;
+
+  souvenirPlan.innerHTML = `
+    <p>${escapeHtml(data.souvenirs?.summary || "")}</p>
+    <article class="block-card">
+      <h3>熱買清單</h3>
+      <ul>${(data.souvenirs?.topPicks || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      <p class="meta">${escapeHtml(data.souvenirs?.statsNote || "")}</p>
+    </article>
+    <article class="block-card">
+      <h3>建議採買地點（已納入每日行程）</h3>
+      <ul>${(data.souvenirs?.buySpots || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+    </article>
+    <article class="block-card">
+      <h3>重量 / 保存期限 / 托運提醒</h3>
+      <ul>${(data.souvenirs?.handlingTips || [])
+        .map(
+          (item) => `
+        <li>
+          <strong>${escapeHtml(item.name || "")}</strong>｜
+          重量建議：${escapeHtml(item.weightGuide || "依包裝標示")}；
+          保存：${escapeHtml(item.shelfLife || "依包裝標示")}；
+          建議：${escapeHtml(item.carryTip || "一般可手提或托運")}
+          ${item.lastDayBuy ? "；最後一天買：是" : ""}
+        </li>
+      `
+        )
+        .join("")}</ul>
+      <p class="meta">${escapeHtml(data.souvenirs?.handlingNote || "")}</p>
+    </article>
+    <p>來源：${(data.souvenirs?.sources || [])
+      .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.name)}</a>`)
+      .join("、")}</p>
   `;
 
   renderList(transportNotes, data.transportNotes || []);
@@ -999,6 +1033,7 @@ async function main() {
       "budget-dashboard",
       "food-plan",
       "reservation-plan",
+      "souvenir-plan",
       "transport-notes",
       "all-days-overview",
       "quick-overview-empty",

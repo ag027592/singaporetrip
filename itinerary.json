@@ -255,6 +255,14 @@
       "action": "可現場，尖峰建議避開",
       "when": "當天",
       "url": "https://www.timeout.com/singapore/news/this-michelin-recognised-tokyo-pasta-restaurant-opens-in-singapore-this-march-with-dishes-from-13-80-022626"
+    },
+    {
+      "name": "伴手禮採買（Irvins / Bee Cheng Hiang / Bacha / TWG）",
+      "type": "購物",
+      "needBooking": false,
+      "action": "不需預約；機場與市區雙段採買，冷藏品最後一天購買",
+      "when": "7/11 市區 + 7/12 機場",
+      "url": "https://www.changiairport.com/"
     }
   ],
   "transportNotes": [
@@ -1172,6 +1180,25 @@
           "weather": "室內用餐，飯後可短距離散步。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
           "notes": "Chef André Chiang 2026 新餐廳，建議提前訂位。"
+        },
+        {
+          "startTime": "16:10",
+          "endTime": "17:40",
+          "name": "伴手禮採買（台灣旅客熱門）",
+          "location": "Bugis Junction / Raffles City",
+          "address": "200 Victoria St, Singapore 188021",
+          "cost": "雙人約 SGD 120-280（依品牌）",
+          "transport": {
+            "route": "National Gallery 結束後，MRT/步行至 City Hall-Bugis 商圈",
+            "mrtStations": [
+              "City Hall (EW13/NS25)",
+              "Bugis (EW12/DT14)"
+            ],
+            "fareEstimate": "約 SGD 0.90-1.40"
+          },
+          "weather": "商場室內採買，不受午後雷雨影響。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Junction+Raffles+City+Singapore",
+          "notes": "優先買 Irvins、Bacha、TWG，冷藏品最後一天再買。"
         }
       ]
     },
@@ -1257,7 +1284,7 @@
           "name": "前往樟宜機場與辦理登機",
           "location": "市區 -> Changi Airport",
           "address": "Airport Blvd, Singapore",
-          "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-45",
+          "cost": "MRT SGD 1.50-2.20 / Grab SGD 25-45；伴手禮預留雙人 SGD 40-120",
           "transport": {
             "route": "MRT: 市區 -> Tanah Merah (EW4) 轉往 CG2；或直接 Grab",
             "mrtStations": [
@@ -1268,9 +1295,94 @@
           },
           "weather": "午後常有雷陣雨，提早出發更穩。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Changi+Airport+Terminal+1",
-          "notes": "你指定 15:00 前抵達機場；若航班較早請再提前 30-60 分鐘出發。"
+          "notes": "建議在樟宜航廈內做最後伴手禮補貨（Irvins、Bee Cheng Hiang、TWG），再辦理登機。"
         }
       ]
     }
-  ]
+  ],
+  "souvenirs": {
+    "summary": "已納入台灣旅客常買的新加坡伴手禮清單，並安排市區採買 + 機場最後補貨兩段。",
+    "topPicks": [
+      "Irvins 鹹蛋黃魚皮/洋芋片（耐放、機場可買）",
+      "Bee Cheng Hiang 肉乾（經典必買）",
+      "Bacha Coffee 掛耳/咖啡豆（送禮辨識度高）",
+      "TWG Tea 茶包禮盒（輕量好攜）",
+      "松發肉骨茶香料包（台灣旅客回購高）",
+      "斑蘭蛋糕 / Kaya 醬（短天數內食用）",
+      "Pineapple Tart 與 CNY 禮盒（節慶季熱度高）"
+    ],
+    "statsNote": "2025-2026 公開資料以媒體榜單、旅遊內容與熱搜趨勢為主；目前缺乏跨平台官方銷量總表。已將可取得指標整合成採買優先順序。",
+    "buySpots": [
+      "7/11 16:10-17:40：Bugis Junction / Raffles City（Bacha、TWG、Irvins）",
+      "7/11 晚餐前：Raffles 區域精品店補齊高單價送禮品",
+      "7/12 13:00 後：Changi Airport（Irvins、Bee Cheng Hiang、TWG 最後補貨）"
+    ],
+    "sources": [
+      {
+        "name": "Time Out Singapore（2026 新店與餐飲熱度）",
+        "url": "https://www.timeout.com/singapore/food-and-drink/new-restaurants-cafes-singapore"
+      },
+      {
+        "name": "JUKSY 2025 新加坡伴手禮整理（含 Irvins）",
+        "url": "https://www.juksy.com/article/125240"
+      },
+      {
+        "name": "Google 搜尋趨勢年度重點（新加坡）",
+        "url": "https://www.techedt.com/google-highlights-singapores-top-trending-searches-in-2025"
+      },
+      {
+        "name": "Irvins 官方",
+        "url": "https://www.eatirvins.sg/"
+      },
+      {
+        "name": "BusRouter / RailRouter（交通可視化）",
+        "url": "https://busrouter.sg/"
+      }
+    ],
+    "handlingTips": [
+      {
+        "name": "Irvins 鹹蛋黃魚皮/洋芋片",
+        "weightGuide": "單包約 90-120g；建議每人 4-8 包",
+        "shelfLife": "常溫約 6-9 個月",
+        "carryTip": "可手提也可托運；避免重壓",
+        "lastDayBuy": false
+      },
+      {
+        "name": "Bee Cheng Hiang 肉乾",
+        "weightGuide": "常見 300g/500g 盒裝",
+        "shelfLife": "常溫約 1-2 個月（依包裝）",
+        "carryTip": "托運較穩；手提請用密封袋避免味道外溢",
+        "lastDayBuy": true
+      },
+      {
+        "name": "Bacha Coffee / TWG 禮盒",
+        "weightGuide": "單盒約 150-400g",
+        "shelfLife": "多為 12 個月以上",
+        "carryTip": "手提較佳避免擠壓；玻璃罐建議托運加防震",
+        "lastDayBuy": false
+      },
+      {
+        "name": "肉骨茶香料包",
+        "weightGuide": "單包約 30-50g",
+        "shelfLife": "常溫約 12 個月",
+        "carryTip": "可手提或托運，建議夾鏈袋二次封裝",
+        "lastDayBuy": false
+      },
+      {
+        "name": "Kaya 醬 / 斑蘭蛋糕",
+        "weightGuide": "Kaya 常見 250g 玻璃罐；蛋糕依盒裝",
+        "shelfLife": "Kaya 開封後需冷藏；蛋糕多為 2-4 天",
+        "carryTip": "Kaya 建議托運並防震；蛋糕建議手提且最後一天買",
+        "lastDayBuy": true
+      },
+      {
+        "name": "Pineapple Tart / 節慶禮盒",
+        "weightGuide": "單盒約 300-600g",
+        "shelfLife": "常溫約 1-3 個月",
+        "carryTip": "托運請防壓，手提可保持外盒完整",
+        "lastDayBuy": false
+      }
+    ],
+    "handlingNote": "航空規範與海關規定可能變動；液體/半流體（如 Kaya）與易碎玻璃容器優先托運，生鮮與短保存期限品項建議最後一天購買。"
+  }
 }
