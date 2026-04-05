@@ -1,5 +1,5 @@
 {
-  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，安排為不重複的情侶旅行版本。",
+  "tripOverview": "這份行程已依你已預訂的 Citadines Rochor Singapore 為固定起點，並以景點動線、會議時段、離境時間為核心。你們在 2026/07/04 凌晨抵達、07/07-07/09 參加 ICPR7（SUSS）、07/12 下午 3 點前抵達樟宜離境；住宿晚數按 7/3 入住起算，安排為不重複的情侶旅行版本，並已排入必吃辣椒螃蟹與肉骨茶。",
   "attractionPlan": [
     "7/4 抵達日：Jewel Changi、Marina Bay Waterfront、Clarke Quay（低強度）",
     "7/5 經典路線：Chinatown -> Lau Pa Sat -> Gardens by the Bay -> Marina Bay 夜景",
@@ -8,6 +8,89 @@
     "7/10 會後放鬆：Sentosa 半日 + VivoCity 晚餐",
     "7/11 文化藝術日：Little India -> Bugis -> National Gallery -> Bayfront 夜景",
     "7/12 離境日：輕量行程 + 12:30 出發機場，確保 15:00 前抵達"
+  ],
+  "foodPlan": [
+    {
+      "date": "2026-07-04",
+      "weekday": "週六",
+      "lunch": "Jewel Changi 美食街（叻沙或海南雞飯）",
+      "dinner": "Clarke Quay 河岸餐廳（海鮮/燒烤）",
+      "afternoonTea": "Jewel 咖啡與甜點（低強度）",
+      "supper": "住宿附近 24H 小吃（依體力彈性）",
+      "mustEatStatus": "暖身日，先走清爽路線。"
+    },
+    {
+      "date": "2026-07-05",
+      "weekday": "週日",
+      "lunch": "Lau Pa Sat（沙嗲、炒粿條）",
+      "dinner": "JUMBO Seafood Riverside（辣椒螃蟹）",
+      "afternoonTea": "Gardens by the Bay 園區飲品",
+      "supper": "MBS/濱海灣回程輕食",
+      "mustEatStatus": "已排入必吃：辣椒螃蟹。"
+    },
+    {
+      "date": "2026-07-06",
+      "weekday": "週一",
+      "lunch": "Kampong Glam 周邊餐館（中東或馬來料理）",
+      "dinner": "East Coast Lagoon Food Village（海鮮與沙爹）",
+      "afternoonTea": "Haji Lane 咖啡廳點心",
+      "supper": "回程可買水果或優格",
+      "mustEatStatus": "海邊日，偏在地熟食。"
+    },
+    {
+      "date": "2026-07-07",
+      "weekday": "週二",
+      "lunch": "SUSS 校內或 SIM 餐飲區",
+      "dinner": "Clementi 448 Food Centre",
+      "afternoonTea": "會議茶歇（會場供應）",
+      "supper": "住宿附近小點（避免過飽）",
+      "mustEatStatus": "會議日，以近距離高效率為主。"
+    },
+    {
+      "date": "2026-07-08",
+      "weekday": "週三",
+      "lunch": "Bukit Timah Market（在地熟食）",
+      "dinner": "Beauty World Food Centre",
+      "afternoonTea": "會議茶歇/便利商店補給",
+      "supper": "若餓可加點豆花或甜品",
+      "mustEatStatus": "會議日，保留腸胃與睡眠品質。"
+    },
+    {
+      "date": "2026-07-09",
+      "weekday": "週四",
+      "lunch": "SUSS 校內簡餐",
+      "dinner": "Holland Village 慶祝晚餐",
+      "afternoonTea": "會議茶歇（閉幕日）",
+      "supper": "回程可加買輕食",
+      "mustEatStatus": "會議收尾，晚餐品質提升。"
+    },
+    {
+      "date": "2026-07-10",
+      "weekday": "週五",
+      "lunch": "Sentosa / HarbourFront 區域餐廳",
+      "dinner": "VivoCity 晚餐（可選新馬或日式）",
+      "afternoonTea": "聖淘沙海邊飲品",
+      "supper": "回住宿前便利商店補給",
+      "mustEatStatus": "放鬆日，口味可彈性。"
+    },
+    {
+      "date": "2026-07-11",
+      "weekday": "週六",
+      "lunch": "松發肉骨茶（Song Fa Bak Kut Teh）",
+      "dinner": "Marina Bay 區域景觀晚餐",
+      "afternoonTea": "National Gallery 咖啡廳",
+      "supper": "Bugis/Little India 甜品或豆花",
+      "mustEatStatus": "已排入必吃：肉骨茶。"
+    },
+    {
+      "date": "2026-07-12",
+      "weekday": "週日",
+      "lunch": "出發機場前簡餐（清淡）",
+      "dinner": "機上/轉機餐（依航班）",
+      "afternoonTea": "樟宜機場候機咖啡與點心",
+      "supper": "不建議，優先休息調時差",
+      "mustEatStatus": "離境日，以穩定腸胃為主。"
+    }
   ],
   "weather": {
     "summary": "新加坡 7 月通常高溫潮濕，白天約 25-32°C，午後雷陣雨機率高。建議輕薄快乾衣物、可折傘、室內冷氣外套與防水鞋。",
@@ -42,36 +125,32 @@
     "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore"
   },
   "payment": {
-    "summary": "以你目前持卡情況，實務上最省通常是：能刷卡就刷『無海外交易手續費』的卡；MRT/巴士用 Visa/Mastercard 感應進站最方便，現金只保留少量備用。",
+    "summary": "你們已有兩張新加坡交通卡，建議全程以交通卡儲值搭乘 MRT/巴士；日常消費再用一般刷卡，現金只保留少量備用。",
     "recommendations": [
-      "MRT/巴士：優先用 Visa/Mastercard 感應（SimplyGo），外卡會有每日 SGD 0.60 管理費，仍通常比換匯與提領手續費穩定。",
-      "Discover：一般無海外交易手續費，但在新加坡收單覆蓋可能不如 Visa/Mastercard，建議當備援卡。",
-      "BofA Cash Rewards：多數情況有 3% 海外交易費，除非店家不能刷其他卡，否則不建議當主力。",
-      "PayPal Debit Card：海外刷卡與提款成本可能偏高，僅作備援。",
-      "美金現鈔：只換 200-400 SGD 當小額備用；大量消費改刷卡通常更省且匯率透明。",
+      "MRT/巴士：以兩張交通卡（如 EZ-Link/NETS FlashPay）儲值使用為主，進出站穩定且不用計算外卡附加費。",
+      "儲值建議：先各自儲值 SGD 30-50，會議日與聖淘沙日後再視餘額加值。",
+      "加值方式：MRT 站加值機或便利商店可加值，建議避開尖峰時段操作。",
+      "一般消費：餐飲與購物可刷卡，交通不必改用外卡感應。",
+      "美金現鈔：只換 200-400 SGD 當小額備用；其餘以刷卡與交通卡儲值為主。",
       "DCC（動態貨幣轉換）：結帳時一律選 SGD 入帳，不要選 USD。"
     ],
     "sources": [
       {
-        "name": "SimplyGo Contactless FAQs",
-        "url": "https://www.simplygo.com.sg/faqs/cards-and-charms/simplygo/contactless-bank-cards"
+        "name": "SimplyGo（卡片與加值資訊）",
+        "url": "https://www.simplygo.com.sg/"
       },
       {
         "name": "SMRT How To Pay",
         "url": "https://www.smrt.com.sg/public-transport/getting-around/visiting-singapore/how-to-pay/"
       },
       {
-        "name": "Discover Abroad",
-        "url": "https://www.discover.com/credit-cards/resources/discover-card-abroad/"
-      },
-      {
-        "name": "BofA Foreign Transaction Fee 參考",
-        "url": "https://wise.com/us/blog/bank-of-america-foreign-transaction"
+        "name": "TransitLink",
+        "url": "https://www.transitlink.com.sg/"
       }
     ]
   },
   "budget": {
-    "summary": "已固定為中位平衡版（雙人，9 晚，7/3 入住起算）。",
+    "summary": "已固定為中位平衡版（雙人，9 晚，7/3 入住起算）；住宿已按收據實付 US$1,688.99 轉換後納入。",
     "exchangeRate": {
       "twdPerSgd": 24,
       "usdPerSgd": 0.74
@@ -79,7 +158,7 @@
     "selectedScenario": {
       "name": "中位平衡版（建議）",
       "breakdown": {
-        "hotel": 2217.55,
+        "hotel": 2282.42,
         "food": 1150,
         "transport": 220,
         "tickets": 420,
@@ -140,9 +219,9 @@
   ],
   "transportNotes": [
     "住宿位置在 Little India，前往 Bugis、City Hall、Bayfront、HarbourFront 都很方便，適合作為觀光基地。",
-    "新加坡大眾運輸可直接使用 Visa/Mastercard 感應進出閘門，或使用 EZ-Link。",
+    "你們已有兩張新加坡交通卡，MRT/巴士將以交通卡儲值搭乘為主。",
+    "建議先各儲值 SGD 30-50，並在會議日後依餘額彈性加值。",
     "MRT / 巴士單程常見約 SGD 0.90-2.30（依里程與轉乘而異）。",
-    "外國發卡的 Visa/Mastercard 走 SimplyGo 會有每日 SGD 0.60 管理費（每卡每天）。",
     "往 SUSS 常見路徑：Clementi (EW23) 或 King Albert Park (DT6) 再轉巴士 74/151/154。",
     "雨天晚間可改 Grab；市區短程常見約 SGD 12-25，尖峰更高。"
   ],
@@ -371,21 +450,21 @@
         },
         {
           "startTime": "19:00",
-          "endTime": "20:30",
-          "name": "Marina Bay Sands 商場晚餐 + 夜景",
-          "location": "The Shoppes at Marina Bay Sands",
-          "address": "2 Bayfront Ave, Singapore 018972",
-          "cost": "每人 SGD 20-45",
+          "endTime": "20:45",
+          "name": "晚餐：JUMBO Seafood Riverside（辣椒螃蟹）+ 夜景",
+          "location": "JUMBO Seafood Riverside Point",
+          "address": "30 Merchant Rd, #01-01/02 Riverside Point, Singapore 058282",
+          "cost": "每人 SGD 35-70（含螃蟹）",
           "transport": {
-            "route": "從 Gardens 步行或 Bayfront 站直達",
+            "route": "Gardens by the Bay 回市區，MRT 至 Clarke Quay 後步行",
             "mrtStations": [
-              "Bayfront (CE1/DT16)"
+              "Clarke Quay (NE5)"
             ],
-            "fareEstimate": "步行為主"
+            "fareEstimate": "單程約 SGD 1.00-1.90"
           },
           "weather": "晚間外圍步行仍潮濕。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Shoppes+at+Marina+Bay+Sands",
-          "notes": "20:00 左右可看濱海區燈光氛圍。"
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=JUMBO+Seafood+Riverside+Point",
+          "notes": "必吃辣椒螃蟹建議先訂位。"
         }
       ]
     },
@@ -982,13 +1061,31 @@
         },
         {
           "startTime": "12:30",
-          "endTime": "15:00",
-          "name": "國家美術館 + 午餐",
+          "endTime": "13:40",
+          "name": "午餐：松發肉骨茶（Clarke Quay）",
+          "location": "Song Fa Bak Kut Teh",
+          "address": "11 New Bridge Rd, #01-01, Singapore 059383",
+          "cost": "每人 SGD 12-22",
+          "transport": {
+            "route": "Bugis/City Hall 搭 MRT 至 Clarke Quay 後步行",
+            "mrtStations": [
+              "Clarke Quay (NE5)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.40"
+          },
+          "weather": "中午炎熱，室內用餐較舒適。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Song+Fa+Bak+Kut+Teh+New+Bridge+Road",
+          "notes": "必吃肉骨茶已安排在此時段。"
+        },
+        {
+          "startTime": "14:00",
+          "endTime": "16:00",
+          "name": "國家美術館參觀",
           "location": "National Gallery Singapore",
           "address": "1 St Andrew's Rd, Singapore 178957",
-          "cost": "門票每人約 SGD 20；午餐每人 SGD 12-25",
+          "cost": "門票每人約 SGD 20",
           "transport": {
-            "route": "Bugis -> City Hall 步行至美術館",
+            "route": "午餐後回 City Hall 步行進館",
             "mrtStations": [
               "City Hall (EW13/NS25)"
             ],

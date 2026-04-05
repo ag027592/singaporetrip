@@ -171,6 +171,105 @@ const REVIEW_PRESETS = [
   }
 ];
 
+const FOOD_GALLERY_PRESETS = [
+  {
+    pattern: /JUMBO|螃蟹|Seafood/i,
+    menuKeyword: "JUMBO Seafood Riverside menu Singapore",
+    picks: ["chili crab singapore", "black pepper crab singapore"]
+  },
+  {
+    pattern: /肉骨茶|Song Fa|松發/i,
+    menuKeyword: "Song Fa Bak Kut Teh menu Singapore",
+    picks: ["bak kut teh singapore", "youtiao soup singapore"]
+  },
+  {
+    pattern: /Lau Pa Sat|沙嗲|satay/i,
+    menuKeyword: "Lau Pa Sat satay menu Singapore",
+    picks: ["satay singapore", "hawker food singapore"]
+  },
+  {
+    pattern: /Toast Box|Ya Kun|Kaya Toast/i,
+    menuKeyword: "Toast Box menu Singapore",
+    picks: ["kaya toast singapore", "soft boiled eggs singapore breakfast"]
+  },
+  {
+    pattern: /Tekka|Little India|Bugis/i,
+    menuKeyword: "Tekka Centre food stalls Singapore",
+    picks: ["indian food singapore hawker", "roti prata singapore"]
+  },
+  {
+    pattern: /VivoCity|HarbourFront|Clarke Quay/i,
+    menuKeyword: "VivoCity restaurants menu Singapore",
+    picks: ["singapore seafood dinner", "riverfront dining singapore"]
+  },
+  {
+    pattern: /早餐|午餐|晚餐|餐廳|Food|food|熟食/i,
+    menuKeyword: "Singapore local food menu",
+    picks: ["singapore local cuisine", "singapore dessert"]
+  }
+];
+
+function makeFoodPhotoUrl(query) {
+  return `https://source.unsplash.com/640x420/?${encodeURIComponent(query)}`;
+}
+
+function makeMenuCardSvg(label) {
+  const text = label.length > 16 ? `${label.slice(0, 16)}...` : label;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eef4ff"/><stop offset="1" stop-color="#dfeaff"/></linearGradient></defs><rect width="640" height="420" fill="url(#g)"/><text x="50%" y="42%" text-anchor="middle" font-size="34" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#185fa5">Menu</text><text x="50%" y="58%" text-anchor="middle" font-size="24" font-family="Segoe UI, Noto Sans TC, sans-serif" fill="#2e4058">${escapeHtml(text)}</text></svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function buildFoodGallery(block) {
+  const text = `${block.name || ""} ${block.location || ""}`;
+  const preset = FOOD_GALLERY_PRESETS.find((item) => item.pattern.test(text));
+  if (!preset) {
+    return "";
+  }
+
+  const menuSearch = `https://www.google.com/search?q=${encodeURIComponent(preset.menuKeyword)}`;
+  const items = [
+    {
+      title: "菜單參考",
+      caption: "餐廳菜單與價位",
+      imageUrl: makeMenuCardSvg(block.location || block.name || "餐廳"),
+      targetUrl: menuSearch
+    },
+    {
+      title: "猜你會點",
+      caption: "熱門第一名",
+      imageUrl: makeFoodPhotoUrl(preset.picks[0]),
+      targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[0]} reviews`)}`,
+      isPhoto: true
+    },
+    {
+      title: "猜你會點",
+      caption: "熱門第二名",
+      imageUrl: makeFoodPhotoUrl(preset.picks[1]),
+      targetUrl: `https://www.google.com/search?q=${encodeURIComponent(`${block.location} ${preset.picks[1]} reviews`)}`,
+      isPhoto: true
+    }
+  ];
+
+  return `
+    <aside class="food-gallery" aria-label="餐廳相簿">
+      <h4>餐廳相簿</h4>
+      <div class="food-gallery-grid">
+        ${items
+          .map(
+            (item) => `
+          <a class="food-card" href="${escapeHtml(item.targetUrl)}" target="_blank" rel="noopener noreferrer">
+            <img src="${escapeHtml(item.imageUrl)}" alt="${escapeHtml(item.title)} - ${escapeHtml(item.caption)}" loading="lazy" referrerpolicy="no-referrer">
+            <span class="food-card-title">${escapeHtml(item.title)}</span>
+            <span class="food-card-caption">${escapeHtml(item.caption)}${item.isPhoto ? "（示意照）" : ""}</span>
+          </a>
+        `
+          )
+          .join("")}
+      </div>
+    </aside>
+  `;
+}
+
 function buildReviewSourceLinks(block) {
   const keyword = encodeURIComponent(`${block.location || ""} ${block.name || ""} Singapore`.trim());
   const googleUrl = block.mapUrl || `https://www.google.com/maps/search/?api=1&query=${keyword}`;
@@ -229,6 +328,8 @@ function renderTimelineRow(block, bookingInfo, isLastRow) {
     : "";
 
   const lineHtml = isLastRow ? "" : `<div class="tline" aria-hidden="true"></div>`;
+  const foodGallery = buildFoodGallery(block);
+  const hasGalleryClass = foodGallery ? "has-gallery" : "";
 
   return `
     <div class="trow">
@@ -240,7 +341,10 @@ function renderTimelineRow(block, bookingInfo, isLastRow) {
       <div class="tcontent">
         ${onlineAlert}
         <div class="tblock">${escapeHtml(block.name)}</div>
-        <div class="tdesc">${buildBlockDetailLines(block, bookingInfo)}</div>
+        <div class="tdetail-layout ${hasGalleryClass}">
+          <div class="tdesc">${buildBlockDetailLines(block, bookingInfo)}</div>
+          ${foodGallery}
+        </div>
         ${bookingBadge}
       </div>
     </div>
@@ -320,9 +424,10 @@ function renderPrepContent(data) {
   const hotelFixed = byId("hotel-fixed");
   const paymentStrategy = byId("payment-strategy");
   const budgetDashboard = byId("budget-dashboard");
+  const foodPlan = byId("food-plan");
   const reservationPlan = byId("reservation-plan");
   const transportNotes = byId("transport-notes");
-  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !reservationPlan || !transportNotes) {
+  if (!weatherSummary || !hotelFixed || !paymentStrategy || !budgetDashboard || !foodPlan || !reservationPlan || !transportNotes) {
     return;
   }
 
@@ -377,6 +482,25 @@ function renderPrepContent(data) {
       <p class="meta">${escapeHtml(selected?.note || "")}</p>
       <p class="meta">匯率假設：1 SGD ≈ ${data.budget?.exchangeRate?.twdPerSgd ?? "—"} TWD；1 SGD ≈ ${data.budget?.exchangeRate?.usdPerSgd ?? "—"} USD（出發前請再用實際匯率更新）。</p>
     </article>
+  `;
+
+  foodPlan.innerHTML = `
+    <div class="blocks">
+      ${(data.foodPlan || [])
+        .map(
+          (item) => `
+        <article class="block-card">
+          <h3>${escapeHtml(item.date)}（${escapeHtml(item.weekday)}）</h3>
+          <p><strong>中餐：</strong>${escapeHtml(item.lunch)}</p>
+          <p><strong>晚餐：</strong>${escapeHtml(item.dinner)}</p>
+          <p><strong>下午茶/點心：</strong>${escapeHtml(item.afternoonTea)}</p>
+          <p><strong>宵夜：</strong>${escapeHtml(item.supper)}</p>
+          <p class="meta"><strong>必吃進度：</strong>${escapeHtml(item.mustEatStatus)}</p>
+        </article>
+      `
+        )
+        .join("")}
+    </div>
   `;
 
   reservationPlan.innerHTML = `
@@ -599,6 +723,7 @@ async function main() {
       "hotel-fixed",
       "payment-strategy",
       "budget-dashboard",
+      "food-plan",
       "reservation-plan",
       "transport-notes",
       "all-days-overview",

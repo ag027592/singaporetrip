@@ -586,6 +586,17 @@ ul {
   word-break: break-word;
 }
 
+.tdetail-layout {
+  display: block;
+}
+
+.tdetail-layout.has-gallery {
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 260px);
+  gap: 0.75rem;
+  align-items: start;
+}
+
 .review-box {
   margin-top: 0.5rem;
   padding: 0.5rem 0.6rem;
@@ -597,6 +608,52 @@ ul {
 
 .review-box strong {
   color: #0f4fcc;
+}
+
+.food-gallery {
+  border: 1px solid #d8e4fb;
+  background: #f8fbff;
+  border-radius: 8px;
+  padding: 0.45rem;
+}
+
+.food-gallery h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  color: #35507a;
+}
+
+.food-gallery-grid {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.food-card {
+  display: grid;
+  gap: 0.18rem;
+  border: 1px solid #d8e4fb;
+  border-radius: 8px;
+  padding: 0.35rem;
+  background: #fff;
+}
+
+.food-card img {
+  width: 100%;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e4ecff;
+}
+
+.food-card-title {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #20406f;
+}
+
+.food-card-caption {
+  font-size: 0.72rem;
+  color: #5e6b7a;
 }
 
 .meal-row {
@@ -712,6 +769,10 @@ ul {
 
   .tcontent {
     padding-left: 0.55rem;
+  }
+
+  .tdetail-layout.has-gallery {
+    grid-template-columns: 1fr;
   }
 
   .day-button {
