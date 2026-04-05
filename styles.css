@@ -835,9 +835,17 @@ ul {
   display: flex;
   gap: 1.1rem 1.55rem;
   flex-wrap: wrap;
-  margin-top: 1.25rem;
-  padding-top: 1.05rem;
-  border-top: 1px solid var(--line);
+  margin-top: 0.45rem;
+  margin-bottom: 1.05rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0.55rem;
+  z-index: 8;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(2px);
+  padding-top: 0.55rem;
+  box-shadow: 0 2px 0 rgba(217, 225, 234, 0.7);
 }
 
 .panel-daily .timeline-legend .leg-item {
@@ -923,6 +931,10 @@ ul {
     flex: 1;
     min-width: 0;
   }
+
+  .timeline-legend {
+    top: 0.35rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -944,6 +956,12 @@ ul {
     display: block;
     max-width: none;
     padding: 0;
+  }
+
+  .timeline-legend {
+    position: static !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
   }
 
   .panel,
