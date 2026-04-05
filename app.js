@@ -744,7 +744,7 @@ function updateNavHighlight(dayIndex) {
 }
 
 const FONT_MODE_KEY = "sgTripFontMode";
-const FONT_MODES = ["standard", "large"];
+const FONT_MODES = ["standard", "large", "xlarge"];
 
 function applyFontMode(mode) {
   const root = document.documentElement;
@@ -752,10 +752,10 @@ function applyFontMode(mode) {
     return "standard";
   }
   const safeMode = FONT_MODES.includes(mode) ? mode : "standard";
-  if (safeMode === "large") {
-    root.setAttribute("data-font-mode", "large");
-  } else {
+  if (safeMode === "standard") {
     root.removeAttribute("data-font-mode");
+  } else {
+    root.setAttribute("data-font-mode", safeMode);
   }
   return safeMode;
 }
@@ -882,10 +882,20 @@ async function main() {
       if (!btnFontMode) {
         return;
       }
-      const large = mode === "large";
-      btnFontMode.textContent = large ? "字體：放大" : "字體：標準";
-      btnFontMode.setAttribute("aria-pressed", large ? "true" : "false");
-      btnFontMode.setAttribute("aria-label", large ? "目前為放大字體，點擊切回標準字體" : "目前為標準字體，點擊切換放大字體");
+      const labels = {
+        standard: "字體：標準",
+        large: "字體：放大",
+        xlarge: "字體：超大"
+      };
+      const nextLabels = {
+        standard: "放大",
+        large: "超大",
+        xlarge: "標準"
+      };
+      btnFontMode.textContent = labels[mode] || labels.standard;
+      const pressedState = mode === "xlarge" ? "true" : (mode === "large" ? "mixed" : "false");
+      btnFontMode.setAttribute("aria-pressed", pressedState);
+      btnFontMode.setAttribute("aria-label", `目前為${(labels[mode] || labels.standard).replace("字體：", "")}字體，點擊切換${nextLabels[mode] || "標準"}字體`);
     };
 
     const toggleStaticInfoPanels = (visible) => {
@@ -997,11 +1007,14 @@ async function main() {
     let fontMode = applyFontMode(loadFontMode());
     updateFontModeButton(fontMode);
     btnFontMode?.addEventListener("click", () => {
-      fontMode = fontMode === "large" ? "standard" : "large";
+      const currentIndex = FONT_MODES.indexOf(fontMode);
+      const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % FONT_MODES.length;
+      fontMode = FONT_MODES[nextIndex];
       fontMode = applyFontMode(fontMode);
       saveFontMode(fontMode);
       updateFontModeButton(fontMode);
-      setViewStatus(fontMode === "large" ? "已切換為放大字體模式。" : "已切換為標準字體模式。");
+      const modeText = fontMode === "xlarge" ? "超大" : (fontMode === "large" ? "放大" : "標準");
+      setViewStatus(`已切換為${modeText}字體模式。`);
     });
     dayFilterInput?.addEventListener("input", applyQuickFilter);
     btnClearFilter?.addEventListener("click", () => {
