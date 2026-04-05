@@ -1037,7 +1037,7 @@
     {
       "date": "2026-07-11",
       "weekday": "週六",
-      "summary": "文化與藝術日：小印度、國家美術館、夜景收尾",
+      "summary": "文化與藝術日：小印度、美術館、寄明信片、夜景收尾",
       "mrtRoute": {
         "label": "Little India -> Bugis -> City Hall -> Bayfront",
         "fare": "約 SGD 0.9-1.8 / 單程",
@@ -1131,24 +1131,6 @@
           "notes": "展區大"
         },
         {
-          "startTime": "18:30",
-          "endTime": "21:00",
-          "name": "晚餐：1887 by André（2026 新開）+ Raffles 夜景散步",
-          "location": "Raffles Hotel Singapore",
-          "address": "1 Beach Rd, Singapore 189673",
-          "cost": "每人約 SGD 198+（依菜單）",
-          "transport": {
-            "route": "City Hall / Esplanade 步行至 Raffles 區域",
-            "mrtStations": [
-              "City Hall (EW13/NS25)",
-              "Esplanade (CC3)"
-            ],
-            "fareEstimate": "單程約 SGD 0.90-1.40"
-          },
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
-          "notes": "Chef André Chiang 2026 新餐廳"
-        },
-        {
           "startTime": "16:10",
           "endTime": "17:40",
           "name": "伴手禮採買（台灣旅客熱門）",
@@ -1165,6 +1147,41 @@
           },
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bugis+Junction+Raffles+City+Singapore",
           "notes": "優先買 Irvins、Bacha、TWG"
+        },
+        {
+          "startTime": "17:45",
+          "endTime": "18:15",
+          "name": "郵局寄明信片（已備好）",
+          "location": "SingPost 郵政服務點（Raffles City 周邊）",
+          "address": "252 North Bridge Rd, Singapore 179103",
+          "cost": "每人約 SGD 1-3（郵資）",
+          "transport": {
+            "route": "伴手禮後步行前往郵政服務點寄件",
+            "mrtStations": [
+              "City Hall (EW13/NS25)"
+            ],
+            "fareEstimate": "步行為主"
+          },
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=SingPost+Raffles+City+Singapore",
+          "notes": "只需寄出，明信片已準備完成"
+        },
+        {
+          "startTime": "18:30",
+          "endTime": "21:00",
+          "name": "晚餐：1887 by André（2026 新開）+ Raffles 夜景散步",
+          "location": "Raffles Hotel Singapore",
+          "address": "1 Beach Rd, Singapore 189673",
+          "cost": "每人約 SGD 198+（依菜單）",
+          "transport": {
+            "route": "City Hall / Esplanade 步行至 Raffles 區域",
+            "mrtStations": [
+              "City Hall (EW13/NS25)",
+              "Esplanade (CC3)"
+            ],
+            "fareEstimate": "單程約 SGD 0.90-1.40"
+          },
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=1887+by+Andre+Raffles+Hotel+Singapore",
+          "notes": "Chef André Chiang 2026 新餐廳"
         }
       ]
     },
