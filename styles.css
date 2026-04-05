@@ -726,25 +726,26 @@ ul {
 
 .timeline-legend {
   display: flex;
-  gap: 0.85rem 1.1rem;
+  gap: 1rem 1.35rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+  margin-top: 1.15rem;
+  padding-top: 0.95rem;
   border-top: 1px solid var(--line);
 }
 
-.timeline-legend .leg-item {
+.panel-daily .timeline-legend .leg-item {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 1.02rem;
-  font-weight: 500;
+  gap: 0.45rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--muted);
+  line-height: 1.35;
 }
 
-.leg-dot {
-  width: 12px;
-  height: 12px;
+.panel-daily .timeline-legend .leg-dot {
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -788,6 +789,15 @@ ul {
 
   .day-button {
     font-size: 1rem;
+  }
+
+  .panel-daily .timeline-legend .leg-item {
+    font-size: 1.08rem;
+  }
+
+  .panel-daily .timeline-legend .leg-dot {
+    width: 14px;
+    height: 14px;
   }
 
   .toolbar-right {
