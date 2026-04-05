@@ -351,42 +351,23 @@ function buildReviewHighlight(block) {
 
 function buildBlockDetailLines(block, bookingInfo) {
   const lines = [];
-  lines.push(
-    `交通方式：${escapeHtml(block.transport.route)}；捷運站：${escapeHtml(block.transport.mrtStations.join("、"))}；估：${escapeHtml(block.transport.fareEstimate)}`
-  );
   lines.push(`${escapeHtml(block.location)}｜${escapeHtml(block.address)}`);
-  lines.push(`預計花費：${escapeHtml(block.cost)}`);
-  lines.push(`天氣：${escapeHtml(block.weather)}`);
+  lines.push(
+    `交通：${escapeHtml(block.transport.route)}；捷運站：${escapeHtml(block.transport.mrtStations.join("、"))}；估：${escapeHtml(block.transport.fareEstimate)}`
+  );
   const book = bookingInfo ? reservationTag(bookingInfo) : "可現場";
   const bookDetail = bookingInfo ? `（${escapeHtml(bookingInfo.action)}）` : "";
   lines.push(`預約：${book}${bookDetail}`);
-  if (block.notes) {
-    lines.push(`備註：${escapeHtml(block.notes)}`);
-  }
   const mapUrl = escapeHtml(block.mapUrl);
   lines.push(`<a href="${mapUrl}" target="_blank" rel="noopener noreferrer">Google Maps 導航</a>`);
-  const review = buildReviewHighlight(block);
-  if (review) {
-    lines.push(review);
-  }
   return lines.join("<br>");
 }
 
 function renderTimelineRow(block, bookingInfo, isLastRow) {
   const dot = getBlockDotClass(block);
   const timeLabel = `${escapeHtml(block.startTime)}<br>${escapeHtml(block.endTime)}`;
-  const onlineAlert =
-    /線上活動|線上研討/i.test(block.name) ?
-      `<div class="alert-box"><span class="alert-icon">⚠</span><div class="alert-text">請提前 15 分鐘測試網路、鏡頭與麥克風；時段固定勿遲到。</div></div>`
-    : "";
-  const bookingBadge =
-    bookingInfo && bookingInfo.needBooking ?
-      `<div class="meal-row"><span class="meal-badge"><span>預約</span>：${escapeHtml(bookingInfo.action)}</span></div>`
-    : "";
 
   const lineHtml = isLastRow ? "" : `<div class="tline" aria-hidden="true"></div>`;
-  const foodGallery = buildFoodGallery(block);
-  const hasGalleryClass = foodGallery ? "has-gallery" : "";
 
   return `
     <div class="trow">
@@ -396,13 +377,10 @@ function renderTimelineRow(block, bookingInfo, isLastRow) {
         ${lineHtml}
       </div>
       <div class="tcontent">
-        ${onlineAlert}
         <div class="tblock">${escapeHtml(block.name)}</div>
-        <div class="tdetail-layout ${hasGalleryClass}">
+        <div class="tdetail-layout">
           <div class="tdesc">${buildBlockDetailLines(block, bookingInfo)}</div>
-          ${foodGallery}
         </div>
-        ${bookingBadge}
       </div>
     </div>
   `;
