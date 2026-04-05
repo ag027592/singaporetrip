@@ -347,11 +347,11 @@ function buildReviewHighlight(block) {
 
 function buildBlockDetailLines(block, bookingInfo) {
   const lines = [];
+  lines.push(
+    `交通方式：${escapeHtml(block.transport.route)}；捷運站：${escapeHtml(block.transport.mrtStations.join("、"))}；估：${escapeHtml(block.transport.fareEstimate)}`
+  );
   lines.push(`${escapeHtml(block.location)}｜${escapeHtml(block.address)}`);
   lines.push(`預計花費：${escapeHtml(block.cost)}`);
-  lines.push(
-    `交通：${escapeHtml(block.transport.route)}；捷運站：${escapeHtml(block.transport.mrtStations.join("、"))}；估：${escapeHtml(block.transport.fareEstimate)}`
-  );
   lines.push(`天氣：${escapeHtml(block.weather)}`);
   const book = bookingInfo ? reservationTag(bookingInfo) : "可現場";
   const bookDetail = bookingInfo ? `（${escapeHtml(bookingInfo.action)}）` : "";
