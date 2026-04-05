@@ -12,7 +12,7 @@ function currentDirUrl() {
 }
 
 function itineraryJsonUrl() {
-  return new URL("itinerary.json", currentDirUrl());
+  return new URL("itinerary.json?v=20260404m", currentDirUrl());
 }
 
 async function loadItinerary() {
@@ -738,6 +738,13 @@ function buildDailyTransitMapEmbedUrl(stops, originHint) {
   return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=zh-TW&z=12&output=embed`;
 }
 
+function buildDailyLocalMapEmbedUrl(day, hotelStart) {
+  const stops = dedupeBlocks(day.blocks || []).map((block) => mapQueryFromBlock(block)).filter(Boolean);
+  const focus = [hotelStart, ...stops].filter((q, idx, arr) => arr.indexOf(q) === idx).slice(0, 3);
+  const query = focus.length ? focus.join(" ") : (hotelStart || "Singapore");
+  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=zh-TW&z=13&output=embed`;
+}
+
 function shortLabel(text, maxLen = 34) {
   const raw = String(text || "").trim();
   if (raw.length <= maxLen) {
@@ -852,13 +859,19 @@ function renderDailyTransitMap(day, hotelStart) {
   const title = byId("daily-transit-map-title");
   const summary = byId("daily-transit-map-summary");
   const links = byId("daily-transit-links");
+  const fullMetroMapFrame = byId("full-metro-map-frame");
+  const fullBusMapFrame = byId("full-bus-map-frame");
   const metroImg = byId("daily-metro-map-img");
   const mrtSequenceMap = byId("daily-mrt-sequence-map");
   const busRouteMap = byId("daily-bus-route-map");
   const transitFlow = byId("daily-transit-flow");
+  const dailyLocalMapFrame = byId("daily-local-map-frame");
   const routeLink = byId("daily-transit-route-link");
   const frame = byId("daily-transit-map-frame");
-  if (!panel || !title || !summary || !links || !metroImg || !mrtSequenceMap || !busRouteMap || !transitFlow || !routeLink || !frame || !day) {
+  if (
+    !panel || !title || !summary || !links || !fullMetroMapFrame || !fullBusMapFrame || !metroImg ||
+    !mrtSequenceMap || !busRouteMap || !transitFlow || !dailyLocalMapFrame || !routeLink || !frame || !day
+  ) {
     return;
   }
 
@@ -870,15 +883,26 @@ function renderDailyTransitMap(day, hotelStart) {
   const mrtMapUrl = "https://www.lta.gov.sg/content/ltagov/en/map/train.html";
   const busMapUrl = "https://www.transitlink.com.sg/travel-guide/busservice/";
   const localMetroUrl = new URL(LOCAL_MAP_ASSETS.metroMap, currentDirUrl()).href;
+  const fullMetroUrl = "https://railrouter.sg/";
+  const fullBusUrl = "https://busrouter.sg/visualization/";
 
   title.textContent = `${day.date} 交通地圖（MRT / Bus）`;
   summary.textContent = day.mrtRoute
     ? `${day.mrtRoute.label}｜${day.mrtRoute.fare}。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`
     : `已提供本地 MRT 圖與當日巴士路線圖。MRT 站點 ${mrtStations.length} 個，巴士路線 ${busRoutes.length} 條。`;
+  if (!fullMetroMapFrame.dataset.loaded) {
+    fullMetroMapFrame.src = fullMetroUrl;
+    fullMetroMapFrame.dataset.loaded = "1";
+  }
+  if (!fullBusMapFrame.dataset.loaded) {
+    fullBusMapFrame.src = fullBusUrl;
+    fullBusMapFrame.dataset.loaded = "1";
+  }
   metroImg.src = localMetroUrl;
   mrtSequenceMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} MRT 站點順序`, mrtStations, "#1a69c7")}" alt="${escapeHtml(day.date)} MRT 站點順序圖">`;
   busRouteMap.innerHTML = `<img class="transit-map-image" src="${makeSequenceSvg(`${day.date} 巴士路線順序`, busRoutes.map((r) => `Bus ${r}`), "#1d9e75")}" alt="${escapeHtml(day.date)} 需要搭乘的巴士路線圖">`;
   transitFlow.innerHTML = buildTransitFlowHtml(day);
+  dailyLocalMapFrame.src = buildDailyLocalMapEmbedUrl(day, hotelStart);
   links.innerHTML = `
     <a class="tag" href="${escapeHtml(mrtMapUrl)}" target="_blank" rel="noopener noreferrer">MRT / Metro Map</a>
     <a class="tag" href="${escapeHtml(busMapUrl)}" target="_blank" rel="noopener noreferrer">Bus Map / 路線查詢</a>
@@ -992,10 +1016,13 @@ async function main() {
       "daily-transit-map-title",
       "daily-transit-map-summary",
       "daily-transit-links",
+      "full-metro-map-frame",
+      "full-bus-map-frame",
       "daily-metro-map-img",
       "daily-mrt-sequence-map",
       "daily-bus-route-map",
       "daily-transit-flow",
+      "daily-local-map-frame",
       "daily-transit-route-link",
       "daily-transit-map-frame",
       "day-title",

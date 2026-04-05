@@ -16,7 +16,7 @@
       "lunch": "Jewel Changi 美食街（叻沙或海南雞飯）",
       "dinner": "Clarke Quay 河岸餐廳（海鮮/燒烤）",
       "afternoonTea": "Jewel 咖啡與甜點（低強度）",
-      "supper": "住宿附近 24H 小吃（依體力彈性）",
+      "supper": "Citadines Rochor Singapore 周邊 24H 小吃（依體力彈性）",
       "mustEatStatus": "暖身日，先走清爽路線。"
     },
     {
@@ -43,7 +43,7 @@
       "lunch": "SUSS 校內或 SIM 餐飲區",
       "dinner": "Clementi 448 Food Centre",
       "afternoonTea": "會議茶歇（會場供應）",
-      "supper": "住宿附近小點（避免過飽）",
+      "supper": "Citadines Rochor Singapore 周邊小點（避免過飽）",
       "mustEatStatus": "會議日，以近距離高效率為主。"
     },
     {
@@ -529,18 +529,18 @@
           "startTime": "12:00",
           "endTime": "13:15",
           "name": "回住宿午餐與休整",
-          "location": "住宿附近",
-          "address": "依住宿位置",
+          "location": "Citadines Rochor Singapore 周邊",
+          "address": "2 Serangoon Road, Singapore 550532",
           "cost": "每人 SGD 8-18",
           "transport": {
-            "route": "MRT 返回住宿站點",
+            "route": "MRT 返回Little India MRT（約 300 公尺步行）",
             "mrtStations": [
-              "住宿最近 MRT 站"
+              "Little India MRT（約 300 公尺步行）"
             ],
             "fareEstimate": "單程約 SGD 0.90-1.70"
           },
           "weather": "室內準備為主。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
           "notes": "預留午後休息與補水時間。"
         },
         {
@@ -798,12 +798,12 @@
           "endTime": "08:15",
           "name": "早餐：飯店或附近咖啡館",
           "location": "住宿周邊",
-          "address": "依住宿位置",
+          "address": "2 Serangoon Road, Singapore 550532",
           "cost": "每人 SGD 7-15",
           "transport": {
             "route": "早餐後直接前往 SUSS",
             "mrtStations": [
-              "住宿最近 MRT 站",
+              "Little India MRT（約 300 公尺步行）",
               "Clementi (EW23)"
             ],
             "fareEstimate": "單程約 SGD 1.00-2.00"
@@ -939,17 +939,17 @@
           "endTime": "17:30",
           "name": "休息與回住宿梳洗",
           "location": "住宿",
-          "address": "依住宿位置",
+          "address": "2 Serangoon Road, Singapore 550532",
           "cost": "SGD 0",
           "transport": {
-            "route": "由 HarbourFront 返程至住宿站點",
+            "route": "由 HarbourFront 返程至Little India MRT（約 300 公尺步行）",
             "mrtStations": [
               "HarbourFront (NE1/CC29)"
             ],
             "fareEstimate": "單程約 SGD 1.00-1.90"
           },
           "weather": "室內休息，補充水分。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
           "notes": "晚餐前小休有助行程體力。"
         },
         {
@@ -1120,17 +1120,17 @@
           "endTime": "09:00",
           "name": "早餐與退房準備",
           "location": "住宿",
-          "address": "依住宿位置",
+          "address": "2 Serangoon Road, Singapore 550532",
           "cost": "每人 SGD 8-15",
           "transport": {
             "route": "住宿內或附近餐廳",
             "mrtStations": [
-              "住宿最近 MRT 站"
+              "Little India MRT（約 300 公尺步行）"
             ],
             "fareEstimate": "SGD 0-1.20"
           },
           "weather": "上午悶熱，行李打包注意防潮。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+hotel",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Citadines+Rochor+Singapore",
           "notes": "確認護照、機票、退稅單據。"
         },
         {
@@ -1155,13 +1155,13 @@
           "startTime": "11:15",
           "endTime": "12:00",
           "name": "取回行李與前往機場前午餐",
-          "location": "住宿附近",
-          "address": "依住宿位置",
+          "location": "Citadines Rochor Singapore 周邊",
+          "address": "2 Serangoon Road, Singapore 550532",
           "cost": "每人 SGD 10-20",
           "transport": {
             "route": "步行為主，確保 12:30 前可出發",
             "mrtStations": [
-              "住宿最近 MRT 站"
+              "Little India MRT（約 300 公尺步行）"
             ],
             "fareEstimate": "SGD 0"
           },

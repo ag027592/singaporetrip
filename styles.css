@@ -483,6 +483,14 @@ ul {
   background: #fff;
 }
 
+.transit-map-frame {
+  width: 100%;
+  min-height: 320px;
+  border: 1px solid #d9e4f4;
+  border-radius: 8px;
+  background: #fff;
+}
+
 .bus-route-map {
   min-height: 180px;
   border: 1px solid #d9e4f4;
@@ -871,6 +879,10 @@ ul {
 
   .day-map-frame {
     min-height: 300px;
+  }
+
+  .transit-map-frame {
+    min-height: 270px;
   }
 
   .transit-map-grid {
