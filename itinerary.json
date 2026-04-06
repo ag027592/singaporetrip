@@ -2,10 +2,10 @@
   "tripOverview": "已固定住宿 Citadines Rochor，行程以動線效率、ICPR7（7/7-7/9）與 7/12 15:00 前到機場為核心。",
   "attractionPlan": [
     "7/4 抵達＋低強度市區",
-    "7/5 經典市區＋濱海灣夜景",
-    "7/6 甘榜格南半日＋聖淘沙",
+    "7/5 植物園＋經典市區＋濱海灣夜景",
+    "7/6 甘榜格南半日＋夜間動物園",
     "7/7-7/9 會議日（SUSS）",
-    "7/10 Mandai 新興景點＋夜間動物園",
+    "7/10 Mandai 新興景點日",
     "7/11 文化藝術＋新餐廳",
     "7/12 離境日（12:30 出發機場）"
   ],
@@ -24,7 +24,7 @@
       "weekday": "週日",
       "lunch": "Lau Pa Sat（沙嗲、炒粿條）",
       "dinner": "JUMBO Seafood Riverside（辣椒螃蟹）",
-      "afternoonTea": "Gardens by the Bay 園區飲品",
+      "afternoonTea": "植物園或 Gardens by the Bay 園區飲品",
       "supper": "MBS/濱海灣回程輕食",
       "mustEatStatus": "已排入必吃：辣椒螃蟹。"
     },
@@ -32,10 +32,10 @@
       "date": "2026-07-06",
       "weekday": "週一",
       "lunch": "Kampong Glam 周邊餐館（中東或馬來料理）",
-      "dinner": "VivoCity 晚餐（商場多選擇）",
+      "dinner": "Mandai 夜間動物園前用餐",
       "afternoonTea": "Haji Lane 咖啡廳點心",
-      "supper": "回程可在 VivoCity 補小點",
-      "mustEatStatus": "已納入聖淘沙半日。"
+      "supper": "Night Safari 後回程輕食",
+      "mustEatStatus": "已納入研討會前夜間動物園。"
     },
     {
       "date": "2026-07-07",
@@ -68,10 +68,10 @@
       "date": "2026-07-10",
       "weekday": "週五",
       "lunch": "Mandai 園區午餐（配合 Exploria / Minecraft）",
-      "dinner": "Mandai 園區晚餐（Night Safari 前）",
+      "dinner": "Sio Pasta（Raffles City，2026 新進駐）",
       "afternoonTea": "Mandai 園區飲品",
-      "supper": "Night Safari 後回程輕食",
-      "mustEatStatus": "已納入 2026 新興景點 + 夜間動物園。"
+      "supper": "Citadines Rochor Singapore 周邊輕食",
+      "mustEatStatus": "已納入 2026 新興景點 + 新餐廳。"
     },
     {
       "date": "2026-07-11",
@@ -109,7 +109,7 @@
     "summary": "交通以兩張新加坡交通卡儲值為主；消費刷卡，現金少量備用。",
     "recommendations": [
       "交通卡建議先各儲 SGD 80（兩張共 SGD 160），第 4-5 天視餘額再各加 SGD 20-30。",
-      "兩張卡全程合計抓 SGD 200-230，含聖淘沙與 Mandai 往返較穩。",
+      "兩張卡全程合計抓 SGD 200-230，含夜間動物園與 Mandai 往返較穩。",
       "MRT/巴士優先交通卡，不用外卡管理費。",
       "一般消費刷卡，結帳幣別選 SGD。",
       "現金僅備小額應急。"
@@ -147,6 +147,32 @@
       "note": "兼顧體驗與預算，保留 1-2 次較好晚餐與彈性活動。"
     }
   },
+  "ticketOrder": [
+    {
+      "step": "今天先買（先鎖最難搶）",
+      "action": "Night Safari、1887 by Andre 晚餐位（可退改優先）"
+    },
+    {
+      "step": "出發前 10-14 天",
+      "action": "ICPR7 入場文件最終確認、Mandai 系列（Exploria / Minecraft）先鎖熱門時段"
+    },
+    {
+      "step": "出發前 7-10 天",
+      "action": "Gardens by the Bay、MBS SkyPark、National Gallery（同一天比官網與平台）"
+    },
+    {
+      "step": "出發前 5-7 天",
+      "action": "Sentosa 相關票（確認要玩幾館後再買套票）"
+    },
+    {
+      "step": "出發前 3-5 天",
+      "action": "二次比價：把已鎖可退票改成最低價版本（若有更便宜）"
+    },
+    {
+      "step": "最後補買（當天/前一晚）",
+      "action": "可現場型行程與一般餐廳，不必提早綁死"
+    }
+  ],
   "bookingChecklist": [
     {
       "name": "ICPR7 Conference（7/7-7/9）",
@@ -160,7 +186,7 @@
       "name": "Gardens by the Bay 冷室與 Skyway",
       "type": "景點門票",
       "needBooking": true,
-      "action": "建議先購票與挑時段",
+      "action": "先比官方票與 Klook/KKday/Trip.com；通常雙館或套票最省，再加平台折扣碼",
       "when": "出發前 3-7 天",
       "url": "https://ticket3.gardensbythebay.com.sg/"
     },
@@ -168,7 +194,7 @@
       "name": "Marina Bay Sands SkyPark",
       "type": "景點門票",
       "needBooking": true,
-      "action": "建議預約傍晚場次（天亮到夜景）",
+      "action": "先看官網，再比 Klook/KKday 同時段價格；平日傍晚前時段常較便宜",
       "when": "出發前 3-7 天",
       "url": "https://www.marinabaysands.com/attractions/sands-skypark-observation-deck.html"
     },
@@ -176,7 +202,7 @@
       "name": "National Gallery Singapore",
       "type": "景點門票",
       "needBooking": true,
-      "action": "先線上購票",
+      "action": "優先官網線上票；若有特展再比平台套票，避免現場價",
       "when": "出發前 2-5 天",
       "url": "https://www.nationalgallery.sg/visit"
     },
@@ -184,7 +210,7 @@
       "name": "Sentosa（若加購館內設施）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "若你們要玩館內設施",
+      "action": "先決定要玩幾個館，再買 Sentosa 套票或平台組合票，通常比單買省",
       "when": "出發前 2-5 天",
       "url": "https://www.sentosa.com.sg/"
     },
@@ -192,7 +218,7 @@
       "name": "Night Safari（Mandai）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "建議先選入場時段，熱門夜場較快售完",
+      "action": "先比 Mandai 官網與 Klook/KKday；熱門時段先鎖票，常見是平台促銷最省",
       "when": "出發前 3-7 天",
       "url": "https://www.mandai.com/en/night-safari.html"
     },
@@ -208,7 +234,7 @@
       "name": "Exploria（Mandai，2026/03）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "建議先選時段與票種",
+      "action": "優先官網早鳥/平日票，再比平台首發促銷票與信用卡活動",
       "when": "出發前 3-7 天",
       "url": "https://www.mandai.com/en/about-mandai/media-centre/New-Indoor-Multimedia-Attraction-Exploria-To-Open-At-The-Mandai-Wildlife-Reserve-In-March-2026.html"
     },
@@ -216,7 +242,7 @@
       "name": "Minecraft Experience Singapore（Mandai，2026/04）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "熱門時段先預約",
+      "action": "先鎖官方可退票，再比平台活動；多人票或離峰時段通常更省",
       "when": "出發前 5-10 天",
       "url": "https://www.timeout.com/singapore/news/asias-first-minecraft-immersive-experience-is-opening-in-singapore-this-april-030426"
     },
@@ -224,9 +250,17 @@
       "name": "IMBA Theatre（Gardens by the Bay，2026）",
       "type": "景點門票",
       "needBooking": true,
-      "action": "先查當期展覽與場次",
+      "action": "先看官方展期票價，再比平台聯票；平日場次通常折扣較多",
       "when": "出發前 3-7 天",
       "url": "https://www.fzine.com/culture/imba-theatre"
+    },
+    {
+      "name": "門票最省購買通則（全行程）",
+      "type": "購票策略",
+      "needBooking": true,
+      "action": "同一天比價：官方、Klook、KKday、Trip.com；先鎖可退票、結帳用折扣碼與回饋卡、避免臨櫃價",
+      "when": "出發前 7-3 天",
+      "url": "https://www.visitsingapore.com/travel-guide-tips/travel-information/"
     },
     {
       "name": "1887 by André（Raffles Hotel，2026）",
@@ -381,12 +415,13 @@
     {
       "date": "2026-07-05",
       "weekday": "週日",
-      "summary": "歷史街區與濱海花園經典路線",
+      "summary": "植物園＋歷史街區與濱海花園經典路線",
       "mrtRoute": {
-        "label": "Little India -> Chinatown -> Bayfront",
+        "label": "Little India -> Botanic Gardens -> Chinatown -> Bayfront",
         "fare": "約 SGD 1.0-2.0 / 單程",
         "stations": [
           "Little India (DT12/NE7)",
+          "Botanic Gardens (CC19/DT9)",
           "Chinatown (DT19/NE4)",
           "Bayfront (DT16/CE1)"
         ]
@@ -405,21 +440,21 @@
       ],
       "blocks": [
         {
-          "startTime": "08:30",
-          "endTime": "09:30",
-          "name": "牛車水早餐（熟食中心）",
-          "location": "Chinatown Complex Food Centre",
-          "address": "335 Smith St, Singapore 050335",
-          "cost": "每人 SGD 6-12",
+          "startTime": "08:00",
+          "endTime": "09:15",
+          "name": "新加坡植物園晨間散步",
+          "location": "Singapore Botanic Gardens",
+          "address": "1 Cluny Rd, Singapore 259569",
+          "cost": "SGD 0（園區免費）",
           "transport": {
-            "route": "MRT 至 Chinatown 站步行 5-8 分鐘",
+            "route": "MRT 至 Botanic Gardens (CC19/DT9) 出站步行",
             "mrtStations": [
-              "Chinatown (NE4/DT19)"
+              "Botanic Gardens (CC19/DT9)"
             ],
-            "fareEstimate": "單程約 SGD 0.90-1.60"
+            "fareEstimate": "單程約 SGD 0.90-1.70"
           },
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chinatown+Complex+Food+Centre+Singapore",
-          "notes": "建議提早去避開排隊"
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Singapore+Botanic+Gardens",
+          "notes": "研討會前先安排著名景點"
         },
         {
           "startTime": "10:00",
@@ -513,22 +548,22 @@
     {
       "date": "2026-07-06",
       "weekday": "週一",
-      "summary": "上午甘榜格南＋傍晚聖淘沙",
+      "summary": "上午甘榜格南＋晚間 Night Safari",
       "mrtRoute": {
-        "label": "Little India -> Bugis -> HarbourFront（Sentosa）-> Little India",
-        "fare": "約 SGD 1.0-2.4 / 單程",
+        "label": "Little India -> Bugis -> Khatib -> Mandai Night Safari",
+        "fare": "約 SGD 1.0-3.4 / 單程（含接駁）",
         "stations": [
           "Little India (DT12/NE7)",
           "Bugis (DT14/EW12)",
-          "HarbourFront (NE1/CC29)",
-          "Sentosa Express（VivoCity L3）"
+          "Khatib (NS14)",
+          "Mandai Khatib Shuttle"
         ]
       },
       "bookingItems": [
         {
-          "blockName": "聖淘沙半日＋VivoCity 晚餐",
-          "needBooking": false,
-          "action": "島上設施可現場或視需求先購票"
+          "blockName": "Night Safari（夜間動物園）",
+          "needBooking": true,
+          "action": "建議先選入場時段，熱門夜場較快售完"
         }
       ],
       "blocks": [
@@ -584,22 +619,22 @@
           "notes": "預留午後休息與補水時間"
         },
         {
-          "startTime": "16:30",
-          "endTime": "21:00",
-          "name": "聖淘沙半日＋VivoCity 晚餐",
-          "location": "Sentosa / VivoCity",
-          "address": "3 HarbourFront Walk, Singapore 098585",
-          "cost": "每人 SGD 20-45（景點另計）",
+          "startTime": "18:30",
+          "endTime": "22:00",
+          "name": "Night Safari（夜間動物園）",
+          "location": "Night Safari Singapore",
+          "address": "80 Mandai Lake Rd, Singapore 729826",
+          "cost": "每人約 SGD 55-65（依票種）",
           "transport": {
-            "route": "MRT 至 HarbourFront（NE1/CC29）轉 Sentosa Express；回程同路線",
+            "route": "MRT 至 Khatib (NS14) 後轉 Mandai Shuttle",
             "mrtStations": [
-              "HarbourFront (NE1/CC29)",
-              "Sentosa Express（VivoCity L3）"
+              "Khatib (NS14)",
+              "Mandai Khatib Shuttle"
             ],
-            "fareEstimate": "MRT+Sentosa Express 約 SGD 2.00-4.00"
+            "fareEstimate": "MRT+接駁約 SGD 2.0-3.8"
           },
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sentosa+VivoCity+Singapore",
-          "notes": "可視體力改以 VivoCity 室內動線為主"
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Night+Safari+Singapore",
+          "notes": "已前移到研討會前安排"
         }
       ]
     },
@@ -901,14 +936,15 @@
     {
       "date": "2026-07-10",
       "weekday": "週五",
-      "summary": "Mandai 新興景點 + Night Safari",
+      "summary": "Mandai 新興景點日",
       "mrtRoute": {
-        "label": "Little India -> Khatib -> Mandai Wildlife Reserve（白天＋夜間）",
-        "fare": "約 SGD 2.0-3.8 / 單程（含接駁）",
+        "label": "Little India -> Khatib -> Mandai Wildlife Reserve -> City Hall",
+        "fare": "約 SGD 2.0-3.6 / 單程（含接駁）",
         "stations": [
           "Little India (NE7/DT12)",
           "Khatib (NS14)",
-          "Mandai Khatib Shuttle"
+          "Mandai Khatib Shuttle",
+          "City Hall (EW13/NS25)"
         ]
       },
       "bookingItems": [
@@ -923,9 +959,9 @@
           "action": "熱門時段建議先預約"
         },
         {
-          "blockName": "Night Safari（夜間動物園）",
-          "needBooking": true,
-          "action": "建議先選場次與入園時段"
+          "blockName": "晚餐：Sio Pasta（Raffles City）",
+          "needBooking": false,
+          "action": "可現場"
         }
       ],
       "blocks": [
@@ -999,38 +1035,21 @@
           "notes": "2026/04 開放"
         },
         {
-          "startTime": "17:20",
-          "endTime": "18:30",
-          "name": "晚餐：Mandai 園區用餐（夜間場前）",
-          "location": "Mandai Wildlife Reserve",
-          "address": "20 Mandai Lake Rd, Singapore 729825",
-          "cost": "每人 SGD 15-30",
+          "startTime": "17:40",
+          "endTime": "19:00",
+          "name": "晚餐：Sio Pasta（2026 新進駐）",
+          "location": "Raffles City Shopping Centre",
+          "address": "252 North Bridge Rd, Singapore 179103",
+          "cost": "每人 SGD 14-30",
           "transport": {
-            "route": "園區內步行",
+            "route": "Mandai 回市區",
             "mrtStations": [
-              "Mandai Khatib Shuttle"
+              "City Hall (EW13/NS25)"
             ],
-            "fareEstimate": "SGD 0"
+            "fareEstimate": "單程約 SGD 1.20-2.20"
           },
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Mandai+Wildlife+Reserve+food",
-          "notes": "銜接夜間動物園前先補充體力"
-        },
-        {
-          "startTime": "19:00",
-          "endTime": "22:00",
-          "name": "Night Safari（夜間動物園）",
-          "location": "Night Safari Singapore",
-          "address": "80 Mandai Lake Rd, Singapore 729826",
-          "cost": "每人約 SGD 55-65（依票種）",
-          "transport": {
-            "route": "Mandai 園區內步行至 Night Safari 入口",
-            "mrtStations": [
-              "Mandai Khatib Shuttle"
-            ],
-            "fareEstimate": "SGD 0"
-          },
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Night+Safari+Singapore",
-          "notes": "建議預約夜間場次並提早入園"
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Sio+Pasta+Raffles+City+Singapore",
+          "notes": "東京 Michelin 認可品牌 2026 新據點"
         }
       ]
     },

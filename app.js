@@ -536,6 +536,27 @@ function renderPrepContent(data) {
   `;
 
   reservationPlan.innerHTML = `
+    ${
+      Array.isArray(data.ticketOrder) && data.ticketOrder.length
+        ? `
+      <article class="block-card">
+        <h3>實際下單順序清單（先買 -> 後買）</h3>
+        <ol>
+          ${data.ticketOrder
+            .map(
+              (item) => `
+            <li>
+              <strong>${escapeHtml(item.step || "")}</strong>｜
+              ${escapeHtml(item.action || "")}
+            </li>
+          `
+            )
+            .join("")}
+        </ol>
+      </article>
+    `
+        : ""
+    }
     <div class="blocks">
       ${(data.bookingChecklist || [])
         .map(
